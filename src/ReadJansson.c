@@ -3,6 +3,9 @@
 #include <jansson.h>
 #include <jansson_config.h>
 
+//gcc src/ReadJson.c -Llib/lib -ljansson -Ilib/include 
+
+
 Lecture lectureList[]
   = {
       { .name = "John", .ID = 1, },

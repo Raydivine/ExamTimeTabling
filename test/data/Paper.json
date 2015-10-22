@@ -1,0 +1,111 @@
+// 15 paper 
+
+{
+  "Paper":[
+    {"Name"     :"Electronic",
+     "Code"     :"AMP11",
+     "Examiner" :"John",
+     "Hour"     :"2",
+     "Course"   :["RMB1"],
+     "Students" :"19"
+    }
+    {"Name"     :"AnalogCircuit",
+     "Code"     :"AMP12",
+     "Examiner" :"John",
+     "Hour"     :"2",
+     "Course"   :["RMB1"],
+     "Students" :"19"
+    }
+    {"Name"     :"Programming",
+     "Code"     :"AMP21",
+     "Examiner" :"Anna",
+     "Hour"     :"2",
+     "Course"   :["RMB2"] 
+     "Students" :"15"
+    }
+    {"Name"     :"ICTheory",
+     "Code"     :"AMP22",
+     "Examiner" :"Anna",
+     "Hour"     :"2",
+     "Course"   :["RMB2"], 
+     "Students" :"15"
+    }
+    {"Name"     :"ICDesign",
+     "Code"     :"AMP31",
+     "Examiner" :"Jack",
+     "Hour"     :"2",
+     "Course"   :["RMB3"],
+     "Students" :"10"
+    }
+    {"Name"     :"Engineering",
+     "Code"     :"AMP32",
+     "Examiner" :"Jack",
+     "Hour"     :"2",
+     "Course"   :["RMB3"],
+     "Students" :"10"
+    }
+    {"Name"     :"Chemistry1",
+     "Code"     :"ACH11",
+     "Examiner" :"Nick",
+     "Hour"     :"2",
+     "Course"   :["RAS1"], 
+     "Students" :"38"
+    }
+    {"Name"     :"Biology1",
+     "Code"     :"ACH12",
+     "Examiner" :"Nick",
+     "Hour"     :"2",
+     "Course"   :["RAS1"],
+     "Students" :"38"
+    }
+    {"Name"     :"Chemistry2",
+     "Code"     :"ACH21",
+     "Examiner" :"Risa",
+     "Hour"     :"2",
+     "Course"   :["RAS2"], 
+     "Students" :"30"
+    }
+    {"Name"     :"Biology2",
+     "Code"     :"ACH22",
+     "Examiner" :"Risa",
+     "Hour"     :"2",
+     "Course"   :["RAS2"], 
+     "Students" :"30"
+    }
+    {"Name"     :"Medicine",
+     "Code"     :"ACH31",
+     "Examiner" :"Albert",
+     "Hour"     :"2",
+     "Course"   :["RAS3"],
+     "Students" :"20"
+    }
+    {"Name"     :"Nutrition",
+     "Code"     :"ACH32",
+     "Examiner" :"Albert",
+     "Hour"     :"2",
+     "Course"   :["RAS3"], 
+     "Students" :"20"
+    }
+    {"Name"     :"MoralDanEtika",
+     "Code"     :"MQA1",
+     "Examiner" :"Domy",
+     "Hour"     :"1",
+     "Course"   :["RMB1", "RAS1"], 
+     "Students" :"57"
+    }
+    {"Name"     :"HubunganEnik",
+     "Code"     :"MQA2",
+     "Examiner" :"Gara",
+     "Hour"     :"1",
+     "Course"   :["RMB2", "RAS2"], 
+     "Students" :"45"
+    }
+    {"Name"     :"TamadunIslam",
+     "Code"     :"MQA3",
+     "Examiner" :"Tifar",
+     "Hour"     :"2",
+     "Course"   :["RMB3", "RAS3"],  
+     "Students" :"30"
+    }
+  ]
+}
