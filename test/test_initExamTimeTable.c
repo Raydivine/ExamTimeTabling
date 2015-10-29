@@ -1,6 +1,6 @@
 #include "unity.h"
 #include "initExamTimeTable.h"
-#include "ETT_dataStructure.h"
+#include "ExamStructure.h"
 
 void setUp(void)
 {

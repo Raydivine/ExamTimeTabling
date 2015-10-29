@@ -1,5 +1,5 @@
 #include "initExamTimeTable.h"
-#include "ETT_dataStructure.h"
+#include "ExamStructure.h"
 
 Lecture *LectureNew(int ID, char name){
   
