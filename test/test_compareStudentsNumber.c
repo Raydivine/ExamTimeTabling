@@ -26,6 +26,14 @@ void tearDown(void)
 {
 }
 
+/**   compareStudentsNumber(nodeA, nodeB), 
+*     
+*     if (nodeB.studentNum is > nodeA.studentNum )
+*         return 1;
+*     else
+*         return -1;
+*/
+
 void test_compareStudentsNumber_given_programme2_compare_programme3_should_return_1_becuz_programme3_studentNum_is_bigger(void){
 
   int ans = compareStudentsNumber(node2.data, node3.data);
