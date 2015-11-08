@@ -1,5 +1,6 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
+#include "LinkedList.h"
 
 #include <stdio.h>
 
