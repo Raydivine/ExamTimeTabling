@@ -33,7 +33,7 @@ struct Paper{
 
 struct Venue{
   char *blockName;
-  int venueCode;
+  int code;
   int seats;
 };
 
