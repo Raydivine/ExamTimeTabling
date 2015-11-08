@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include "Node.h"
 
-
+#define MAX_PAPERS 6
 #define MAX_DAYS  50
 
 typedef struct Lecturer Lecturer;
@@ -19,16 +19,16 @@ struct Lecturer{
   int ID;
 };
 
-struct Programme{
-  char *name;
-  int studentNum;
-};
-
 struct Paper{
   char *code;
   int hour;
   int lecturerID; 
-  LinkedList *programmes;
+};
+
+struct Programme{
+  char *name;
+  int studentNum;
+  Paper papers[MAX_PAPERS];
 };
 
 struct Venue{
