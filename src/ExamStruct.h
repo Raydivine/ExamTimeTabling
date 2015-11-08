@@ -7,56 +7,50 @@ typedef struct Lecture Lecture;
 typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
-typedef struct VenueGroup VenueGroup;
-typedef struct Period Period;
 typedef struct Day Day;
-typedef struct ETT ETT;
+typedef struct Table Table;
 
-struct Lecture{
+
+//-----------------USER VARAIBLE----------------------
+struct Lecturer{
+  int lecturerID;
   int ID;
-  char *name;
 };
 
 struct Programme{
-  char name;
-  int numOfStudent;
-  LinkedList *papers;
+  char *name;
+  int studentNum;
 };
 
 struct Paper{
-  char name;
-  int numOfStudent;
+  char *code;
   int hour;
+  Lecturer *lecturer;
   Node *programmes;
-  Node *examiners;
 };
 
 struct Venue{
-  char name;
-  int totalSeats;
+  char *blockName;
+  int venueCode;
+  int seats;
+};
+
+//------------------SYSTEM VARIABLE---------------------------
+
+struct Exam{
+  Venue *venue;
+  Node *lecturers;
   Node *papers;
-  Node *examiners;
-};
-
-struct VenueGroup{
-  char name;
-  int numOfVenue;
-  Node *venues;
-  Node *examiners;
-};
-
-struct Period{
-  LinkedList *venues;
-};
+  Node *programmes;
+}
 
 struct Day{
-  Period morning;
-  Period afternoon;
+  LinkedList *examsAM;
+  LinkedList *examsPM;
 };
 
-struct ETT{
+struct Table{
   LinkedList *day;
 };
-
 
 #endif // ExamStruct_H
