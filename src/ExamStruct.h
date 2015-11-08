@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include "Node.h"
 
-typedef struct Lecture Lecture;
+typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
@@ -42,7 +42,7 @@ struct Exam{
   Node *lecturers;
   Node *papers;
   Node *programmes;
-}
+};
 
 struct Day{
   LinkedList *examsAM;
