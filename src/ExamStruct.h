@@ -26,7 +26,7 @@ struct Paper{
   char *code;
   int hour;
   Lecturer *lecturer;
-  Node *programmes;
+  LinkedList *programmes;
 };
 
 struct Venue{
@@ -40,8 +40,8 @@ struct Venue{
 struct Exam{
   Venue *venue;
   Node *lecturers;
-  Node *papers;
-  Node *programmes;
+  LinkedList *papers;
+  LinkedList *programmes;
 };
 
 struct Day{
