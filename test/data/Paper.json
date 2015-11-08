@@ -20,7 +20,7 @@
      "Code"     :"AMP21",
      "Examiner" :"Anna",
      "Hour"     :"2",
-     "Course"   :["RMB2"] 
+     "Course"   :["RMB2"], 
      "Students" :"15"
     }
     {"Name"     :"ICTheory",
