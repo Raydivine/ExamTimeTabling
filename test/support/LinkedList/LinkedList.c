@@ -6,7 +6,7 @@ LinkedList *linkListNew(void *data){
   LinkedList *link = malloc( sizeof(LinkedList) );
   link->data = data;
   link->next = NULL;
-
+  link->length = 1;
   return link;
 }
 

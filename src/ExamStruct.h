@@ -10,7 +10,6 @@ typedef struct Venue Venue;
 typedef struct Day Day;
 typedef struct Table Table;
 
-
 //-----------------USER VARAIBLE----------------------
 struct Lecturer{
   int lecturerID;
@@ -50,7 +49,7 @@ struct Day{
 };
 
 struct Table{
-  Day *day;
+  Day *days;
 };
 
 #endif // ExamStruct_H

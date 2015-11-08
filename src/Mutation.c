@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define ARRAY_SIZE  sizeof( days ) / sizeof( Day )
+#define ARRAY_SIZE  sizeof( days ) / sizeof( days[0]  )
 
 void MutateInTable(Day days[]){
   
