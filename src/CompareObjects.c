@@ -13,14 +13,3 @@ int compareLecturersID(void *a, void *b){
   else
     return 0;
 }
-
-int compareStudentsNumber(void *a, void *b){
-  
-  Programme *x = (Programme*)a; 
-  Programme *y = (Programme*)b; 
-  
-  if(y->studentNum > x->studentNum)
-    return 1;
-  else 
-    return -1;
-}
