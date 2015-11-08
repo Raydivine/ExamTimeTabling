@@ -2,17 +2,16 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
 
-void setUp(void)
-{
-}
+#define ARRAY_SIZE  sizeof( days ) / sizeof( days[0]  )
 
-void tearDown(void)
-{
-}
+
+
+void setUp(void){}
+void tearDown(void){}
 
 LinkedList *exams1, *exams2, *exams3, *exams4, *exams5, *exams6;
 
-#define ARRAY_SIZE  sizeof( days ) / sizeof( days[0]  )
+
 
 void test_(void){
   
