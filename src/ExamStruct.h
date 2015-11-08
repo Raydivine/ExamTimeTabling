@@ -50,7 +50,7 @@ struct Day{
 };
 
 struct Table{
-  LinkedList *day;
+  Day *day;
 };
 
 #endif // ExamStruct_H

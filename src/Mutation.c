@@ -1,6 +1,12 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
 
-void MutateInTable(Table *table){
+#include <stdio.h>
+
+#define ARRAY_SIZE  sizeof( days ) / sizeof( Day )
+
+void MutateInTable(Day days[]){
+  
+  printf("%d\n",ARRAY_SIZE );
   
 }

@@ -2,9 +2,6 @@
 #define Mutation_H
 #include "ExamStruct.h"
 
-void MutateInTable(Table *table){
-  
-}
-
+void MutateInTable(Day days[]);
 
 #endif // Mutation_H
