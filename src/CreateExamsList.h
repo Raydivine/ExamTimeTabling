@@ -5,7 +5,7 @@
 #include "LinkedListAdd.h"
 
 LinkedList *createExamsList(Venue venueArr[], Programme programmeArr[]);
-ExamVenue createExamVenue(Venue *venue, LinkedList *programms);
+ExamVenue createExamVenue(Venue *venue, LinkedList **programmsList);
 
 
 #endif // CreateExamsList_H

@@ -45,7 +45,7 @@ struct Venue{
 struct ExamVenue{
   Venue *venue;
   Node *lecturers;
-  Node *programmes;
+  LinkedList *programmes;
   LinkedList *papers;
 };
 

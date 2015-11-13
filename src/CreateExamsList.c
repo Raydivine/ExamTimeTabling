@@ -14,7 +14,12 @@ LinkedList *createExamsList(Venue venueArr[], Programme programmeArr[]){
  
 }
 
-ExamVenue createExamVenue(Venue *venue, LinkedList *programms){
+ExamVenue createExamVenue(Venue *venue, LinkedList **programmsList){
   
+  ExamVenue examVenue;
   
+  examVenue.venue = venue;
+  examVenue.programmes = *programmsList;
+  
+  return examVenue;
 }
