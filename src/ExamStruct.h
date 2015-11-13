@@ -32,7 +32,6 @@ struct Programme{
   char *name;
   int studentNum;
   Paper *subjects;
-  int arr[10];
 };
 
 struct Venue{
