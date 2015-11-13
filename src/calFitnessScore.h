@@ -1,5 +1,5 @@
-#ifndef calFitnessScore_H
-#define calFitnessScore_H
+#ifndef CalFitnessScore_H
+#define CalFitnessScore_H
 
 
-#endif // calFitnessScore_H
+#endif // CalFitnessScore_H

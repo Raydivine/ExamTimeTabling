@@ -10,6 +10,9 @@ typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
+
+typedef struct ExamVenue ExamVenue;
+typedef struct ExamVenuesList ExamVenuesList;
 typedef struct Day Day;
 typedef struct Table Table;
 
@@ -39,12 +42,17 @@ struct Venue{
 
 //------------------SYSTEM VARIABLE---------------------------
 
-struct Exam{
+struct ExamVenue{
   Venue *venue;
   Node *lecturers;
-  LinkedList *papers;
   Node *programmes;
+  LinkedList *papers;
 };
+
+struct ExamVenuesList{
+  LinkedList *ExamVenue;
+  int fitnessScore;
+}
 
 struct Day{
   LinkedList *examsAM;

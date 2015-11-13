@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "calFitnessScore.h"
+#include "CalFitnessScore.h"
 
 void setUp(void)
 {
