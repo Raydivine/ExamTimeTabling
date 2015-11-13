@@ -31,7 +31,8 @@ struct Paper{
 struct Programme{
   char *name;
   int studentNum;
-  Paper subjects[MAX_SUBJECTS];
+  Paper *subjects;
+  int arr[10];
 };
 
 struct Venue{
