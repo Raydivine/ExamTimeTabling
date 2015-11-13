@@ -3,7 +3,18 @@
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
 #include "Node.h"
+#include <stdio.h>
 
-LinkedList *createExamsList(Programme programmeArr[], Venue venueArr[]){
+ //printf("%s\n", venueArr[0].blockName);
+ // printf("%s\n", programmeArr[0].name);
+
+LinkedList *createExamsList(Venue venueArr[], Programme programmeArr[]){
+  
+  LinkedList *ExamVenues;
+ 
+}
+
+ExamVenue createExamVenue(Venue *venue, LinkedList *programms){
+  
   
 }
