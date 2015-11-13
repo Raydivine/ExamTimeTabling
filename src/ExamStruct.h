@@ -52,7 +52,7 @@ struct ExamVenue{
 struct ExamVenuesList{
   LinkedList *ExamVenue;
   int fitnessScore;
-}
+};
 
 struct Day{
   LinkedList *examsAM;
