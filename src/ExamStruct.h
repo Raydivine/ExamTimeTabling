@@ -43,7 +43,7 @@ struct Exam{
   Venue *venue;
   Node *lecturers;
   LinkedList *papers;
-  LinkedList *programmes;
+  Node *programmes;
 };
 
 struct Day{
