@@ -41,25 +41,25 @@ void setUp(void){
   = {
       { 
         .name       = "RMB1", 
-        .studentNum = 30, 
+        .studentNum = 25, 
         .subjects   = { papers[0], papers[1], papers[8] }
       },
       
       { 
         .name       = "RMB2", 
-        .studentNum = 30, 
+        .studentNum = 25, 
         .subjects   = { papers[2], papers[3], papers[9] }
       },
       
       { 
         .name       = "RFS1", 
-        .studentNum = 30, 
+        .studentNum = 25, 
         .subjects   = { papers[4], papers[5], papers[8] }
       },
       
       { 
         .name       = "RFS2", 
-        .studentNum = 30, 
+        .studentNum = 25, 
         .subjects   = { papers[6], papers[7], papers[9] }
       },
   
