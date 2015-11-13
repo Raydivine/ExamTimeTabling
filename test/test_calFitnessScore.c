@@ -66,7 +66,7 @@ void tearDown(void)
 {
 }
 
-void test_module_generator_needs_to_be_implemented(void)
+void test_calFtinessScore_given_ExamVenus_with_different_papers_in_every_rooms_should_return_0(void)
 {
 	TEST_IGNORE_MESSAGE("Implement me!");
 }

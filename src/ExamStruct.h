@@ -50,7 +50,7 @@ struct ExamVenue{
 };
 
 struct ExamVenuesList{
-  LinkedList *ExamVenue;
+  LinkedList *ExamVenues;
   int fitnessScore;
 };
 
