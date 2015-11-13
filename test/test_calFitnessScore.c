@@ -1,10 +1,5 @@
 #include "unity.h"
-#include "ExamStruct.h"
-#include "LinkedList.h"
-#include "LinkedListAdd.h"
-#include "CreateExamsList.h"
-
-
+#include "calFitnessScore.h"
 
 void setUp(void)
 {
