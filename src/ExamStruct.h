@@ -11,27 +11,28 @@ typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
 
+typedef struct Session Session;
 typedef struct ExamVenue ExamVenue;
 typedef struct ExamVenuesList ExamVenuesList;
 typedef struct Day Day;
 typedef struct Table Table;
 
 //-----------------USER VARAIBLE----------------------
-struct Lecturer{
-  int lecturerID;
-  int ID;
-};
 
 struct Paper{
   char *code;
   int hour;
-  int lecturerID; 
+  LinkedList *programmes; 
 };
 
 struct Programme{
   char *name;
   int studentNum;
-  Paper *subjects;
+};
+
+struct Lecturer{
+  int lecturerID;
+  int ID;
 };
 
 struct Venue{
@@ -41,6 +42,12 @@ struct Venue{
 };
 
 //------------------SYSTEM VARIABLE---------------------------
+
+
+struct Session{
+  LinkedList *papers;
+  int fitnessScore;
+};
 
 struct ExamVenue{
   Venue *venue;
