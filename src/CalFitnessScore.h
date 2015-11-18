@@ -3,6 +3,7 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-int calFtinessScore(LinkedList **ExamVenue);
+void calFtinessScore(Session *session);
+int isPapersHaveSameProgramme(Paper *paper1, Paper *paper2);
 
 #endif // CalFitnessScore_H

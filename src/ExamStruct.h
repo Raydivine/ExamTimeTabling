@@ -10,18 +10,12 @@ typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
-
 typedef struct Session Session;
-typedef struct ExamVenue ExamVenue;
-typedef struct ExamVenuesList ExamVenuesList;
-typedef struct Day Day;
-typedef struct Table Table;
 
 //-----------------USER VARAIBLE----------------------
 
 struct Paper{
   char *code;
-  int hour;
   LinkedList *programmes; 
 };
 
@@ -32,7 +26,6 @@ struct Programme{
 
 struct Lecturer{
   int lecturerID;
-  int ID;
 };
 
 struct Venue{
@@ -49,26 +42,5 @@ struct Session{
   int fitnessScore;
 };
 
-struct ExamVenue{
-  Venue *venue;
-  Node *lecturers;
-  LinkedList *programmes;
-  LinkedList *papers;
-};
-
-struct ExamVenuesList{
-  LinkedList *ExamVenues;
-  int fitnessScore;
-};
-
-struct Day{
-  LinkedList *examsAM;
-  LinkedList *examsPM;
-};
-
-struct Table{
-  Day days[MAX_DAYS];
-  int daysNum;
-};
 
 #endif // ExamStruct_H

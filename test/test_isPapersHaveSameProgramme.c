@@ -40,27 +40,15 @@ void setUp(void)
 
 void tearDown(void){}
 
-void test_calFtinessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void)
+void test_isPapersHaveSameProgramme_given_p1_p3_which_no_same_Programme_should_return0(void)
 {
-	LinkedList *papers = linkListNew(&p1);
-  addDataToHead(&papers, &p3);
-  addDataToHead(&papers, &p5);
-  
-  session.papers = papers;
-  
-  calFtinessScore(&session);
-  TEST_ASSERT_EQUAL(0,session.fitnessScore);
+	int ans = isPapersHaveSameProgramme(&p1, &p2);
+  TEST_ASSERT_EQUAL(0, ans);
 }
 
-
-void test_calFtinessScore_given_session_has_papers_p1_p2_p5_which_does_not_cause_1conflict_in_programmes_should_get_1(void)
+void test_isPapersHaveSameProgramme_given_p1_p2_which_have_same_Programme_should_return1(void)
 {
-	LinkedList *papers = linkListNew(&p1);
-  addDataToHead(&papers, &p3);
-  addDataToHead(&papers, &p5);
-  
-  session.papers = papers;
-  
-  calFtinessScore(&session);
-  TEST_ASSERT_EQUAL(1,session.fitnessScore);
+	int ans = isPapersHaveSameProgramme(&p1, &p2);
+  TEST_ASSERT_EQUAL(1, ans);
 }
+
