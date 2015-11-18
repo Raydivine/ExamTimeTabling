@@ -21,25 +21,16 @@ void printProgrammeList( LinkedList **programmeList){
 
 
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){
-  Paper *paperX;
   int conflict =0;
-  
+  Paper *paperX;
   LinkedList *programmeList1 = paper->programmes, *programmeList2;
 
-  conflict = conflict + isListsHaveSameElement(programmeList1, programmeList1);
-  
-  // while(paperList != NULL){
-    // paperX = (Paper*)paperList->data;
-    // // paperX = (Paper*)paperList->data;
-    // programmeList2 = paperX->programmes;
-    // printProgrammeList( programmeList2);;
-    // printf("\n");
- 
-    
-    // printf("in\n");
-    // conflict = conflict + isListsHaveSameElement(programmeList1, programmeList2);
-    // paperList = paperList->next;
-  // }
+  while(paperList != NULL){
+    paperX = (Paper*)paperList->data;
+    programmeList2 = paperX->programmes;
+    conflict = conflict + isListsHaveSameElement(programmeList1, programmeList2);
+    paperList = paperList->next;
+  }
   
   return conflict;
 }
