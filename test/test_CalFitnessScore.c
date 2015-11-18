@@ -40,7 +40,7 @@ void setUp(void)
 
 void tearDown(void){}
 
-void test_calFtinessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void)
+void test_calFitnessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void)
 {
 	LinkedList *papers = linkListNew(&p1);
   addDataToHead(&papers, &p3);
@@ -48,12 +48,12 @@ void test_calFtinessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause
   
   session.papers = papers;
   
-  calFtinessScore(&session);
+  calFitnessScore(&session);
   TEST_ASSERT_EQUAL(0,session.fitnessScore);
 }
 
 
-void test_calFtinessScore_given_session_has_papers_p1_p2_p5_which_does_not_cause_1conflict_in_programmes_should_get_1(void)
+void test_calFitnessScore_given_session_has_papers_p1_p2_p5_which_does_not_cause_1conflict_in_programmes_should_get_1(void)
 {
 	LinkedList *papers = linkListNew(&p1);
   addDataToHead(&papers, &p3);
@@ -61,6 +61,6 @@ void test_calFtinessScore_given_session_has_papers_p1_p2_p5_which_does_not_cause
   
   session.papers = papers;
   
-  calFtinessScore(&session);
+  calFitnessScore(&session);
   TEST_ASSERT_EQUAL(1,session.fitnessScore);
 }

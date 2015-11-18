@@ -33,7 +33,7 @@ void test_removeDataFromList_given_head_is_NULL_should_throw_LL_ERR_DATA_IS_NOT_
     TEST_FAIL_MESSAGE("Expected LL_ERR_DATA_IS_NOT_EXIST to be thrown. But receive none");
   }Catch(err)
 
-  clearLinkList(head); 
+  clearLinkList(&head); 
 }
 
 
@@ -48,7 +48,7 @@ void test_removeDataFromList_given_list_is_RMB1_RMB2_but_remove_RMB3_should_thro
     TEST_FAIL_MESSAGE("Expected LL_ERR_DATA_IS_NOT_EXIST to be thrown. But receive none");
   }Catch(err)
 
-  clearLinkList(head);   
+  clearLinkList(&head);   
 }
 
 void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB1_should_remove(void){
@@ -62,7 +62,7 @@ void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB1_should_re
   TEST_ASSERT_EQUAL_PTR(&programmeList[1], head->data);
   TEST_ASSERT_EQUAL_PTR(&programmeList[2], HEAD_TWO->data);
   TEST_ASSERT_NULL(HEAD_TWO->next);
-  clearLinkList(head);   
+  clearLinkList(&head);   
 }
 
 void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB2_should_remove(void){
@@ -76,7 +76,7 @@ void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB2_should_re
   TEST_ASSERT_EQUAL_PTR(&programmeList[0], head->data);
   TEST_ASSERT_EQUAL_PTR(&programmeList[2], HEAD_TWO->data);
   TEST_ASSERT_NULL(HEAD_TWO->next);
-  clearLinkList(head);   
+  clearLinkList(&head);   
 }
 
 void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB3_should_remove(void){
@@ -90,7 +90,7 @@ void test_removeDataFromList_given_list_RMB1_RMB2_RMB3_and_remove_RMB3_should_re
   TEST_ASSERT_EQUAL_PTR(&programmeList[0], head->data);
   TEST_ASSERT_EQUAL_PTR(&programmeList[1], HEAD_TWO->data);
   TEST_ASSERT_NULL(HEAD_TWO->next);
-  clearLinkList(head);   
+  clearLinkList(&head);   
 }
 
 

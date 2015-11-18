@@ -3,6 +3,8 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-void calFtinessScore(Session *session);
+void calFitnessScore(Session *session);
+int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList);
+
 
 #endif // CalFitnessScore_H

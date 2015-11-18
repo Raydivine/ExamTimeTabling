@@ -10,35 +10,34 @@ LinkedList *linkListNew(void *data){
   return link;
 }
 
-void clearLinkList(LinkedList *link){
-  LinkedList *tmp;
+void clearLinkList(LinkedList **link){
+  LinkedList *current = *link, *next;
   
-  while (link != NULL){
-    tmp = link;
-    link = link->next;
-    free(tmp);
+  while (current != NULL) {
+    next = current->next; 
+    free(current); 
+    current = next; 
   }
+  *link = NULL;
 }
 
-int isDataInList(LinkedList **list, void *data){
-  LinkedList *current = *list;
-  
-  while(current != NULL){
-    if(current->data == data)
+int isDataInList(LinkedList *list, void *data){
+
+  while(list != NULL){
+    if(list->data == data)
       return 1;
-    else  current = current->next;  
+    else  list = list->next;  
   }
   
   return 0;
 }
 
-int isListsHaveSameElement(LinkedList **list1, LinkedList **list2){
-  LinkedList *current = *list1;
-  
-  while(current != NULL){
-    if( isDataInList(list2, current->data) )
+int isListsHaveSameElement(LinkedList *list1, LinkedList *list2){
+
+  while(list1 != NULL){
+    if( isDataInList(list2, list1->data) )
       return 1;
-    else  current = current->next;  
+    else  list1 = list1->next;  
   }
   
   return 0;

@@ -9,8 +9,8 @@ struct LinkedList{
 };
 
 LinkedList *linkListNew(void *data); 
-void clearLinkList(LinkedList *link); 
-int isDataInList(LinkedList **list, void *data);
-int isListsHaveSameElement(LinkedList **list1, LinkedList **list2);
+void clearLinkList(LinkedList **link); 
+int isDataInList(LinkedList *list, void *data);
+int isListsHaveSameElement(LinkedList *list1, LinkedList *list2);
 
 #endif // LinkedList_H
