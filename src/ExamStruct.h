@@ -16,6 +16,7 @@ typedef struct Session Session;
 
 struct Paper{
   char *code;
+  int takersNum;
   LinkedList *programmes; 
 };
 

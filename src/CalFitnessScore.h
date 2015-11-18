@@ -4,6 +4,5 @@
 #include "LinkedList.h"
 
 void calFtinessScore(Session *session);
-int isPapersHaveSameProgramme(Paper *paper1, Paper *paper2);
 
 #endif // CalFitnessScore_H
