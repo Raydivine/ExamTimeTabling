@@ -18,15 +18,15 @@ void setUp(void){
   
   testersP1 = linkListNew(&c1);
   addDataToHead(&testersP1, &c2);
-  setPaper(&p1, "p1", &testersP1);
+  setPaper(&p1, "p1", testersP1);
   
   testersP2 = linkListNew(&c3);
   addDataToHead(&testersP2, &c4);
-  setPaper(&p2, "p2", &testersP2);
+  setPaper(&p2, "p2", testersP2);
   
   testersP3 = linkListNew(&c4);
   addDataToHead(&testersP3, &c5);
-  setPaper(&p3, "p3", &testersP3);
+  setPaper(&p3, "p3", testersP3);
   
   paperList = linkListNew(&p1);
   addDataToHead(&paperList, &p2);
@@ -73,10 +73,18 @@ void test_calConflictFromPaperToPaparList_given_p4_takers_are_c1_c8_have_1_confi
   
   LinkedList *testersP4 = linkListNew(&c1);
   addDataToHead(&testersP4, &c8);
-  setPaper(&p4, "p4", &testersP4);
+  setPaper(&p4, "p4", testersP4);
   
-  int ans = calConflictFromPaperToPaparList( &p4, paperList);
-  TEST_ASSERT_EQUAL(1, ans);
+  LinkedList *list = p4.programmes;
+  
+  int ans = isListsHaveSameElement(testersP4, testersP4);
+  TEST_ASSERT_EQUAL(1, ans); 
+  
+  ans = isListsHaveSameElement(list, list);
+  TEST_ASSERT_EQUAL(1, ans); 
+  
+  //int ans = calConflictFromPaperToPaparList( &p4, paperList);
+  //TEST_ASSERT_EQUAL(1, ans);
    
   clearLinkList(&testersP4);
 }
@@ -91,6 +99,6 @@ void xtest_fdsfsdsd(void){
   LinkedList *testersP5 = linkListNew(&c3);
   addDataToHead(&testersP5, &c5);
   
-  int ans = isListsHaveSameElement(testersP4, testersP5);
+  int ans = isListsHaveSameElement(testersP4, testersP4);
   TEST_ASSERT_EQUAL(1, ans); 
 }

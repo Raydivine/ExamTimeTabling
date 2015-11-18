@@ -1,9 +1,9 @@
 #include "SetElements.h"
 #include "ExamStruct.h"
 
-void setPaper(Paper *target ,char *code, LinkedList **programmes){
+void setPaper(Paper *target ,char *code, LinkedList *programmes){
   target->code = code;
-  target->programmes = *programmes;
+  target->programmes = programmes;
 }
 
 void setProgramme(Programme *target ,char *name, int studentNum){
