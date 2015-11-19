@@ -5,9 +5,6 @@
 #include "LinkedListAdd.h"
 #include "SetElements.h"
 
-//C:\Users\Raydivine\Desktop\ExamTimeTabling\build\test\out\test_calConflictFromPaperToPaparList.exe
-
-
 Paper p1,p2,p3,p4;
 Programme c1,c2,c3,c4,c5,c6,c7,c8;
 
@@ -15,7 +12,7 @@ LinkedList *takersP1, *takersP2, *takersP3;
 LinkedList *paperList;
 
 void setUp(void){
-  
+//-----------------TEST ELEMENT----------SHARE TO ALL TEST  
   takersP1 = linkListNew(&c1);
   addDataToHead(&takersP1, &c2);
   setPaper(&p1, "p1", takersP1);
@@ -95,6 +92,47 @@ void test_calConflictFromPaperToPaparList_given_p4_takers_are_c1_c2_have_1_confi
   
   int ans = calConflictFromPaperToPaparList( &p4, paperList);
   TEST_ASSERT_EQUAL(1, ans);
+   
+  clearLinkList(&takersP4);
+}
+
+/**
+ *                             Paper            PaperList
+ * Papers                  :    p4        |          p1              p2              p3
+ * programmes taking       :  c1,c2,c3    |       c1,c2            c3,c4          c5,c6
+ *                            -  -  -             -   -            -
+ *                               (2 conflict, p4 conflict with p1 and p2)
+*/
+void test_calConflictFromPaperToPaparList_given_p4_takers_are_c1_c2_c3_have_2_confict_with_paperList_should_get2(void){
+  
+  LinkedList *takersP4 = linkListNew(&c1);
+  addDataToHead(&takersP4, &c2);
+  addDataToHead(&takersP4, &c3);
+  setPaper(&p4, "p4", takersP4);
+  
+  int ans = calConflictFromPaperToPaparList( &p4, paperList);
+  TEST_ASSERT_EQUAL(2, ans);
+   
+  clearLinkList(&takersP4);
+}
+
+/**
+ *                             Paper            PaperList
+ * Papers                  :    p4          |          p1              p2              p3
+ * programmes taking       :  c1,c2,c3,c5   |       c1,c2            c3,c4          c5,c6
+ *                            -  -  -   -           -   -            -              -
+ *                               (3 conflict, p4 conflict with p1,p2 and p3)
+*/
+void test_calConflictFromPaperToPaparList_given_p4_takers_are_c1_c2_c3_c5_have_3_confict_with_paperList_should_get3(void){
+  
+  LinkedList *takersP4 = linkListNew(&c1);
+  addDataToHead(&takersP4, &c2);
+  addDataToHead(&takersP4, &c3);
+  addDataToHead(&takersP4, &c5);
+  setPaper(&p4, "p4", takersP4);
+  
+  int ans = calConflictFromPaperToPaparList( &p4, paperList);
+  TEST_ASSERT_EQUAL(3, ans);
    
   clearLinkList(&takersP4);
 }
