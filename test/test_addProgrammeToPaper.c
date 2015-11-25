@@ -36,7 +36,6 @@ void test_addProgrammeToPaper_given_paperA_add_c1_should_have_takers_equal_30(vo
   Paper paperA;
   setPaper(&paperA ,"A");
 
- 
   addProgrammeToPaper(&paperA, &c1);
   TEST_ASSERT_EQUAL(30, paperA.takersNum);
   TEST_ASSERT_EQUAL_PTR(&c1, paperA.programmes->data);

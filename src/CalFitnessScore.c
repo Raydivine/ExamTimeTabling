@@ -4,17 +4,17 @@
 #include <stdio.h>
 
 void calFitnessScore(Session *session){
-  int fitnessScore =0;
+  int score =0;
   Paper *paperX;
   LinkedList *paperList = session->papers;
   
   while(paperList !=NULL){
     paperX = (Paper*)paperList->data;                                                       //1. TypeClass the paperList->data to paperX
-    fitnessScore = fitnessScore + calConflictFromPaperToPaparList(paperX, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
+    score = score + calConflictFromPaperToPaparList(paperX, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
     paperList = paperList->next;
   }
   
-  session->fitnessScore =fitnessScore;
+  session->fitnessScore = score;
 }
 
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){
