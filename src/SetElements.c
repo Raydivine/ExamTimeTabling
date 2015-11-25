@@ -2,19 +2,19 @@
 #include "ExamStruct.h"
 #include <stdio.h>
 
-void setVenue(Venue *target, char *blockName, int code, int seats){
-  target->blockName = blockName;
-  target->code = code;
-  target->seats = seats;
+void setVenue(Venue *target, char *name, int venueCode, int seatNum){
+  target->blockName = name;
+  target->code = venueCode;
+  target->seats = seatNum;
 }
 
-void setProgramme(Programme *target ,char *name, int studentNum){
-  target->name = name;
-  target->studentNum = studentNum;
+void setProgramme(Programme *target ,char *programmeName, int numStudent){
+  target->name = programmeName;
+  target->studentNum = numStudent;
 }
 
-void setPaper(Paper *target ,char *code){
-  target->code = code;
+void setPaper(Paper *target ,char *paperCode){
+  target->code = paperCode;
   target->takersNum = 0;
   target->programmes = NULL;
 }

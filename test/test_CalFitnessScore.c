@@ -8,8 +8,6 @@
 Paper p1,p2,p3,p4,p5,p6;
 Programme c1,c2,c3,c4,c5,c6,c7;
 
-Session session;
-
 void setUp(void)
 {
 //-----------------TEST ELEMENT----------SHARE TO ALL TEST  
@@ -60,113 +58,102 @@ void tearDown(void){
 */
 void test_calFitnessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void)
 {
-	Session session = createSession();
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p3);
-  addPaperToSession(&session, &p5);
+	Session ses = createSession();
+  addPaperToSession(&ses, &p1);
+  addPaperToSession(&ses, &p3);
+  addPaperToSession(&ses, &p5);
   
-  calFitnessScore(&session);
-  TEST_ASSERT_EQUAL(0,session.fitnessScore);
+  calFitnessScore(&ses);
+  TEST_ASSERT_EQUAL(0,ses.fitnessScore);
   
-  clearLinkList(&(session.papers)); 
+  clearLinkList(&(ses.papers)); 
 }
 
 /**
  *                                 session
  * Papers                  :   p1              p2              p5
  * programmes taking       : c1,c2            c2,c3            c7
- *                              *             -
+ *                              *             1
  *                            ( 1 conflict, p1 conflict with p2)
 */
 void test_calFitnessScore_given_session_has_papers_p1_p2_p5_which_cause_1conflict_in_programmes_should_get_1(void)
 {
-	Session session = createSession();
-  addPaperToSession(&session, &p1);
+	Session ses = createSession();
+  addPaperToSession(&ses, &p1);
+  addPaperToSession(&ses, &p2);
+  addPaperToSession(&ses, &p5);
   
- 
+  calFitnessScore(&ses);
+  TEST_ASSERT_EQUAL(1,ses.fitnessScore);
   
-  addPaperToSession(&session, &p2);
-  addPaperToSession(&session, &p5);
-  
-   Paper *pap = (Paper*)session.papers->data;
-  printf("%s\n",pap->code);
-  
-  //int ans = isListsHaveSameElement(p1.programmes, p5.programmes);
- // TEST_ASSERT_EQUAL(0,ans);
-  
-  
-  
-  calFitnessScore(&session);
-  TEST_ASSERT_EQUAL(1,session.fitnessScore);
-  
-  // clearLinkList(&(session.papers)); 
+  clearLinkList(&(ses.papers)); 
 }
 
 /**
  *                                 session
  * Papers                  :   p1              p2              p3
  * programmes taking       : c1,c2            c2,c3         c3,c4
- *   p1 got 1 conflict           -             -
- *   p2 got 1 conflict                           -          -
+ *   p1 got 1 conflict           *             1
+ *   p2 got 1 conflict                           -          1
  *                            ( 1+1 = 2 )
 */
 void test_calFitnessScore_given_session_has_papers_p1_p2_p3_which_cause_2conflict_in_programmes_should_get_2(void)
 {
-	Session session = createSession();
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p2);
-  addPaperToSession(&session, &p3);
+	Session ses = createSession();
+  addPaperToSession(&ses, &p1);
+  addPaperToSession(&ses, &p2);
+  addPaperToSession(&ses, &p3);
   
-  calFitnessScore(&session);
-  TEST_ASSERT_EQUAL(2,session.fitnessScore);
+  calFitnessScore(&ses);
+  TEST_ASSERT_EQUAL(2,ses.fitnessScore);
   
-  clearLinkList(&(session.papers)); 
+  clearLinkList(&(ses.papers)); 
 }
 
 /**
  *                                 session
  * Papers                  :   p1              p2              p3          p4            
  * programmes taking       : c1,c2            c2,c3         c3,c4         c4,c5         
- *   p1 got 1 conflict           *             -                                         
- *   p2 got 1 conflict                           *          -                          
- *   p3 got 1 conflict                                          *         -                   
+ *   p1 got 1 conflict           *             1                                         
+ *   p2 got 1 conflict                           *          1                          
+ *   p3 got 1 conflict                                          *         1                   
  *                            ( 1+1+1 = 3 )
 */
-void xtest_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_which_cause_3conflict_in_programmes_should_get_3(void)
+void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_which_cause_3conflict_in_programmes_should_get_3(void)
 {
-	Session session = createSession();
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p2);
-  addPaperToSession(&session, &p3);
-  addPaperToSession(&session, &p4);
+	Session ses = createSession();
+  addPaperToSession(&ses, &p1);
+  addPaperToSession(&ses, &p2);
+  addPaperToSession(&ses, &p3);
+  addPaperToSession(&ses, &p4);
   
-  calFitnessScore(&session);
-  TEST_ASSERT_EQUAL(3,session.fitnessScore);
+  calFitnessScore(&ses);
+  TEST_ASSERT_EQUAL(3,ses.fitnessScore);
   
-  clearLinkList(&(session.papers)); 
+  clearLinkList(&(ses.papers)); 
 }
 
 /**
  *                                 session
  * Papers                  :   p1              p2              p3          p4            p6
  * programmes taking       : c1,c2            c2,c3         c3,c4         c4,c5         c2,c3,c4
- *   p1 got 2 conflict          *             -                                         -
- *   p2 got 3 conflict                           *          -   -                          -   -
- *   p3 got 2 conflict                                          *         -                    -
- *                            ( 2+3+2 = 7 )
+ *   p1 got 2 conflict          *             1                                         2
+ *   p2 got 2 conflict                           *          1  1                            2  2
+ *   p3 got 2 conflict                                          *         1                    2
+ *   p4 got 1 conflict                                                    *                    2                    
+ *                            ( 2+2+2+1 = 7 )
 */
-void xtest_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void)
+void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void)
 {
-	Session session = createSession();
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p2);
-  addPaperToSession(&session, &p3);
-  addPaperToSession(&session, &p4);
-  addPaperToSession(&session, &p6);
+	Session ses = createSession();
+  addPaperToSession(&ses, &p1);
+  addPaperToSession(&ses, &p2);
+  addPaperToSession(&ses, &p3);
+  addPaperToSession(&ses, &p4);
+  addPaperToSession(&ses, &p6);
 
-  calFitnessScore(&session);
-  TEST_ASSERT_EQUAL(7,session.fitnessScore);
+  calFitnessScore(&ses);
+  TEST_ASSERT_EQUAL(7,ses.fitnessScore);
   
-  clearLinkList(&(session.papers)); 
+  clearLinkList(&(ses.papers)); 
 }
-

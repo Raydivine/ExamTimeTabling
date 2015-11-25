@@ -9,7 +9,7 @@ Programme c1,c2,c3,c4,c5,c6,c7;
 
 void setUp(void)
 {
-//setProgramme(Programme *target ,char *name, int studentNum)
+//void setProgramme(Programme *target ,char *programmeName, int numStudent)
   setProgramme(&c1 ,"c1", 30);
   setProgramme(&c2 ,"c2", 50);
   setProgramme(&c3 ,"c3", 60);
