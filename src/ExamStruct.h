@@ -40,9 +40,9 @@ struct Paper{
 
 
 struct Session{
-  LinkedList *papers;
   int fitnessScore;
- // int population;
+  int population;
+  LinkedList *papers;
 };
 
 
