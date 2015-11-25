@@ -33,39 +33,24 @@ void setUp(void)
   addDataToHead(&takersP6, &c4);
   setPaper(&p6, "p6", takersP6);
   
-
-/**
- *                                 PaperList
- * Papers                  :   p1              p2              p3           p4          p5        p6
- * programmes taking       : c1,c2            c2,c3          c3,c4        c4,c5        c7       c2,c3,c4
-*/
 }
 
 void tearDown(void){}
 
 
-
-
-
-/**
- *                                 session
- * Papers                  :   p1              p2              p3          p4            p6
- * programmes taking       : c1,c2            c2,c3         c3,c4         c4,c5         c2,c3,c4
- *   p1 got 2 conflict          *             -                                         -
- *   p2 got 3 conflict                           *          -   -                          -   -
- *   p3 got 2 conflict                                          *         -                    -
- *                            ( 2+3+2 = 7 )
+/**  Dont do Mutation : case 1
+ *                              
+ *  Session1 :    p1              p2              p3           p4         
+ *               c1,c2           c3,c4          c4,c5        c6,c7    
+ *
+ *  Session2 :    p5              p6              p7           p8         
+ *               c2,c5           c7,c4          c2,c3        c1,c6   
+ * 
+ *   Session1 and Session2 all elements are confict with each other, their programmes element already exist in other session, 
+ *   so no matter how exchange will just only cause confict, therefore should not do mutation
 */
-void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void)
-{
-	LinkedList *papers = linkListNew(&p1);
-  addDataToHead(&papers, &p2);
-  addDataToHead(&papers, &p3);
-  addDataToHead(&papers, &p4);
-  addDataToHead(&papers, &p6);
-  session.papers = papers;
+void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other_should_not_do_Mutation(void){
   
-  //calFitnessScore(&session);
-  //TEST_ASSERT_EQUAL(7,session.fitnessScore);
+  
 }
 

@@ -14,12 +14,6 @@ typedef struct Session Session;
 
 //-----------------USER VARAIBLE----------------------
 
-struct Paper{
-  char *code;
-  int takersNum;
-  LinkedList *programmes; 
-};
-
 struct Programme{
   char *name;
   int studentNum;
@@ -35,12 +29,20 @@ struct Venue{
   int seats;
 };
 
+struct Paper{
+  char *code;
+  int takersNum;
+  LinkedList *programmes; 
+};
+
+
 //------------------SYSTEM VARIABLE---------------------------
 
 
 struct Session{
   LinkedList *papers;
   int fitnessScore;
+ // int population;
 };
 
 

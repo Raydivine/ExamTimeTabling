@@ -1,9 +1,10 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
-
 #include <stdio.h>
 
-#define ARRAY_SIZE  sizeof( days ) / sizeof( days[0]  )
+void mutateInTwoSessions(Session *session1, Session *session2){
+  
+}
 
 
