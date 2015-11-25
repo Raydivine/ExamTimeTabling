@@ -6,12 +6,12 @@
 void calFitnessScore(Session *session){
   int score =0;
   Paper *p;
-  LinkedList *paperList = session->papers;
+  LinkedList *list = session->papers;
   
-  while(paperList !=NULL){
-    p = (Paper*)paperList->data;                                         //1. TypeClass the paperList->data to p
-    score = score + calConflictFromPaperToPaparList(p, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
-    paperList = paperList->next;
+  while( list !=NULL) {
+    p = (Paper*)list->data;                                         //1. TypeClass the paperList->data to p
+    score = score + calConflictFromPaperToPaparList(p, list->next); //2. calculate conflict between paperX and the paperList->next,continue add 
+    list = list->next;
   }
   
   session->fitnessScore = score;

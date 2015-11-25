@@ -59,26 +59,28 @@ void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other
   addProgrammeToPaper(&p3, &c3);
   
   setPaper(&p4 ,"p4");
-  addProgrammeToPaper(&p4, &c4);  // For the faster process speed, the used LinkedList functions
-  addProgrammeToPaper(&p4, &c1);  // is addDataToHead() , so while adding the element has to been in reverse way 
+  addProgrammeToPaper(&p4, &c4);  
+  addProgrammeToPaper(&p4, &c1);  
   
   Session s1 = createSession();
-  addPaperToSession(&s1, &p2);
-  addPaperToSession(&s1, &p1);
+  addPaperToSession(&s1, &p2);  // For the faster process speed, the used LinkedList functions
+  addPaperToSession(&s1, &p1);  // is addDataToHead() , so adding the element has to been in reverse way 
   
   Session s2 = createSession();
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
-  
+  //----------------------------------------------------------------------------------------
   mutateInTwoSessions(&s1, &s2);
-  
   TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD2->data);
-  
   TEST_ASSERT_EQUAL_PTR( &p3,S2_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p4,S2_HEAD2->data);
   
   clearLinkList(&(s1.papers));
   clearLinkList(&(s2.papers));
+  clearLinkList(&(p1.programmes));
+  clearLinkList(&(p2.programmes));
+  clearLinkList(&(p3.programmes));
+  clearLinkList(&(p4.programmes));
 }
 
