@@ -33,7 +33,85 @@ void setUp(void)
 void tearDown(void){}
 
 
-/**                         
+/**     takenPaper = getTruePaperFromListA( &listA, listB);  
+ *                  
+ *  listA :      NULL                        
+ *                                                      
+ *  listB :    p3              p4                            
+ *            c1,c5          c5,c6               
+ *                                
+ *    listA is NULL , this function will return NULL
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *     takenPaper = NULL
+*/
+void test_getTruePaperFromListA_given_ListA_is_NULL_should_return_NULL(void){
+  
+  setPaper(&p3 ,"p3");
+  addProgrammeToPaper(&p3, &c1);
+  addProgrammeToPaper(&p3, &c5);
+  
+  setPaper(&p4 ,"p4");
+  addProgrammeToPaper(&p4, &c5);  
+  addProgrammeToPaper(&p4, &c6);  
+  
+  listA = NULL;
+  
+  listB = linkListNew(&p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  takenPaper = getTruePaperFromListA( &listA, listB);
+  TEST_ASSERT_NULL(takenPaper);
+  TEST_ASSERT_NULL(listA);
+
+  CLEAR_ALL_LIST;
+}
+
+/**   takenPaper = getTruePaperFromListA( &listA, listB);    
+ *                  
+ *  listA :    p1              p2                              
+ *            c1,c2           c2,c3                  
+ *                       
+ *
+ *  listB :   NULL                        
+ *                                                        
+ *   listB is NULL. so will return 1st element of listA, which is p1
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *  listA :    p2                                          
+ *           c2,c3     
+ * 
+ *     takenPaper = p1
+*/
+void test_getTruePaperFromListA_given_listB_is_NULL_should_return_first_elment_of_listA(void){
+  
+  setPaper(&p1 ,"p1");
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2); 
+  
+  setPaper(&p2 ,"p2");
+  addProgrammeToPaper(&p2, &c2);
+  addProgrammeToPaper(&p2, &c3);
+    
+  listA = linkListNew(&p2);
+  addDataToHead(&listA, &p1);
+
+  listB = NULL;
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+ 
+  takenPaper = getTruePaperFromListA( &listA, listB);
+  TEST_ASSERT_EQUAL_PTR( &p1, takenPaper);
+  TEST_ASSERT_EQUAL_PTR( &p2,listA->data);
+  TEST_ASSERT_NULL(listA->next);
+
+  CLEAR_ALL_LIST;
+}
+
+/**     takenPaper = getTruePaperFromListA( &listA, listB);  
+ *                  
  *  listA :    p1              p2                              
  *            c1,c2           c2,c5                  
  *                              
@@ -79,8 +157,9 @@ void test_getTruePaperFromListA_given_ListA_elements_are_conflict_with_listB_sho
 
   CLEAR_ALL_LIST;
 }
-
-/**                         
+ 
+/**  takenPaper = getTruePaperFromListA( &listA, listB);
+ *                     
  *  listA :    p1              p2                              
  *            c1,c2           c2,c3                  
  *                         (no conflict to listB)
@@ -131,7 +210,8 @@ void test_getTruePaperFromListA_given_p2_has_no_conflict_with_listB_should_take_
 }
 
 
-/**                         
+/**    takenPaper = getTruePaperFromListA( &listA, listB);
+ *                    
  *  listA :         p1                             p2                              
  *                  c1,c2                        c2,c3                  
  *          (no conflict to listB)
@@ -177,6 +257,69 @@ void test_getTruePaperFromListA_given_p1_has_no_conflict_with_listB_should_take_
   TEST_ASSERT_EQUAL_PTR( &p1, takenPaper);
   TEST_ASSERT_EQUAL_PTR( &p2,listA->data);
   TEST_ASSERT_NULL(listA->next);
+
+  CLEAR_ALL_LIST;
+}
+
+/**    takenPaper = getTruePaperFromListA( &listA, listB);
+ *                    
+ *  listA :    p1              p2                             p3                   
+ *            c1,c2           c2,c3                          c9,c10  
+ *                      (no conflict to listB)        (no conflict to listB)
+ *
+ *  listB :    p4              p5             p6                     
+ *            c1,c5          c5,c6          c7,c8   
+ *                                
+ *    p2 and p3 are no flict with ListB, but this function only return 1 paper,
+ *    because p2 is in front of p3, so only will take out p2
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *  listA :    p1          p3                           
+ *           c1,c2       c9,c10
+ * 
+ *     takenPaper = p2
+*/
+void test_getTruePaperFromListA_given_p2_and_p3_has_no_conflict_with_listB_should_only_take_out_p2(void){
+  
+  setPaper(&p1 ,"p1");
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2); 
+  
+  setPaper(&p2 ,"p2");
+  addProgrammeToPaper(&p2, &c2);
+  addProgrammeToPaper(&p2, &c3);
+  
+  setPaper(&p3 ,"p3");
+  addProgrammeToPaper(&p3, &c9);
+  addProgrammeToPaper(&p3, &c10);
+  
+  setPaper(&p4 ,"p4");
+  addProgrammeToPaper(&p4, &c1);  
+  addProgrammeToPaper(&p4, &c5);  
+  
+  setPaper(&p5 ,"p5");
+  addProgrammeToPaper(&p4, &c5);  
+  addProgrammeToPaper(&p4, &c6);  
+  
+  setPaper(&p6 ,"p6");
+  addProgrammeToPaper(&p4, &c7);  
+  addProgrammeToPaper(&p4, &c8);  
+  
+  listA = linkListNew(&p3);
+  addDataToHead(&listA, &p2);
+  addDataToHead(&listA, &p1);
+
+  listB = linkListNew(&p6);
+  addDataToHead(&listB, &p5);
+  addDataToHead(&listB, &p4);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+ 
+  takenPaper = getTruePaperFromListA( &listA, listB);
+  TEST_ASSERT_EQUAL_PTR( &p2, takenPaper);
+  TEST_ASSERT_EQUAL_PTR( &p1,listA->data);
+  TEST_ASSERT_EQUAL_PTR( &p3,listA->next->data);
+  TEST_ASSERT_NULL(listA->next->next);
 
   CLEAR_ALL_LIST;
 }
