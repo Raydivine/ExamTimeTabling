@@ -13,20 +13,19 @@ void mutateInTwoSessions(Session *session1, Session *session2){
 }
 
 //True : no conflict to List2
-Paper *getTruePaperFromListA(LinkedList **listA, LinkedList **listB){
+Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
   Paper *p;
-  LinkedList *list1 = *listA, *list2 = *listA, *head = list1, *temp;
+  LinkedList *list = *listA;
   
-  while( list1 !=NULL) {
-    p = (Paper*)list1->data;                                        
+  while( list !=NULL) {
+    p = (Paper*)list->data;                                        
     
-    if( calConflictFromPaperToPaparList(p, list2) == 0 ){
-      removeDataFromList(&head, p);
-      break;
+    if( calConflictFromPaperToPaparList(p, listB) == 0 ){
+      removeDataFromList(listA, p);
+      return p; 
     }
-    list1 = list1->next;
+    list = list->next;
   }
   
-  *listA = head;
-  return p;
+  return NULL;
 }

@@ -7,10 +7,7 @@
 #include "SetElements.h"
 #include "Mutation.h"
 
-#define listA1  listA->next
-
-#define S2_HEAD   s2.papers
-#define S2_HEAD2  s2.papers->next
+#define CLEAR_ALL_LIST clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes));
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
@@ -36,11 +33,57 @@ void setUp(void)
 void tearDown(void){}
 
 
-/**  Dont do Mutation : case 1
+/**                         
+ *  listA :    p1              p2                              
+ *            c1,c2           c2,c5                  
  *                              
+ *
+ *  listB :    p3              p4                            
+ *            c1,c5          c5,c6               
+ *                                
+ *    listA elements are conflict with ListB, therefore the function need to return NULL
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *     takenPaper = NULL
+*/
+void test_getTruePaperFromListA_given_ListA_elements_are_conflict_with_listB_should_return_NULL(void){
+  
+  setPaper(&p1 ,"p1");
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2); 
+  
+  setPaper(&p2 ,"p2");
+  addProgrammeToPaper(&p2, &c2);
+  addProgrammeToPaper(&p2, &c5);
+  
+  setPaper(&p3 ,"p3");
+  addProgrammeToPaper(&p3, &c1);
+  addProgrammeToPaper(&p3, &c5);
+  
+  setPaper(&p4 ,"p4");
+  addProgrammeToPaper(&p4, &c5);  
+  addProgrammeToPaper(&p4, &c6);  
+  
+  listA = linkListNew(&p2);
+  addDataToHead(&listA, &p1);
+
+  listB = linkListNew(&p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  takenPaper = getTruePaperFromListA( &listA, listB);
+  TEST_ASSERT_NULL(takenPaper);
+  TEST_ASSERT_EQUAL_PTR( &p1,listA->data);
+  TEST_ASSERT_EQUAL_PTR( &p2,listA->next->data);
+
+  CLEAR_ALL_LIST;
+}
+
+/**                         
  *  listA :    p1              p2                              
  *            c1,c2           c2,c3                  
- *                              *
+ *                         (no conflict to listB)
  *
  *  listB :    p3              p4                            
  *            c1,c5          c5,c6               
@@ -79,18 +122,62 @@ void test_getTruePaperFromListA_given_p2_has_no_conflict_with_listB_should_take_
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
  
-  takenPaper = getTruePaperFromListA( &listA, &listB);
+  takenPaper = getTruePaperFromListA( &listA, listB);
   TEST_ASSERT_EQUAL_PTR( &p2, takenPaper);
   TEST_ASSERT_EQUAL_PTR( &p1,listA->data);
-  TEST_ASSERT_EQUAL_PTR( &p2,listA1->data);
-  TEST_ASSERT_NULL(listA1);
-  // TEST_ASSERT_EQUAL_PTR( &p2,S2_HEAD2->data);
+  TEST_ASSERT_NULL(listA->next);
+
+  CLEAR_ALL_LIST;
+}
+
+
+/**                         
+ *  listA :         p1                             p2                              
+ *                  c1,c2                        c2,c3                  
+ *          (no conflict to listB)
+ *
+ *  listB :        p3                              p4                            
+ *                c7,c5                          c5,c6               
+ *                                
+ *    p1 has no conflict with list2 , therefore it should take out from list1
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *  listA :    p2                                          
+ *           c2,c3     
+ * 
+ *     takenPaper = p1
+*/
+void test_getTruePaperFromListA_given_p1_has_no_conflict_with_listB_should_take_out(void){
   
-  clearLinkList(&listA);
-  clearLinkList(&listB);
-  clearLinkList(&(p1.programmes));
-  clearLinkList(&(p2.programmes));
-  clearLinkList(&(p3.programmes));
-  clearLinkList(&(p4.programmes));
+  setPaper(&p1 ,"p1");
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2); 
+  
+  setPaper(&p2 ,"p2");
+  addProgrammeToPaper(&p2, &c2);
+  addProgrammeToPaper(&p2, &c3);
+  
+  setPaper(&p3 ,"p3");
+  addProgrammeToPaper(&p3, &c7);
+  addProgrammeToPaper(&p3, &c5);
+  
+  setPaper(&p4 ,"p4");
+  addProgrammeToPaper(&p4, &c5);  
+  addProgrammeToPaper(&p4, &c6);  
+  
+  listA = linkListNew(&p2);
+  addDataToHead(&listA, &p1);
+
+  listB = linkListNew(&p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+ 
+  takenPaper = getTruePaperFromListA( &listA, listB);
+  TEST_ASSERT_EQUAL_PTR( &p1, takenPaper);
+  TEST_ASSERT_EQUAL_PTR( &p2,listA->data);
+  TEST_ASSERT_NULL(listA->next);
+
+  CLEAR_ALL_LIST;
 }
 
