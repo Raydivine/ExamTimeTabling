@@ -24,33 +24,36 @@ void tearDown(void){}
 */
 void test_createSession_should_create_the_session_with_0_fitnessScore_0_population_empty_papers(void){
 
-  Session session = createSession();
-  TEST_ASSERT_EQUAL(0, session.fitnessScore);
-  TEST_ASSERT_EQUAL(0, session.population);
-  TEST_ASSERT_NULL(session.papers);
+  Session s = createSession();
+  TEST_ASSERT_EQUAL(0, s.fitnessScore);
+  TEST_ASSERT_EQUAL(0, s.population);
+  TEST_ASSERT_NULL(s.papers);
+  clearLinkList(&(s.papers));
 }
 
 
 void test_addPaperToSession_given_session_add_p1_should_have_population_equal_100(void){
   
-  Session session = createSession();
+  Session s = createSession();
 
-  addPaperToSession(&session, &p1);
-  TEST_ASSERT_EQUAL(100, session.population);
-  TEST_ASSERT_EQUAL_PTR(&p1, session.papers->data);
-  TEST_ASSERT_NULL(session.papers->next);
+  addPaperToSession(&s, &p1);
+  TEST_ASSERT_EQUAL(100, s.population);
+  TEST_ASSERT_EQUAL_PTR(&p1, s.papers->data);
+  TEST_ASSERT_NULL(s.papers->next);
+  clearLinkList(&(s.papers));
 }
 
 void test_addPaperToSession_given_session_add_p1_p2_should_have_population_equal_300(void){
   
-  Session session = createSession();
+  Session s = createSession();
 
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p2);
-  TEST_ASSERT_EQUAL(300, session.population);
-  TEST_ASSERT_EQUAL_PTR(&p2, session.papers->data);
-  TEST_ASSERT_EQUAL_PTR(&p1, session.papers->next->data);
-  TEST_ASSERT_NULL(session.papers->next->next);
+  addPaperToSession(&s, &p1);
+  addPaperToSession(&s, &p2);
+  TEST_ASSERT_EQUAL(300, s.population);
+  TEST_ASSERT_EQUAL_PTR(&p2, s.papers->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, s.papers->next->data);
+  TEST_ASSERT_NULL(s.papers->next->next);
+  clearLinkList(&(s.papers));
 }
 
 

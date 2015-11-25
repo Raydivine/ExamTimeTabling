@@ -40,6 +40,7 @@ void test_addProgrammeToPaper_given_paperA_add_c1_should_have_takers_equal_30(vo
   TEST_ASSERT_EQUAL(30, paperA.takersNum);
   TEST_ASSERT_EQUAL_PTR(&c1, paperA.programmes->data);
   TEST_ASSERT_NULL(paperA.programmes->next);
+  clearLinkList(&(paperA.programmes));
 }
 
 /**
@@ -56,6 +57,7 @@ void test_addProgrammeToPaper_given_paperA_add_c1_C2_should_have_takers_equal_80
   TEST_ASSERT_EQUAL_PTR(&c2, paperA.programmes->data);
   TEST_ASSERT_EQUAL_PTR(&c1, paperA.programmes->next->data);
   TEST_ASSERT_NULL(paperA.programmes->next->next);
+  clearLinkList(&(paperA.programmes));
 }
 
 /**
@@ -74,6 +76,7 @@ void test_addProgrammeToPaper_given_paperA_add_c1_c2_c3_should_have_takers_equal
   TEST_ASSERT_EQUAL_PTR(&c2, paperA.programmes->next->data);
   TEST_ASSERT_EQUAL_PTR(&c1, paperA.programmes->next->next->data);
   TEST_ASSERT_NULL(paperA.programmes->next->next->next);
+  clearLinkList(&(paperA.programmes));
 }
 
 

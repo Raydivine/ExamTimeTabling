@@ -6,10 +6,14 @@
 #include "SetElements.h"
 #include "Mutation.h"
 
+#define S1_HEAD   s1.papers
+#define S1_HEAD2  s1.papers->next
+
+#define S2_HEAD   s2.papers
+#define S2_HEAD2  s2.papers->next
+
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-
-Session session;
 
 void setUp(void)
 {
@@ -55,19 +59,26 @@ void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other
   addProgrammeToPaper(&p3, &c3);
   
   setPaper(&p4 ,"p4");
-  addProgrammeToPaper(&p4, &c4);
-  addProgrammeToPaper(&p4, &c1);
+  addProgrammeToPaper(&p4, &c4);  // For the faster process speed, the used LinkedList functions
+  addProgrammeToPaper(&p4, &c1);  // is addDataToHead() , so while adding the element has to been in reverse way 
   
   Session s1 = createSession();
-  addPaperToSession(&session, &p1);
-  addPaperToSession(&session, &p2);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p1);
   
   Session s2 = createSession();
-  addPaperToSession(&session, &p3);
-  addPaperToSession(&session, &p4);
+  addPaperToSession(&s2, &p4);
+  addPaperToSession(&s2, &p3);
   
   mutateInTwoSessions(&s1, &s2);
-
   
+  TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD2->data);
+  
+  TEST_ASSERT_EQUAL_PTR( &p3,S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4,S2_HEAD2->data);
+  
+  clearLinkList(&(s1.papers));
+  clearLinkList(&(s2.papers));
 }
 
