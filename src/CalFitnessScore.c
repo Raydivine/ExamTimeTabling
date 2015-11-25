@@ -5,12 +5,12 @@
 
 void calFitnessScore(Session *session){
   int score =0;
-  Paper *paperX;
+  Paper *p;
   LinkedList *paperList = session->papers;
   
   while(paperList !=NULL){
-    paperX = (Paper*)paperList->data;                                                       //1. TypeClass the paperList->data to paperX
-    score = score + calConflictFromPaperToPaparList(paperX, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
+    p = (Paper*)paperList->data;                                         //1. TypeClass the paperList->data to p
+    score = score + calConflictFromPaperToPaparList(p, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
     paperList = paperList->next;
   }
   
@@ -19,12 +19,12 @@ void calFitnessScore(Session *session){
 
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){
   int conflict =0;
-  Paper *paperX;
+  Paper *p;
   LinkedList *programmeList1 = paper->programmes, *programmeList2;
 
   while(paperList != NULL){
-    paperX = (Paper*)paperList->data;                                             //1. TypeClass the paperList->data to paperX
-    programmeList2 = paperX->programmes;                                          //2. take out programmeList from paperX's 
+    p = (Paper*)paperList->data;                                                  //1. TypeClass the paperList->data to p
+    programmeList2 = p->programmes;                                               //2. take out programmeList from p's 
     conflict = conflict + isListsHaveSameElement(programmeList1, programmeList2); //3. check is the 2 list have same element,continue add 
     paperList = paperList->next;
   }
