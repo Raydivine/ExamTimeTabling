@@ -3,7 +3,6 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-void MutateInTable(Table table);
-void MutateInExamList(LinkedList *examList);
+void MutateInTwoSessions(Session *session1, Session *session2);
 
 #endif // Mutation_H

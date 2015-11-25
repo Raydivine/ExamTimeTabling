@@ -67,7 +67,7 @@ void test_calFitnessScore_given_session_has_papers_p1_p3_p5_which_does_not_cause
  *                                 session
  * Papers                  :   p1              p2              p5
  * programmes taking       : c1,c2            c2,c3            c7
- *                              -             -
+ *                              *             -
  *                            ( 1 conflict, p1 conflict with p2)
 */
 void test_calFitnessScore_given_session_has_papers_p1_p2_p5_which_cause_1conflict_in_programmes_should_get_1(void)
@@ -104,9 +104,9 @@ void test_calFitnessScore_given_session_has_papers_p1_p2_p3_which_cause_2conflic
  *                                 session
  * Papers                  :   p1              p2              p3          p4            
  * programmes taking       : c1,c2            c2,c3         c3,c4         c4,c5         
- *   p1 got 1 conflict          -             -                                         
- *   p2 got 1 conflict                           -          -                          
- *   p3 got 1 conflict                                          -         -                   
+ *   p1 got 1 conflict           *             -                                         
+ *   p2 got 1 conflict                           *          -                          
+ *   p3 got 1 conflict                                          *         -                   
  *                            ( 1+1+1 = 3 )
 */
 void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_which_cause_3conflict_in_programmes_should_get_3(void)
@@ -125,9 +125,9 @@ void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_which_cause_3conf
  *                                 session
  * Papers                  :   p1              p2              p3          p4            p6
  * programmes taking       : c1,c2            c2,c3         c3,c4         c4,c5         c2,c3,c4
- *   p1 got 2 conflict          -             -                                         -
- *   p2 got 3 conflict                           -          -   -                          -   -
- *   p3 got 2 conflict                                          -         -                    -
+ *   p1 got 2 conflict          *             -                                         -
+ *   p2 got 3 conflict                           *          -   -                          -   -
+ *   p3 got 2 conflict                                          *         -                    -
  *                            ( 2+3+2 = 7 )
 */
 void test_calFitnessScore_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void)
