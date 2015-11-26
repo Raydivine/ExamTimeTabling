@@ -31,7 +31,7 @@ void test_isTheRatioWithin20Percent_given_currentNum_140_targetNum_0_should_retu
   TEST_ASSERT_EQUAL(0, ans);
 }
 
-void test_isTheRatioWithin20Percent_given_currentNum_0_targetNum_140_should_return_0_because_it_is_violation(void){
+void test_isTheRatioWithin20Percent_given_currentNum_0_targetNum_140_should_return_0_because_it_will_be_100percent(void){
   
   int ans = isTheRatioWithin20Percent(0, 140);
   TEST_ASSERT_EQUAL(0, ans);
@@ -40,5 +40,23 @@ void test_isTheRatioWithin20Percent_given_currentNum_0_targetNum_140_should_retu
 void test_isTheRatioWithin20Percent_given_currentNum_140_targetNum_100_should_return_0(void){
   
   int ans = isTheRatioWithin20Percent(140, 100);
+  TEST_ASSERT_EQUAL(0, ans);
+}
+
+void test_isTheRatioWithin20Percent_given_currentNum_119_targetNum_100_should_return_1(void){
+  
+  int ans = isTheRatioWithin20Percent(119, 100);
+  TEST_ASSERT_EQUAL(1, ans);
+}
+
+void test_isTheRatioWithin20Percent_given_currentNum_80_targetNum_100_should_return_0(void){
+  
+  int ans = isTheRatioWithin20Percent(80, 100);
+  TEST_ASSERT_EQUAL(0, ans);
+}
+
+void test_isTheRatioWithin20Percent_given_currentNum_81_targetNum_100_should_return_1(void){
+  
+  int ans = isTheRatioWithin20Percent(81, 100);
   TEST_ASSERT_EQUAL(1, ans);
 }
