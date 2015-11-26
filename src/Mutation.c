@@ -29,3 +29,8 @@ Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
   
   return NULL;
 }
+
+
+LinkedList *getTruePapersFromListB(LinkedList **listA, LinkedList *listB, int targetNum){
+  
+}
