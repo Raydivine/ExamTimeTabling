@@ -37,7 +37,3 @@ LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int ta
   return papers;
 }
 
-int isTheRatioWithin20Percent(int currentNum, int targetNum){
-  
-  
-}
