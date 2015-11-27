@@ -19,6 +19,12 @@ void setPaper(Paper *target ,char *paperCode){
   target->programmes = NULL;
 }
 
+void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
+  target->code = paperCode;
+  target->takersNum = num;
+  target->programmes = NULL;
+}
+
 void addProgrammeToPaper(Paper *target, Programme *programme){
   addDataToHead(&(target->programmes), programme);
   target->takersNum = target->takersNum + programme->studentNum;
@@ -37,3 +43,5 @@ void addPaperToSession(Session *target, Paper *paper){
   addDataToHead(&(target->papers), paper);
   target->population = target->population + paper->takersNum;
 }
+
+

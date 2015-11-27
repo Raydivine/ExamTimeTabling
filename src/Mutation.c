@@ -33,8 +33,33 @@ Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
 
 
 LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int targetNum){
-  LinkedList *papers = NULL;
+  LinkedList *list = *listB, *papers = NULL;
+  Paper *t;
+
+  while( list !=NULL) {
+    t = (Paper*)list->data;                                        
+    
+    if( calConflictFromPaperToPaparList(t, listA) == 0 ){
+      removeDataFromList(listB, t);
+      addDataToHead(&papers, &t);
+      return papers;    
+    }
+    list = list->next;
+  }
   
-  return papers;
+  return NULL;
 }
 
+int isTheAdditionWillCauseOverFlow(int *currentNum, int addNum, int targetNum){
+  if(targetNum == 0)
+    return 0;
+  
+  int sum = *currentNum + addNum;
+  int flowRatio = (sum - targetNum)*100 / targetNum;
+  
+  if( flowRatio<20 ){
+    *currentNum = *currentNum + addNum;
+    return 1;
+  }
+  return 0;
+}

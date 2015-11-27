@@ -5,6 +5,7 @@
 void setVenue(Venue *target, char *name, int venueCode, int seatNum);
 void setProgramme(Programme *target ,char *programmeName, int numStudent);
 void setPaper(Paper *target ,char *paperCode);
+void setPaperWithPopulation(Paper *target ,char *paperCode, int num);
 void addProgrammeToPaper(Paper *target, Programme *programme);
 Session createSession();
 void addPaperToSession(Session *target, Paper *paper);
