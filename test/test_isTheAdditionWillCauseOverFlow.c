@@ -17,6 +17,7 @@ void tearDown(void){}
 *   This function determine is (currentNum + addNum) will cause overflow compare to targetNum
 *   The flow ratio is should not greater 20% of targetNum
 *************************************************************************************************************
+*
 *   int sum = currentNum + addNum
 *   int flowRatio =  (sum - targetNum)/targetNum * 100% 
 *

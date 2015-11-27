@@ -35,25 +35,25 @@ Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
 LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int targetNum){
   LinkedList *list = *listB, *papers = NULL;
   Paper *t;
+  int currentNum = 0;
+  
+  while( list != NULL) {
+    t = (Paper*)list->data;    
 
-  while( list !=NULL) {
-    t = (Paper*)list->data;                                        
-    
-    if( calConflictFromPaperToPaparList(t, listA) == 0 ){
-      removeDataFromList(listB, t);
-      addDataToHead(&papers, &t);
-      return papers;    
+    if( calConflictFromPaperToPaparList(t, listA) == 0){
+      if( isTheAdditionWillCauseOverFlow( &currentNum, t->takersNum, targetNum) )            
+        addDataToHead(&papers, t);    
     }
     list = list->next;
   }
   
-  return NULL;
+  return papers; 
 }
 
 int isTheAdditionWillCauseOverFlow(int *currentNum, int addNum, int targetNum){
   if(targetNum == 0)
     return 0;
-  
+    
   int sum = *currentNum + addNum;
   int flowRatio = (sum - targetNum)*100 / targetNum;
   
@@ -63,3 +63,5 @@ int isTheAdditionWillCauseOverFlow(int *currentNum, int addNum, int targetNum){
   }
   return 0;
 }
+
+//  printf("currentNum : %d\n", currentNum);
