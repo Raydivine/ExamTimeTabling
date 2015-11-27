@@ -1,9 +1,9 @@
-#include "CalFitnessScore.h"
+#include "CalConflict.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include <stdio.h>
 
-void calFitnessScore(Session *session){
+void calConflictInSession(Session *session){
   int score =0;
   Paper *p;
   LinkedList *list = session->papers;
@@ -14,7 +14,7 @@ void calFitnessScore(Session *session){
     list = list->next;
   }
   
-  session->fitnessScore = score;
+  session->conflict = score;
 }
 
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){

@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "CalFitnessScore.h"
+#include "CalConflict.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
@@ -25,7 +25,7 @@ void tearDown(void){}
 void test_createSession_should_create_the_session_with_0_fitnessScore_0_population_empty_papers(void){
 
   Session s = createSession();
-  TEST_ASSERT_EQUAL(0, s.fitnessScore);
+  TEST_ASSERT_EQUAL(0, s.conflict);
   TEST_ASSERT_EQUAL(0, s.population);
   TEST_ASSERT_NULL(s.papers);
   clearLinkList(&(s.papers));

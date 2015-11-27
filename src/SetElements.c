@@ -27,7 +27,7 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
 Session createSession(){
   Session session;
   
-  session.fitnessScore = 0;
+  session.conflict = 0;
   session.population = 0;
   session.papers = NULL;
   return session;

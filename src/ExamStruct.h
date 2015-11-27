@@ -3,14 +3,14 @@
 #include "LinkedList.h"
 #include "Node.h"
 
-#define MAX_SUBJECTS 6
-#define MAX_DAYS  50
+#define MAX 100
 
 typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
 typedef struct Session Session;
+typedef struct Table Table;
 
 //-----------------USER VARAIBLE----------------------
 
@@ -40,9 +40,15 @@ struct Paper{
 
 
 struct Session{
-  int fitnessScore;
-  int population;
   LinkedList *papers;
+  int conflict;
+  int population;
+
+};
+
+struct Table{
+  Session sessions[MAX];
+  int fitnessScore;
 };
 
 

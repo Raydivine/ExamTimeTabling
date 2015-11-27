@@ -1,5 +1,6 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
+#include "CalConflict.h"
 #include "LinkedList.h"
 #include "LinkedListRemove.h"
 #include <stdio.h>

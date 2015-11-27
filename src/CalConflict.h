@@ -1,10 +1,10 @@
-#ifndef CalFitnessScore_H
-#define CalFitnessScore_H
+#ifndef CalConflict_H
+#define CalConflict_H
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-void calFitnessScore(Session *session);
+void calConflictInSession(Session *session);
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList);
 
 
-#endif // CalFitnessScore_H
+#endif // CalConflict_H
