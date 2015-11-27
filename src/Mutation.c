@@ -37,20 +37,20 @@ LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int ta
   Paper *t;
   int currentNum = 0;
   
-  while( list != NULL) {
+  while( list != NULL){
     t = (Paper*)list->data;    
-
-    if( calConflictFromPaperToPaparList(t, listA) == 0){
-      if( isTheAdditionWillCauseOverFlow( &currentNum, t->takersNum, targetNum) )            
-        addDataToHead(&papers, t);    
-    }
+    
+    if( calConflictFromPaperToPaparList(t, listA) == 0)
+      if( isSumUnderFlow( &currentNum, t->takersNum, targetNum) )  
+        addDataToHead(&papers, t);  
+        
     list = list->next;
   }
   
   return papers; 
 }
 
-int isTheAdditionWillCauseOverFlow(int *currentNum, int addNum, int targetNum){
+int isSumUnderFlow(int *currentNum, int addNum, int targetNum){
   if(targetNum == 0)
     return 0;
     

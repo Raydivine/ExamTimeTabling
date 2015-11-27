@@ -48,7 +48,7 @@ void tearDown(void){}
  *                                
  *     takenPapers = NULL
 */
-void xtest_getTruePapersFromListB_given_ListB_is_NULL_should_return_NULL(void){
+void test_getTruePapersFromListB_given_ListB_is_NULL_should_return_NULL(void){
   
   setPaper(&p3 ,"p3");
   addProgrammeToPaper(&p3, &c1);
@@ -84,7 +84,7 @@ void xtest_getTruePapersFromListB_given_ListB_is_NULL_should_return_NULL(void){
  *                                
  *     takenPaper = NULL
 */
-void xtest_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_should_return_NULL(void){
+void test_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_should_return_NULL(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -133,7 +133,7 @@ void xtest_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_s
  *                                
  *     takenPaper = NULL
 */
-void xtest_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_but_doesnt_meet_targetNum_should_return_NULL(void){
+void test_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_but_doesnt_meet_targetNum_should_return_NULL(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -187,7 +187,7 @@ void xtest_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_
  *          c5,c2               
  *             
 */
-void xtest_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_take_out(void){
+void test_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_take_out(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -240,7 +240,7 @@ void xtest_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_tar
  *          c5,c2               
  *             
 */
-void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_targetNum_should_return_take_out(void){
+void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_targetNum_should_take_out(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -268,8 +268,9 @@ void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_ta
   takenPapers = getTruePapersFromListB(listA, &listB, 100);
   TEST_ASSERT_EQUAL_PTR( &p4, TAKEN_PAPER1->data);   // because is addDataToHead(), so is Last in first out 
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data); 
-  TEST_ASSERT_NULL(LISTB_HEAD1);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
+  TEST_ASSERT_NULL(LISTB_HEAD1);
+
 
   CLEAR_ALL_LIST;
 }
