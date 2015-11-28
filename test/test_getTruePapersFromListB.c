@@ -5,6 +5,7 @@
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include "SetElements.h"
+#include "RatioChecking.h"
 #include "Mutation.h"
 
 #define CLEAR_ALL_LIST clearLinkList(&(takenPapers)); clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 

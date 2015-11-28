@@ -1,6 +1,7 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
 #include "CalConflict.h"
+#include "RatioChecking.h"
 #include "LinkedList.h"
 #include "LinkedListRemove.h"
 #include <stdio.h>
@@ -20,7 +21,6 @@ Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
   
   while( list !=NULL) {
     p = (Paper*)list->data;                                        
-    
     if( calConflictFromPaperToPaparList(p, listB) == 0 ){
       removeDataFromList(listA, p);
       return p; 
@@ -38,30 +38,17 @@ LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int ta
   int currentNum = 0;
   
   while( list != NULL){
-    t = (Paper*)list->data;    
-    
+    t = (Paper*)list->data;     
     if( calConflictFromPaperToPaparList(t, listA) == 0)
       if( isSumUnderFlow( &currentNum, t->takersNum, targetNum) )  
-        addDataToHead(&papers, t);  
-        
+        addDataToHead(&papers, t); 
+      
     list = list->next;
   }
   
   return papers; 
 }
 
-int isSumUnderFlow(int *currentNum, int addNum, int targetNum){
-  if(targetNum == 0)
-    return 0;
-    
-  int sum = *currentNum + addNum;
-  int flowRatio = (sum - targetNum)*100 / targetNum;
-  
-  if( flowRatio<20 ){
-    *currentNum = *currentNum + addNum;
-    return 1;
-  }
-  return 0;
-}
+
 
 //  printf("currentNum : %d\n", currentNum);
