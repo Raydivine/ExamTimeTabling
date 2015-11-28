@@ -5,6 +5,7 @@
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include "SetElements.h"
+#include "RatioChecking.h"
 #include "Mutation.h"
 
 #define S1_HEAD   s1.papers

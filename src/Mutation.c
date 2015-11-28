@@ -38,15 +38,20 @@ LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int ta
   int currentNum = 0;
   
   while( list != NULL){
-    t = (Paper*)list->data;     
+    t = (Paper*)list->data;  
+  //  printf("takersNum: %d\n", t->takersNum);    
     if( calConflictFromPaperToPaparList(t, listA) == 0)
       if( isSumUnderFlow( &currentNum, t->takersNum, targetNum) )  
-        addDataToHead(&papers, t); 
-      
+        addDataToHead(&papers, t);  
     list = list->next;
   }
   
-  return papers; 
+  //  printf("currentNum: %d\n", currentNum);
+  if( isRatioWithin20Percent(currentNum, targetNum) ){
+    removeDatasFromList( listB, papers);
+    return papers; 
+  }
+  return NULL; 
 }
 
 

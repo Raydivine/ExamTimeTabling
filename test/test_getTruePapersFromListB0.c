@@ -37,45 +37,39 @@ void tearDown(void){}
 *       to maintain the population in 2 lists
 *       if does not find the possible combo papers , then will return NULL
 *
-*   
+*   Notice : The below tests are the cases will cause function to return NULL
 */  
 
-/**  listA is NULL , so listB is no conflict to listA, 
- *   studentNum in p3,p4 are 50, sum toggether are 100 , is within ratio of targetNum
- *   so will take out 
+/**  listB is NULL , this function will return NULL
  * ****************************************************************   
- *  ( targetNum = 100 )
  *
- *  listA :    NULL    
- *
- *  listB :    p3              p4                            
+ *  listA :    p3              p4                            
  *            c1,c5          c5,c6   
+ * 
+ *  listB :    NULL                          
  *                              
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p4,p3 (Because is using addDataToHead(), so the order reverse)
- *      ListB = NULL;
+ *     takenPapers = NULL
 */
-void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void){
+void test_getTruePapersFromListB_given_ListB_is_NULL_should_return_NULL(void){
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaper(&p3 ,"p3");
   addProgrammeToPaper(&p3, &c1);
   addProgrammeToPaper(&p3, &c5);
   
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaper(&p4 ,"p4");
   addProgrammeToPaper(&p4, &c5);  
   addProgrammeToPaper(&p4, &c6);  
   
-  listA = NULL;
+  listB = NULL;
   
-  listB = linkListNew(&p4);
-  addDataToHead(&listB, &p3);
+  listA = linkListNew(&p4);
+  addDataToHead(&listA, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
-  TEST_ASSERT_EQUAL_PTR( &p4, TAKEN_PAPER1->data);
-  TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
-  TEST_ASSERT_NULL(TAKEN_PAPER3);
+  takenPapers = getTruePapersFromListB(listA, &listB, 30);
+  TEST_ASSERT_NULL(takenPapers);
   TEST_ASSERT_NULL(LISTB_HEAD);
   CLEAR_ALL_LIST;
 }
@@ -93,7 +87,7 @@ void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void)
  *                                
  *     takenPaper = NULL
 */
-void Xtest_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_should_return_NULL(void){
+void test_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_should_return_NULL(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -141,7 +135,7 @@ void Xtest_getTruePapersFromListB_given_ListB_all_elements_conflict_with_listA_s
  *                                
  *     takenPaper = NULL
 */
-void Xtest_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_but_doesnt_meet_targetNum_should_return_NULL(void){
+void test_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_but_doesnt_meet_targetNum_should_return_NULL(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -191,7 +185,7 @@ void Xtest_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_
  *     takenPaper = NULL
  *                       
 */
-void Xtest_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_take_out(void){
+void test_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_take_out(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -240,7 +234,7 @@ void Xtest_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_tar
  *     takenPaper = NULL
  *                                            
 */
-void Xtest_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_targetNum_should_take_out(void){
+void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_targetNum_should_take_out(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);

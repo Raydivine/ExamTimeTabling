@@ -5,9 +5,17 @@
 #include <malloc.h>
 #include <stdio.h>
 
+void removeDatasFromList(LinkedList **list, LinkedList *jumpList){
+
+  while(jumpList !=NULL){
+    removeDataFromList(list, jumpList->data);
+    jumpList = jumpList->next;
+  }
+}
+
 void removeDataFromList(LinkedList **list, void *removeData){
   LinkedList *current = *list, *tail;
-    
+      
   if(current != NULL){
     if(current->data == removeData){
       removeHead(&current);
@@ -24,6 +32,7 @@ void removeDataFromList(LinkedList **list, void *removeData){
   }
   Throw(LL_ERR_DATA_IS_NOT_EXIST);
 }
+
 
 void removeHead(LinkedList **list){
   LinkedList *current = *list, *tail;
