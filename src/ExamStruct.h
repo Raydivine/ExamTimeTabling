@@ -47,7 +47,7 @@ struct Session{
 };
 
 struct Table{
-  Session sessions[MAX];
+  LinkedList *sessions;
   int fitnessScore;
 };
 

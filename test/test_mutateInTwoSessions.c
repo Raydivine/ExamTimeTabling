@@ -43,6 +43,14 @@ void tearDown(void){}
 *       if cant find the non conflict elements, 
 *       or the non conflict elements dont have close studentNum
 *       then will do nothing.
+*
+*
+*       session2 will give true papers to p1 , which is
+*
+*       The criteria of truePapers
+*       1.  truePapers cannot conflict to session1
+*       2.  truePapers its self cannot has conflict
+*       3.  truePapers's studentNum must close to session1's exchange elements's studetNum ( not more or less then 20% of studetNum)
 *       
 */  
 
