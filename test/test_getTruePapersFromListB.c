@@ -9,11 +9,6 @@
 #include "Mutation.h"
 
 #define CLEAR_ALL_LIST clearLinkList(&(truePapers)); clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
-#define LISTB_HEAD  listB
-#define LISTB_HEAD1 listB->next
-#define LISTB_HEAD2 listB->next->next
-#define LISTB_HEAD3 listB->next->next
-#define LISTB_HEAD4 listB->next->next->next
 
 #define TAKEN_PAPER1 truePapers
 #define TAKEN_PAPER2 truePapers->next
