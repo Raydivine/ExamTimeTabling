@@ -44,4 +44,14 @@ void addPaperToSession(Session *target, Paper *paper){
   target->population = target->population + paper->takersNum;
 }
 
+void addPapersToSession(Session *target, LinkedList *papers){
+  Paper *p;
+  
+  while( papers != NULL){
+    p = (Paper*)papers->data; 
+    addPaperToSession(target, p);
+    papers = papers->next;
+  }
+}
+
 

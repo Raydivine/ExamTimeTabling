@@ -7,13 +7,13 @@
 #include <stdio.h>
 
 void mutateInTwoSessions(Session *session1, Session *session2){
-  LinkedList *listA = session1->papers, *listB = session2->papers, *p2s;
+  LinkedList *listA = session1->papers, *listB = session2->papers, *p2;
   Paper *p1;
   
   while( listA !=NULL) {
     p1 = (Paper*)listA->data;                                        
     if( calConflictFromPaperToPaparList(p1, listB) == 0 ){
-      p2s = getTruePapersFromListB( listA, &listB, p1->takersNum );
+      p2 = getTruePapersFromListB( listA, &listB, p1->takersNum );
       break;
     }
     listA = listA->next;
@@ -21,7 +21,8 @@ void mutateInTwoSessions(Session *session1, Session *session2){
   
   removeDataFromList( &(session1->papers), p1); 
   session2->papers = listB;
-  
+  addPaperToSession(&session2, &p1);
+ // addPaperToSession(&s1, &p2);
   
  
   

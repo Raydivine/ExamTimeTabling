@@ -9,6 +9,7 @@ void setPaperWithPopulation(Paper *target ,char *paperCode, int num);
 void addProgrammeToPaper(Paper *target, Programme *programme);
 Session createSession();
 void addPaperToSession(Session *target, Paper *paper);
+void addPapersToSession(Session *target, LinkedList *papers);
 
 
 #endif // SetElements_H
