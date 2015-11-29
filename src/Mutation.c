@@ -13,30 +13,27 @@ void mutateInTwoSessions(Session *session1, Session *session2){
   while( listA !=NULL) {
     t1 = (Paper*)listA->data;                                        
     if( calConflictFromPaperToPaparList(t1, listB) == 0 ){
-      t2 = getTruePapersFromListB( session1->papers, &(session2->papers), t1->takersNum );
+      t2 = getTruePapersFromListB( session1->papers, session2->papers, t1->takersNum );
       break;
     }
     listA = listA->next;
   }
   
-  
   removeDataFromList( &(session1->papers), t1);
-  //session2->papers = listB;
+  removeDatasFromList( &(session2->papers), t2);
   addPapersToSession(session1, t2);
   addPaperToSession(session2, t1);
 }
 
 
 // TruePaper : The paper combo is no conflict to listA, it's self also no conflict
-LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int targetNum){
+LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList *listB, int targetNum){
   int currentNum = 0;
 
-  LinkedList *papers = getPerfectPaperList( listA, *listB, &currentNum, targetNum);
+  LinkedList *papers = getPerfectPaperList( listA, listB, &currentNum, targetNum);
 
-  if( isRatioWithin20Percent(currentNum, targetNum)){  
-    removeDatasFromList( listB, papers);   
+  if( isRatioWithin20Percent(currentNum, targetNum))
     return papers;  
-  }
   return NULL;                                              
 }
 
@@ -47,10 +44,9 @@ LinkedList *getPerfectPaperList(LinkedList *list1, LinkedList *list2, int *curre
   while( list2 != NULL){
     t = (Paper*)list2->data;     
     if( calConflictFromPaperToPaparList(t, list1) == 0)             // 1. check is 't' no conflict to list1
-      if( calConflictFromPaperToPaparList(t, perfect) == 0)         // 2 check  is 't' no conflict to perfect
-        if( isSumUnderFlow( currentNum, t->takersNum, targetNum) )  // 3. check is currentNum + t->takersNum , is underFlow to takersNum 
+      if( calConflictFromPaperToPaparList(t, perfect) == 0)         // 2. check  is 't' no conflict to perfect
+        if( isSumUnderFlow( currentNum, t->takersNum, targetNum) )  // 3. check is (currentNum + t->takersNum), is underFlow to takersNum 
           addDataToHead(&perfect, t);                               
-    
     list2 = list2->next;
   }
   return perfect;

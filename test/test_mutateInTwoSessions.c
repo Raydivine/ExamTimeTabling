@@ -8,7 +8,7 @@
 #include "RatioChecking.h"
 #include "Mutation.h"
 
-#define CLEAR_ALL_LIST  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
+#define CLEAR_ALL_LIST  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
 #define S1_HEAD  s1.papers
 #define S1_HEAD1 s1.papers->next
 #define S1_HEAD2 s1.papers->next->next
@@ -63,7 +63,7 @@ void tearDown(void){}
  *         c2,c3          c5,c1   
  *             
 */
-void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
+void test_mutateInTwoSessions_given_p3_p2_no_conflict_should_exchange(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -88,7 +88,7 @@ void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
   mutateInTwoSessions(&s1, &s2);
-  TEST_ASSERT_EQUAL_PTR( &p3, s1.papers->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD1->data);
   TEST_ASSERT_NULL(S1_HEAD2);
   TEST_ASSERT_EQUAL_PTR( &p2, S2_HEAD->data);
@@ -100,58 +100,68 @@ void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
 
 /** Session                  
  *     s1 :    p1             p2(50)                             
- *           c1,c2           c2,c3                  
- *                          *
+ *           c1,c2           c8,c3                  
+ *                            *
  *
- *    s2 :    p5            p3(25)         p4(25)                            
- *          c2,c1          c4,c5          c5,c7   ()
- *                           *             *
+ *    s2 :    p3(25)        p4(25)        p5                        
+ *            c4,c5          c6,c7       c1,c2
+ *              *             *
  *                                
  *    p2 no conflict to s2, p3 and p4 no conflict to s1
  *        
  *    ---------------------OUTPUT----------------------------                            
  *                                
- *  s1 :    p3              p1                          
- *         c4,c5           c1,c2                 
- *                              
- *  s2 :    p2              p4                              
- *         c2,c3          c5,c1   
+ *    s1 :     p3          p4        p1                      
+ *           c4,c5        c6,c7     c1,c2                            
+ *                                           
+ *    s2 :     p2          p5                              
+ *            c8,c3       c1,c2
  *             
 */
-void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
+void test_mutateInTwoSessions_given_p2_and_p3_p4_no_conflict_should_exchange(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
   setPaperWithPopulation(&p2 ,"p2", 50);
-  addProgrammeToPaper(&p2, &c2);  
+  addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperWithPopulation(&p3 ,"p3", 25);
   addProgrammeToPaper(&p3, &c4);
   addProgrammeToPaper(&p3, &c5);
   
-  setPaperWithPopulation(&p4 ,"p4", 50);
-  addProgrammeToPaper(&p4, &c5);  
-  addProgrammeToPaper(&p4, &c1);  
+  setPaperWithPopulation(&p4 ,"p4", 25);
+  addProgrammeToPaper(&p4, &c6);  
+  addProgrammeToPaper(&p4, &c7);  
   
+  setPaperWithPopulation(&p5 ,"p5", 50);
+  addProgrammeToPaper(&p5, &c1);  
+  addProgrammeToPaper(&p5, &c2);
+ 
   addPaperToSession(&s1, &p2);
   addPaperToSession(&s1, &p1);
   
+  addPaperToSession(&s2, &p5);
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
   mutateInTwoSessions(&s1, &s2);
-  TEST_ASSERT_EQUAL_PTR( &p3, s1.papers->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD1->data);
-  TEST_ASSERT_NULL(S1_HEAD2);
+  TEST_ASSERT_EQUAL_PTR( &p3, S1_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, S1_HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD2->data);
+  TEST_ASSERT_NULL(S1_HEAD3);
   TEST_ASSERT_EQUAL_PTR( &p2, S2_HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p4, S2_HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, S2_HEAD1->data);
   TEST_ASSERT_NULL(S2_HEAD2);
 
   CLEAR_ALL_LIST;
 }
+
+
+// printfPaperList(S1_HEAD);
+  // printfPaperList(S2_HEAD);
 
 /**  listA has p1 , listB  p3 and p5 no conflict to listA
  *   studentNum in p3,p5 are 50, sum toggether are 100 , is within ratio of targetNum
