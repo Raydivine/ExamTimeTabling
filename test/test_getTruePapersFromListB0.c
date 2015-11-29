@@ -185,7 +185,7 @@ void test_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_b
  *     takenPaper = NULL
  *                       
 */
-void test_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_take_out(void){
+void test_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targetNum_should_return_NULL(void){
   
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
@@ -267,4 +267,53 @@ void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_ta
   CLEAR_ALL_LIST;
 }
 
+/**   p3,p4 does not conflict with listA, and studentNum in p3 is 40, p4 is 150 ,  and targetNum is 100
+ *   either single or togehter of themc cant form papers which have studentNum close to targetNum
+ *   therefore return NULL
+ * ****************************************************************   
+ *   ( targetNum = 100 )
+ *                
+ *  listA :    p1             p2                          
+ *            c1,c5          c5,c6   
+ * 
+ *  listB :    p3              p4                            
+ *            c7,c8          c3,c2               
+ *            (40)            (150)                   
+ *  ---------------------OUTPUT----------------------------                            
+ *                                
+ *     takenPaper = NULL
+ *                                            
+*/
+void test_getTruePapersFromListB_given_p3_p4_single_or_together_cant_meet_targetNum_should_return_NULL(void){
+  
+  setPaper(&p1 ,"p1");
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c5); 
+  
+  setPaper(&p2 ,"p2");
+  addProgrammeToPaper(&p2, &c5);
+  addProgrammeToPaper(&p2, &c6);
+
+  setPaperWithPopulation(&p3 ,"p3", 40);
+  addProgrammeToPaper(&p3, &c7);
+  addProgrammeToPaper(&p3, &c8);
+  
+  setPaperWithPopulation(&p4 ,"p4", 150);
+  addProgrammeToPaper(&p4, &c3);  
+  addProgrammeToPaper(&p4, &c2);  
+  
+  listA = linkListNew(&p2);
+  addDataToHead(&listA, &p1);
+
+  listB = linkListNew(&p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  TEST_ASSERT_NULL(takenPapers);
+  TEST_ASSERT_EQUAL_PTR( &p3, LISTB_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, LISTB_HEAD1->data);
+  TEST_ASSERT_NULL(LISTB_HEAD2);
+  CLEAR_ALL_LIST;
+}
 
