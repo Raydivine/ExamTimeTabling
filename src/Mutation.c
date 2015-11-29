@@ -13,7 +13,7 @@ void mutateInTwoSessions(Session *session1, Session *session2){
   while( listA !=NULL) {
     t1 = (Paper*)listA->data;                                        
     if( calConflictFromPaperToPaparList(t1, listB) == 0 ){
-      t2 = getTruePapersFromListB( session1->papers, &listB, t1->takersNum );
+      t2 = getTruePapersFromListB( session1->papers, &(session2->papers), t1->takersNum );
       break;
     }
     listA = listA->next;
@@ -21,35 +21,50 @@ void mutateInTwoSessions(Session *session1, Session *session2){
   
   
   removeDataFromList( &(session1->papers), t1);
-  session2->papers = listB;
-  
+  //session2->papers = listB;
   addPapersToSession(session1, t2);
   addPaperToSession(session2, t1);
 }
 
 
-//True : no conflict to ListA
+// TruePaper : The paper combo is no conflict to listA, it's self also no conflict
 LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int targetNum){
-  LinkedList *list = *listB, *papers = NULL;
-  Paper *t;
   int currentNum = 0;
-  
-  while( list != NULL){
-    t = (Paper*)list->data;     
-    if( calConflictFromPaperToPaparList(t, listA) == 0) {         // 1. check is 't' no conflict to listA
-      if( isSumUnderFlow( &currentNum, t->takersNum, targetNum) ) // 2. check is currentNum + t->takersNum , is underFlow to takersNum, if true then only add  
-        addDataToHead(&papers, t);                                // 3. Passed 1,2, then only add 't' to papers
-     //   printfPaper(t);
-    }
-    list = list->next;
-  }
 
-  if( isRatioWithin20Percent(currentNum, targetNum) ){            // 4. check is the currentNum within 20% ratio of takersNum
-    removeDatasFromList( listB, papers);                          // 5. remove taken Paers in listB
-    return papers;                                                // 6. return truePapers
+  LinkedList *papers = getPerfectPaperList( listA, *listB, &currentNum, targetNum);
+
+  if( isRatioWithin20Percent(currentNum, targetNum)){  
+    removeDatasFromList( listB, papers);   
+    return papers;  
   }
-  return NULL; 
+  return NULL;                                              
 }
+
+LinkedList *getPerfectPaperList(LinkedList *list1, LinkedList *list2, int *currentNum, int targetNum){
+  Paper *t;
+  LinkedList *perfect = NULL;
+  
+  while( list2 != NULL){
+    t = (Paper*)list2->data;     
+    if( calConflictFromPaperToPaparList(t, list1) == 0)             // 1. check is 't' no conflict to list1
+      if( calConflictFromPaperToPaparList(t, perfect) == 0)         // 2 check  is 't' no conflict to perfect
+        if( isSumUnderFlow( currentNum, t->takersNum, targetNum) )  // 3. check is currentNum + t->takersNum , is underFlow to takersNum 
+          addDataToHead(&perfect, t);                               
+    
+    list2 = list2->next;
+  }
+  return perfect;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){

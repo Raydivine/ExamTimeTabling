@@ -8,36 +8,44 @@
 #include "RatioChecking.h"
 #include "Mutation.h"
 
-#define CLEAR_ALL_LIST clearLinkList(&(takenPapers)); clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
+#define CLEAR_ALL_LIST clearLinkList(&(perfectPapers)); clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
 #define LISTB_HEAD  listB
 #define LISTB_HEAD1 listB->next
 #define LISTB_HEAD2 listB->next->next
 #define LISTB_HEAD3 listB->next->next
 #define LISTB_HEAD4 listB->next->next->next
 
-#define TAKEN_PAPER1 takenPapers
-#define TAKEN_PAPER2 takenPapers->next
-#define TAKEN_PAPER3 takenPapers->next->next
-#define TAKEN_PAPER4 takenPapers->next->next
-#define TAKEN_PAPER5 takenPapers->next->next->next
+#define TAKEN_PAPER1 perfectPapers
+#define TAKEN_PAPER2 perfectPapers->next
+#define TAKEN_PAPER3 perfectPapers->next->next
+#define TAKEN_PAPER4 perfectPapers->next->next
+#define TAKEN_PAPER5 perfectPapers->next->next->next
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-LinkedList *listA, *listB, *takenPapers;
+LinkedList *listA, *listB, *perfectPapers;
+int currentNum;
 
-void setUp(void){}
+void setUp(void){
+  currentNum = 0;
+}
 
 void tearDown(void){}
 
-/**    takenPapers = getTruePapersFromListB(LinkedList **listA, LinkedList *listB, int targetNum)
+/**    perfectPapers = getPerfectPaperList(LinkedList *list1, LinkedList *list2, int *currentNum, int targetNum)
 *
-*       This function will return the takenPapers contain in ListB ,
-*       the takenPapers does not cause conflict in ListA, 
-*       and the population in takenPapers , must within ratio 20% of targetNum ( can not bigger or smaller 20% then targetNum)
-*       to maintain the population in 2 lists
-*       if does not find the possible combo papers , then will return NULL
+*       This function will return the perfectPapers contain in ListB
 *
-*   Notice : The below tests are the cases that function will return a true papers combo
+*       The criteria of perfectPapers
+*       1.  perfectPapers cannot conflict to listA
+*       2.  perfectPapers its self cannot has conflict
+*       3.  perfectPapers's studentNum must close to targetNum ( not more then 20% of targetNum)
+*
+*       If can not find the combo is meet the conditon , then return NULL
+*
+*       *currentNum will contain perfectPapers's studentNum while this function return 
+*
+*   Notice : The below tests are the cases that function will return a  perfectPapers combo
 */  
 
 /**  listA is NULL , so listB is no conflict to listA, 
@@ -53,10 +61,9 @@ void tearDown(void){}
  *                              
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p4,p3 (Because is using addDataToHead(), so the order reverse)
- *      ListB = NULL;
+ *     perfectPapers = p4,p3 (Because is using addDataToHead(), so the order reverse)   
 */
-void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void){
+void test_getPerfectPaperList_given_ListA_is_NULL_should_take_out_p3_p4(void){
   
   setPaperWithPopulation(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c1);
@@ -72,15 +79,14 @@ void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void)
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p4, TAKEN_PAPER1->data);
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
-  TEST_ASSERT_NULL(LISTB_HEAD);
   CLEAR_ALL_LIST;
 }
 
-/**  listA has p1 , p3 and p5 no conflict to listA
+/**  listA has p1 , listB  p3 and p5 no conflict to listA
  *   studentNum in p3,p5 are 50, sum toggether are 100 , is within ratio of targetNum
  *   so will take out  p3 and p5
  * ****************************************************************   
@@ -94,10 +100,9 @@ void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void)
  *             *                              *                 
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p5,p3 
- *      ListB = p4;
+ *     perfectPapers = p5,p3 
 */
-void test_getTruePapersFromListB_given_p3_p5_no_conflict_but_p4_has_should_take_out_p3_p5(void){
+void test_getPerfectPaperList_given_p3_p5_no_conflict_but_p4_has_should_take_out_p3_p5(void){
   
   setPaperWithPopulation(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
@@ -122,12 +127,10 @@ void test_getTruePapersFromListB_given_p3_p5_no_conflict_but_p4_has_should_take_
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p5, TAKEN_PAPER1->data);
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
-  TEST_ASSERT_EQUAL_PTR( &p4, LISTB_HEAD->data);
-  TEST_ASSERT_NULL(LISTB_HEAD1);
   
   CLEAR_ALL_LIST;
 }
@@ -146,10 +149,9 @@ void test_getTruePapersFromListB_given_p3_p5_no_conflict_but_p4_has_should_take_
  *             *                            *                 
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p5,p3 
- *      ListB = p4;
+ *     perfectPapers = p5,p3 
 */
-void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p4_has_100_student_should_take_out_p3_p5(void){
+void test_getPerfectPaperList_given_p3_p4_p5_no_conflict_but_p4_has_100_student_should_take_out_p3_p5(void){
   
   setPaperWithPopulation(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
@@ -174,12 +176,10 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p4_has_100_stude
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p5, TAKEN_PAPER1->data);
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
-  TEST_ASSERT_EQUAL_PTR( &p4, LISTB_HEAD->data);
-  TEST_ASSERT_NULL(LISTB_HEAD1);
   CLEAR_ALL_LIST;
 }
 
@@ -197,10 +197,9 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p4_has_100_stude
  *             *                  *                 
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p4,p3 
- *      ListB = p5;
+ *     perfectPapers = p4,p3 
 */
-void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150_student_should_take_out_p3_p4(void){
+void test_getPerfectPaperList_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150_student_should_take_out_p3_p4(void){
   
   setPaperWithPopulation(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
@@ -225,12 +224,10 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p4, TAKEN_PAPER1->data);
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
-  TEST_ASSERT_EQUAL_PTR( &p5, LISTB_HEAD->data);
-  TEST_ASSERT_NULL(LISTB_HEAD1);
   CLEAR_ALL_LIST;
 }
 
@@ -247,10 +244,10 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150
  *                                *            *                 
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p4,p3 
- *      ListB = p5;
+ *     perfectPapers = p4,p5 
+ *      ListB = p3;
 */
-void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_150_student_should_take_out_p4_p5(void){
+void test_getPerfectPaperList_given_p3_p4_p5_no_conflict_but_p3_150_student_should_take_out_p4_p5(void){
   
   setPaperWithPopulation(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
@@ -275,12 +272,10 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_150_student_s
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p5, TAKEN_PAPER1->data);
   TEST_ASSERT_EQUAL_PTR( &p4, TAKEN_PAPER2->data);
   TEST_ASSERT_NULL(TAKEN_PAPER3);
-  TEST_ASSERT_EQUAL_PTR( &p3, LISTB_HEAD->data);
-  TEST_ASSERT_NULL(LISTB_HEAD1);
   CLEAR_ALL_LIST;
 }
 
@@ -294,13 +289,12 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_150_student_s
  *
  *  listB :    p3(100)           p4(50)      p5(50)                          
  *            c3, c4            c7,c8       c5,c6   
- *              *               
+ *              *                  
  * ---------------------OUTPUT----------------------------                            
  *                                
- *     takenPapers = p4,p3 
- *      ListB = p5;
+ *     perfectPapers = p3 
 */
-void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_has_100_student_should_take_out_p3_only(void){
+void test_getPerfectPaperList_given_p3_p4_p5_no_conflict_but_p3_has_100_student_should_take_out_p3_only(void){
   
   setPaperWithPopulation(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
@@ -325,11 +319,103 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_has_100_stude
   addDataToHead(&listB, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
-  takenPapers = getTruePapersFromListB(listA, &listB, 100);
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
   TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER1->data);
   TEST_ASSERT_NULL(TAKEN_PAPER2);
-  TEST_ASSERT_EQUAL_PTR( &p4, LISTB_HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p5, LISTB_HEAD1->data);
-  TEST_ASSERT_NULL(LISTB_HEAD2);
+  CLEAR_ALL_LIST;
+}
+
+/**   p3 , p4 and p5 no conflict to listA , 
+ *    however p3, p4 ,p5is no conflict to listA, and close to targetNum.
+ *    But p4 and p5, are conflict to p3, so only take out p3 , in order to get perfect paper list
+ * ****************************************************************   
+ *  ( targetNum = 100 )
+ *
+ *  listA :    p1 
+ *            c1, c2 
+ *
+ *  listB :    p3(100)           p4(10)      p5(10)                          
+ *            c3, c4             c3,c7       c4,c8   
+ *              *               
+ * ---------------------OUTPUT----------------------------                            
+ *                                
+ *     perfectPapers = p3 
+*/
+void test_getPerfectPaperList_given_p4_p5_will_cause_conflict_to_p3_should_only_take_out_p3(void){
+  
+  setPaperWithPopulation(&p1 ,"p1", 50);
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2);
+  
+  setPaperWithPopulation(&p3 ,"p3", 100);
+  addProgrammeToPaper(&p3, &c3);
+  addProgrammeToPaper(&p3, &c4);
+ 
+  setPaperWithPopulation(&p4 ,"p4", 10);
+  addProgrammeToPaper(&p4, &c3);  
+  addProgrammeToPaper(&p4, &c7);  
+  
+  setPaperWithPopulation(&p5 ,"p3", 10);
+  addProgrammeToPaper(&p5, &c4);
+  addProgrammeToPaper(&p5, &c8);
+  
+  listA = linkListNew(&p1);
+  
+  listB = linkListNew(&p5);
+  addDataToHead(&listB, &p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
+  TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER1->data);
+  TEST_ASSERT_NULL(TAKEN_PAPER2);
+  CLEAR_ALL_LIST;
+}
+
+/**   p3 , p4 and p5 no conflict to listA , 
+ *    however p3, p4 ,p5is no conflict to listA, and close to targetNum.
+ *    But p4 is conflict to p3, so only take out p3,p5 , in order to get perfect paper list
+ * ****************************************************************   
+ *  ( targetNum = 100 )
+ *
+ *  listA :    p1 
+ *            c1, c2 
+ *
+ *  listB :    p3(100)           p4(10)      p5(10)                          
+ *            c3, c4             c3,c7       c6,c8   
+ *              *                             *
+ * ---------------------OUTPUT----------------------------                            
+ *                                
+ *     perfectPapers = p3 
+*/
+void test_getPerfectPaperList_given_p4_will_cause_conflict_to_p3_should_only_take_out_p3_p5(void){
+  
+  setPaperWithPopulation(&p1 ,"p1", 50);
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2);
+  
+  setPaperWithPopulation(&p3 ,"p3", 100);
+  addProgrammeToPaper(&p3, &c3);
+  addProgrammeToPaper(&p3, &c4);
+ 
+  setPaperWithPopulation(&p4 ,"p4", 10);
+  addProgrammeToPaper(&p4, &c3);  
+  addProgrammeToPaper(&p4, &c7);  
+  
+  setPaperWithPopulation(&p5 ,"p3", 10);
+  addProgrammeToPaper(&p5, &c6);
+  addProgrammeToPaper(&p5, &c8);
+  
+  listA = linkListNew(&p1);
+  
+  listB = linkListNew(&p5);
+  addDataToHead(&listB, &p4);
+  addDataToHead(&listB, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  perfectPapers = getPerfectPaperList(listA, listB, &currentNum, 100);
+  TEST_ASSERT_EQUAL_PTR( &p5, TAKEN_PAPER1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, TAKEN_PAPER2->data);
+  TEST_ASSERT_NULL(TAKEN_PAPER3);
   CLEAR_ALL_LIST;
 }

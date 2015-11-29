@@ -43,7 +43,7 @@ void tearDown(void){}
 *       
 */  
 
-/**                   
+/** Session                
  *  s1 :    p1             p2(50)                             
  *         c1,c2           c2,c3                  
  *                          *
@@ -56,15 +56,14 @@ void tearDown(void){}
  *        
  *    ---------------------OUTPUT----------------------------                            
  *                                
- *  s1 :    p1              p3                             
- *         c1,c2           c4,c5                 
+ *  s1 :    p3              p1           ( The exchanged papers will go to front, because is addDataToHead() )                  
+ *         c4,c5           c1,c2                 
  *                              
- *  s2 :    p2              p4                            
+ *  s2 :    p2              p4            ( The exchanged papers will go to front, because is addDataToHead() )                    
  *         c2,c3          c5,c1   
  *             
 */
 void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
-  
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -81,9 +80,64 @@ void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
   addProgrammeToPaper(&p4, &c5);  
   addProgrammeToPaper(&p4, &c1);  
   
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p1);
+  
+  addPaperToSession(&s2, &p4);
+  addPaperToSession(&s2, &p3);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  mutateInTwoSessions(&s1, &s2);
+  TEST_ASSERT_EQUAL_PTR( &p3, s1.papers->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD1->data);
+  TEST_ASSERT_NULL(S1_HEAD2);
+  TEST_ASSERT_EQUAL_PTR( &p2, S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, S2_HEAD1->data);
+  TEST_ASSERT_NULL(S2_HEAD2);
+
+  CLEAR_ALL_LIST;
+}
+
+/** Session                  
+ *     s1 :    p1             p2(50)                             
+ *           c1,c2           c2,c3                  
+ *                          *
+ *
+ *    s2 :    p5            p3(25)         p4(25)                            
+ *          c2,c1          c4,c5          c5,c7   ()
+ *                           *             *
+ *                                
+ *    p2 no conflict to s2, p3 and p4 no conflict to s1
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *  s1 :    p3              p1                          
+ *         c4,c5           c1,c2                 
+ *                              
+ *  s2 :    p2              p4                              
+ *         c2,c3          c5,c1   
+ *             
+*/
+void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
+  setPaperWithPopulation(&p1, "p1", 50);
+  addProgrammeToPaper(&p1, &c1);
+  addProgrammeToPaper(&p1, &c2);
+  
+  setPaperWithPopulation(&p2 ,"p2", 50);
+  addProgrammeToPaper(&p2, &c2);  
+  addProgrammeToPaper(&p2, &c3);  
+  
+  setPaperWithPopulation(&p3 ,"p3", 50);
+  addProgrammeToPaper(&p3, &c4);
+  addProgrammeToPaper(&p3, &c5);
+  
+  setPaperWithPopulation(&p4 ,"p4", 50);
+  addProgrammeToPaper(&p4, &c5);  
+  addProgrammeToPaper(&p4, &c1);  
   
   addPaperToSession(&s1, &p2);
   addPaperToSession(&s1, &p1);
+  
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
