@@ -27,7 +27,6 @@
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-LinkedList *listA, *listB, *takenPapers;
 Session s1,s2;
 
 void setUp(void){
@@ -37,10 +36,10 @@ void setUp(void){
 
 void tearDown(void){}
 
-/**    mutateInTwoSessions(Session *session1, Session *session2)
+/**   void mutateInTwoSessions(Session *session1, Session *session2)
 *
 *       This function will exchange the elements in 2 session, which are no conflict to other,
-*       the exchanged elements must have close studentNum, in order to mantain balance
+*       the exchanged elements must have close studentNum( +- 20% ), in order to mantain balance
 *       if cant find the non conflict elements, 
 *       or the non conflict elements dont have close studentNum
 *       then will do nothing.
@@ -361,6 +360,140 @@ void test_mutateInTwoSessions_given_p1_p2_p3_but_s2_only_can_return_papers_combo
   TEST_ASSERT_NULL(S1_HEAD5);
   TEST_ASSERT_EQUAL_PTR( &p3, S2_HEAD->data);
   TEST_ASSERT_NULL(S2_HEAD1);
+
+  CLEAR_ALL_LIST;
+}
+
+/** Session                  
+ *     s1 :    p1(100)        p2(100)        p3(50)                         
+ *             c8,c3         c8,c3          c8,c3           
+ *                                          *
+ *
+ *    s2 :    p4(25)        p5(25)         p6(10)                      
+ *            c4,c5          c6,c7        c1,c9
+ *              *             *               
+ *                                                             
+ *    p4+p5 = 50 , p4+p5+p6 = 60 ( which more than 20% of p3(50) ), therefore only change with p4,p5
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *    s1 :     p4          p5        p1       p2                      
+ *           c4,c5        c6,c7    c8,c3     c8,c3                           
+ *                                           
+ *    s2 :     p3          p6                          
+ *            c8,c3      c1,c9
+ *             
+*/
+void test_mutateInTwoSessions_given_p4_p5_p6_equal_60_which_more_than_20percent_of_p3_therefore_only_change_with_p4_p5(void){
+  setPaperWithPopulation(&p1, "p1", 100);
+  addProgrammeToPaper(&p1, &c8);
+  addProgrammeToPaper(&p1, &c3);
+  
+  setPaperWithPopulation(&p2 ,"p2", 100);
+  addProgrammeToPaper(&p2, &c8);  
+  addProgrammeToPaper(&p2, &c3);  
+  
+  setPaperWithPopulation(&p3 ,"p3", 50);
+  addProgrammeToPaper(&p3, &c8);
+  addProgrammeToPaper(&p3, &c3);
+  
+  setPaperWithPopulation(&p4 ,"p4", 25);
+  addProgrammeToPaper(&p4, &c4);  
+  addProgrammeToPaper(&p4, &c5);  
+  
+  setPaperWithPopulation(&p5 ,"p5", 25);
+  addProgrammeToPaper(&p5, &c6);  
+  addProgrammeToPaper(&p5, &c7);
+  
+  setPaperWithPopulation(&p6 ,"p6", 10);
+  addProgrammeToPaper(&p6, &c1);  
+  addProgrammeToPaper(&p6, &c9);
+ 
+  addPaperToSession(&s1, &p3);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p1);
+  
+  addPaperToSession(&s2, &p6);
+  addPaperToSession(&s2, &p5);
+  addPaperToSession(&s2, &p4);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  mutateInTwoSessions(&s1, &s2);
+  TEST_ASSERT_EQUAL_PTR( &p4, S1_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, S1_HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, S1_HEAD3->data);
+  TEST_ASSERT_NULL(S1_HEAD4);
+  TEST_ASSERT_EQUAL_PTR( &p3, S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p6, S2_HEAD1->data);
+  TEST_ASSERT_NULL(S2_HEAD2);
+
+  CLEAR_ALL_LIST;
+}
+
+/** Session                  
+ *     s1 :    p1(100)        p2(100)        p3(50)                         
+ *             c8,c3         c8,c3          c8,c3           
+ *                                          *
+ *
+ *    s2 :    p4(25)        p5(25)         p6(5)                      
+ *            c4,c5          c6,c7        c7,c9
+ *              *             *               
+ *                                                             
+ *    p4p5p6 together is meet p3 studentNum, but p6 having conflict with p5, therefore only changed with p4,p5
+ *        
+ *    ---------------------OUTPUT----------------------------                            
+ *                                
+ *    s1 :     p4          p5        p1       p2                      
+ *           c4,c5        c6,c7    c8,c3     c8,c3                           
+ *                                           
+ *    s2 :     p3          p6                          
+ *            c8,c3      c7,c9
+ *             
+*/
+void test_mutateInTwoSessions_given_p6_conflict_with_p4_p5_so_only_exchanged_with_p4_p5_no_p6(void){
+  setPaperWithPopulation(&p1, "p1", 100);
+  addProgrammeToPaper(&p1, &c8);
+  addProgrammeToPaper(&p1, &c3);
+  
+  setPaperWithPopulation(&p2 ,"p2", 100);
+  addProgrammeToPaper(&p2, &c8);  
+  addProgrammeToPaper(&p2, &c3);  
+  
+  setPaperWithPopulation(&p3 ,"p3", 50);
+  addProgrammeToPaper(&p3, &c8);
+  addProgrammeToPaper(&p3, &c3);
+  
+  setPaperWithPopulation(&p4 ,"p4", 25);
+  addProgrammeToPaper(&p4, &c4);  
+  addProgrammeToPaper(&p4, &c5);  
+  
+  setPaperWithPopulation(&p5 ,"p5", 25);
+  addProgrammeToPaper(&p5, &c6);  
+  addProgrammeToPaper(&p5, &c7);
+  
+  setPaperWithPopulation(&p6 ,"p6", 5);
+  addProgrammeToPaper(&p6, &c7);  
+  addProgrammeToPaper(&p6, &c9);
+ 
+  addPaperToSession(&s1, &p3);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p1);
+  
+  addPaperToSession(&s2, &p6);
+  addPaperToSession(&s2, &p5);
+  addPaperToSession(&s2, &p4);
+  //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
+  
+  mutateInTwoSessions(&s1, &s2);
+  TEST_ASSERT_EQUAL_PTR( &p4, S1_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, S1_HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, S1_HEAD3->data);
+  TEST_ASSERT_NULL(S1_HEAD4);
+  TEST_ASSERT_EQUAL_PTR( &p3, S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p6, S2_HEAD1->data);
+  TEST_ASSERT_NULL(S2_HEAD2);
 
   CLEAR_ALL_LIST;
 }

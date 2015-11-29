@@ -12,20 +12,19 @@ void mutateInTwoSessions(Session *session1, Session *session2){
   //   printf("ink\n");
   while( listA !=NULL) {
     t1 = (Paper*)listA->data; 
-    
     if(calConflictFromPaperToPaparList(t1, listB) == 0){
       t2 = getTruePapersFromListB( session1->papers, session2->papers, t1->takersNum);
-      
-      if(t2 != NULL)
-        break; 
+  
+      if(t2 != NULL){
+        removeDataFromList( &(session1->papers), t1);
+        removeDatasFromList( &(session2->papers), t2);
+        addPapersToSession(session1, t2);
+        addPaperToSession(session2, t1);
+        return;
+      }
     }
     listA = listA->next;
   }
-  
-  removeDataFromList( &(session1->papers), t1);
-  removeDatasFromList( &(session2->papers), t2);
-  addPapersToSession(session1, t2);
-  addPaperToSession(session2, t1);
 }
 
 LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList *listB, int targetNum){
