@@ -36,46 +36,36 @@ void setUp(void)
 void tearDown(void){}
 
 
-/** 
+/**  Dont do Mutation : case 1
  *                              
  *  Session1 :    p1              p2                              
- *               c1,c2           c2,c3                  
- *                                *
+ *               c1,c2           c3,c4                  
  *
  *  Session2 :    p3              p4                            
- *               c1,c5          c5,c6               
- *                                *
+ *               c2,c3          c4,c1                
  * 
- *   p2 and p4 have not conflict with other session, therefore shold do Mutation
- *   
- *
- *  Session1 :    p1              p4                              
- *               c1,c2           c5,c6                 
- *                                
- *
- *  Session2 :    p3              p2                            
- *               c1,c5          c2,c3               
- *                                
+ *   Session1 and Session2 all elements are confict with each other, their programmes element already exist in other session, 
+ *   so no matter how exchange will just only cause confict, therefore should not do mutation
 */
-void test_mutateInTwoSessions_given_the_2session_p3_p4_no_conflict_with_other_should_do_Mutation(void){
+void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other_should_not_do_Mutation(void){
   setPaper(&p1 ,"p1");
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
   setPaper(&p2 ,"p2");
-  addProgrammeToPaper(&p2, &c2);
   addProgrammeToPaper(&p2, &c3);
+  addProgrammeToPaper(&p2, &c4);
   
   setPaper(&p3 ,"p3");
-  addProgrammeToPaper(&p3, &c1);
-  addProgrammeToPaper(&p3, &c5);
+  addProgrammeToPaper(&p3, &c2);
+  addProgrammeToPaper(&p3, &c3);
   
   setPaper(&p4 ,"p4");
-  addProgrammeToPaper(&p4, &c5);  
-  addProgrammeToPaper(&p4, &c6);  
+  addProgrammeToPaper(&p4, &c4);  
+  addProgrammeToPaper(&p4, &c1);  
   
   Session s1 = createSession();
-  addPaperToSession(&s1, &p2);  // For the faster process speed, the used LinkedList add functions
+  addPaperToSession(&s1, &p2);  // For the faster process speed, the used LinkedList functions
   addPaperToSession(&s1, &p1);  // is addDataToHead() , so adding the element has to been in reverse way 
   
   Session s2 = createSession();
@@ -83,10 +73,10 @@ void test_mutateInTwoSessions_given_the_2session_p3_p4_no_conflict_with_other_sh
   addPaperToSession(&s2, &p3);
   //----------------------------------------------------------------------------------------
   mutateInTwoSessions(&s1, &s2);
-  // TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
-  // TEST_ASSERT_EQUAL_PTR( &p4,S1_HEAD2->data);
-  // TEST_ASSERT_EQUAL_PTR( &p3,S2_HEAD->data);
-  // TEST_ASSERT_EQUAL_PTR( &p2,S2_HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p3,S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4,S2_HEAD2->data);
   
   clearLinkList(&(s1.papers));
   clearLinkList(&(s2.papers));
