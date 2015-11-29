@@ -8,7 +8,7 @@
 #include "RatioChecking.h"
 #include "Mutation.h"
 
-#define CLEAR_ALL_LIST clearLinkList(&(takenPapers)); clearLinkList(&listA); clearLinkList(&listB); clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
+#define CLEAR_ALL_LIST  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); 
 #define S1_HEAD  s1.papers
 #define S1_HEAD1 s1.papers->next
 #define S1_HEAD2 s1.papers->next->next
@@ -73,7 +73,7 @@ void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
   addProgrammeToPaper(&p2, &c2);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 60);
+  setPaperWithPopulation(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c4);
   addProgrammeToPaper(&p3, &c5);
   
@@ -89,10 +89,12 @@ void test_mutateInTwoSessions_given_p3_p4_no_conflict_should_exchange(void){
   //--------------------------------THE ABOVE ARE THE ELEMENT INITIALIZATION---------------------------------------
   
   mutateInTwoSessions(&s1, &s2);
-  // TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD->data);
-  // TEST_ASSERT_EQUAL_PTR( &p3, S1_HEAD1->data);
-  // TEST_ASSERT_EQUAL_PTR( &p2, S2_HEAD->data);
-  // TEST_ASSERT_EQUAL_PTR( &p4, S2_HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, s1.papers->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, S1_HEAD1->data);
+  TEST_ASSERT_NULL(S1_HEAD2);
+  TEST_ASSERT_EQUAL_PTR( &p2, S2_HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, S2_HEAD1->data);
+  TEST_ASSERT_NULL(S2_HEAD2);
 
   CLEAR_ALL_LIST;
 }

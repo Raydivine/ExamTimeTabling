@@ -7,25 +7,24 @@
 #include <stdio.h>
 
 void mutateInTwoSessions(Session *session1, Session *session2){
-  LinkedList *listA = session1->papers, *listB = session2->papers, *p2;
-  Paper *p1;
+  LinkedList *listA = session1->papers, *listB = session2->papers, *t2;
+  Paper *t1;
   
   while( listA !=NULL) {
-    p1 = (Paper*)listA->data;                                        
-    if( calConflictFromPaperToPaparList(p1, listB) == 0 ){
-      p2 = getTruePapersFromListB( listA, &listB, p1->takersNum );
+    t1 = (Paper*)listA->data;                                        
+    if( calConflictFromPaperToPaparList(t1, listB) == 0 ){
+      t2 = getTruePapersFromListB( session1->papers, &listB, t1->takersNum );
       break;
     }
     listA = listA->next;
   }
   
-  removeDataFromList( &(session1->papers), p1); 
+  
+  removeDataFromList( &(session1->papers), t1);
   session2->papers = listB;
-  addPaperToSession(&session2, &p1);
- // addPaperToSession(&s1, &p2);
   
- 
-  
+  addPapersToSession(session1, t2);
+  addPaperToSession(session2, t1);
 }
 
 
@@ -37,9 +36,11 @@ LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int ta
   
   while( list != NULL){
     t = (Paper*)list->data;     
-    if( calConflictFromPaperToPaparList(t, listA) == 0)           // 1. check is 't' no conflict to listA
+    if( calConflictFromPaperToPaparList(t, listA) == 0) {         // 1. check is 't' no conflict to listA
       if( isSumUnderFlow( &currentNum, t->takersNum, targetNum) ) // 2. check is currentNum + t->takersNum , is underFlow to takersNum, if true then only add  
         addDataToHead(&papers, t);                                // 3. Passed 1,2, then only add 't' to papers
+     //   printfPaper(t);
+    }
     list = list->next;
   }
 
@@ -67,7 +68,23 @@ Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
   return NULL;
 }
 
+void printfPaperList(LinkedList *pList){
+  
+  Paper *p;
+  
+  while( pList !=NULL) {
+    p = (Paper*)pList->data;                                        
+    printf(" %s\t",p->code);
+    pList = pList->next;
+  }
+  printf("\n");
+}
 
 
-
-//  printf("currentNum : %d\n", currentNum);
+void printfPaper(Paper *p){
+   
+  if( p !=NULL)                                  
+    printf("Paper: %s\n",p->code);
+  else 
+    printf("it is NULL\n");
+}

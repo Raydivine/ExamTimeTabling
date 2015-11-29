@@ -7,6 +7,7 @@ void mutateInTwoSessions(Session *session1, Session *session2);
 Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB);
 LinkedList *getTruePapersFromListB(LinkedList *listA, LinkedList **listB, int targetNum);
 
-
+void printfPaperList(LinkedList *pList);
+void printfPaper(Paper *p);
 
 #endif // Mutation_H
