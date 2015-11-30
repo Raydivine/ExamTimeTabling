@@ -3,6 +3,10 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
+void printfTable(Table table){
+  printfSessionList(table.sessions);
+}
+
 void printfSessionList(LinkedList *sList){
   Session *s;
   
@@ -13,7 +17,6 @@ void printfSessionList(LinkedList *sList){
   }
   printf("\n");
 }
-
 
 void printfPaperList(LinkedList *pList){
   

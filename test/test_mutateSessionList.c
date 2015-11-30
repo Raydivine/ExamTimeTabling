@@ -53,12 +53,13 @@ void setUp(void){
   
 /** The share structrure show below
   *
-  *       s1          s2        s3          s4
+  *       s1          s2         s3          s4
   *     p1,p2       p3,p4       p5,p6      p7,p8
   *     c1,c1       c2,c2       c3,c3      c4,c4
   *
-  *
-  *
+  *  The 4 sessions have conflict, because their papers having same programmes,
+  *  so passed the sessionList to the function
+  *  The output stucture should reduced conflict
 */
 }
 
@@ -75,9 +76,10 @@ void tearDown(void){
 *     Session1 is fixed input for head of sessionList, Session2 will input by every session in (sessionList->next)
 *     So the head will do mutateTwoSession() with the rest of element in its tail
 *     
-*     Due to sessionList is large combination data, it is very hard to ensure the result,
-*     So the tests below is just printOut the sessionList structure, to oberserve it the list become better 
+*     Due to sessionList is large combination strucutre, it is very hard to ensure the result,
+*     So the tests below is just printOut the input and output structure, to oberserve is the structure become better 
 *          
+*     Notice : Un "X" to see the print input and output structure
 */  
 
 void test_mutateSessionList_given_s1_at_head_should_mutate(void){
@@ -89,10 +91,12 @@ void test_mutateSessionList_given_s1_at_head_should_mutate(void){
   printf("--------------testing muteSessionList()----------------\n\n ");
   printf(" mutateSesionList test1\n");
   
-  printf("input : ");
+  printf("  input :   ");
   printfSessionList(list);
+  
   mutateSessionList(&list);
-  printf("output: ");
+  
+  printf("  output:   ");
   printfSessionList(list);
   printf("\n");
   
@@ -105,11 +109,13 @@ void test_mutateSessionList_given_s2_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s2);
   
-  printf(" mutateSesionList test2\n");
-  printf("input : ");
+  printf("  mutateSesionList test2\n");
+  printf("  input :   ");
   printfSessionList(list);
+  
   mutateSessionList(&list);
-  printf("output: ");
+  
+  printf("  output:   ");
   printfSessionList(list);
   printf("\n");
 
@@ -122,11 +128,13 @@ void test_mutateSessionList_given_s3_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s3);
   
-  printf(" mutateSesionList test3\n");
-  printf("input : ");
+  printf("  mutateSesionList test3\n");
+  printf("  input :   ");
   printfSessionList(list);
+  
   mutateSessionList(&list);
-  printf("output: ");
+  
+  printf("  output:   ");
   printfSessionList(list);
   printf("\n");
   
@@ -140,11 +148,13 @@ void test_mutateSessionList_given_s4_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s4);
   
-  printf(" mutateSesionList test4\n");
-  printf("input : ");
+  printf("  mutateSesionList test4\n");
+  printf("  input :   ");
   printfSessionList(list);
+  
   mutateSessionList(&list);
-  printf("output  ");
+  
+  printf("  output:   ");
   printfSessionList(list);
   printf("\n");
   

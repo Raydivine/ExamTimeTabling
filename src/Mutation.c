@@ -7,6 +7,16 @@
 #include <stdio.h>
 #include "printfStructs.h"
 
+void mutateTable(Table *table){
+  LinkedList *sList = table->sessions;
+  
+  while(sList->next->next != NULL){
+    mutateSessionList(&sList);
+    sList = sList ->next;
+  }
+}
+
+
 void mutateSessionList(LinkedList **sessionList){
   LinkedList *sList = *sessionList, *list = sList->next;
   Session *head = (Session*)sList->data, *tail;
@@ -16,7 +26,6 @@ void mutateSessionList(LinkedList **sessionList){
     mutateTwoSession( head, tail);
     list = list->next;
   }
-  
 }
 
 void mutateTwoSession(Session *session1, Session *session2){
