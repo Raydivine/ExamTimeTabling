@@ -19,12 +19,6 @@ void setPaper(Paper *target ,char *paperCode){
   target->programmes = NULL;
 }
 
-void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
-  target->code = paperCode;
-  target->takersNum = num;
-  target->programmes = NULL;
-}
-
 void addProgrammeToPaper(Paper *target, Programme *programme){
   addDataToHead(&(target->programmes), programme);
   target->takersNum = target->takersNum + programme->studentNum;
@@ -66,5 +60,27 @@ void addSessionToTable(Table *target, Session *session){
   addDataToHead(&(target->sessions), session);
   target->fitnessScore = target->fitnessScore + session->conflict;
 }
+
+
+
+
+
+// The below is redundant function, created as tools for testing purpose
+void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
+  target->code = paperCode;
+  target->takersNum = num;
+  target->programmes = NULL;
+}
+
+Session createSessionWithName(char *name){
+  Session session;
+  
+  session.name = name;
+  session.conflict = 0;
+  session.population = 0;
+  session.papers = NULL;
+  return session;
+}
+
 
 

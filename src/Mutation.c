@@ -5,6 +5,19 @@
 #include "LinkedList.h"
 #include "LinkedListRemove.h"
 #include <stdio.h>
+#include "printfStructs.h"
+
+void mutateSessionList(LinkedList **sessionList){
+  LinkedList *sList = *sessionList, *list = sList->next;
+  Session *head = (Session*)sList->data, *tail;
+  
+  while(list!= NULL){
+    tail = (Session*)list->data;
+    mutateTwoSession( head, tail);
+    list = list->next;
+  }
+  
+}
 
 void mutateTwoSession(Session *session1, Session *session2){
   LinkedList *listA = session1->papers, *listB = session2->papers, *t2;
@@ -53,26 +66,3 @@ LinkedList *getPerfectPaperList(LinkedList *list1, LinkedList *list2, int *curre
 }
 
 
-
-
-
-void printfPaperList(LinkedList *pList){
-  
-  Paper *p;
-  
-  while( pList !=NULL) {
-    p = (Paper*)pList->data;                                        
-    printf(" %s\t",p->code);
-    pList = pList->next;
-  }
-  printf("\n");
-}
-
-
-void printfPaper(Paper *p){
-   
-  if( p !=NULL)                                  
-    printf("Paper: %s\n",p->code);
-  else 
-    printf("it is NULL\n");
-}
