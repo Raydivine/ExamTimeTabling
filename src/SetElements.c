@@ -54,4 +54,17 @@ void addPapersToSession(Session *target, LinkedList *papers){
   }
 }
 
+Table createTable(){
+  Table table;
+  
+  table.fitnessScore = 0;
+  table.sessions = NULL;
+  return table;
+}
+
+void addSessionToTable(Table *target, Session *session){
+  addDataToHead(&(target->sessions), session);
+  target->fitnessScore = target->fitnessScore + session->conflict;
+}
+
 

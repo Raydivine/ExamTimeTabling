@@ -22,7 +22,7 @@ void tearDown(void){}
 *     LinkedList *papers;     = NULL
 *    }
 */
-void test_createSession_should_create_the_session_with_0_fitnessScore_0_population_empty_papers(void){
+void test_createSession_should_create_the_session_with_0_conflict_0_population_empty_papers(void){
 
   Session s = createSession();
   TEST_ASSERT_EQUAL(0, s.conflict);
