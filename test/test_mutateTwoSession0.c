@@ -39,7 +39,7 @@ void setUp(void){
 void tearDown(void){}
 
 
-/**   void mutateInTwoSessions(Session *session1, Session *session2)
+/**   void mutateTwoSession(Session *session1, Session *session2)
 *
 *       This function will exchange the elements in 2 session, which are no conflict to other,
 *       the exchanged elements must have close studentNum( +- 20% ), in order to mantain balance
@@ -68,7 +68,7 @@ void tearDown(void){}
  *   Session1 and Session2 all elements are confict with each other, their programmes element already exist in other session, 
  *   so no matter how exchange will just only cause confict, therefore should not do mutation
 */
-void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other_should_not_do_Mutation(void){
+void test_mutateTwoSession_given_the_2session_all_element_conflict_with_other_should_not_do_Mutation(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -92,7 +92,7 @@ void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //----------------------------------------------------------------------------------------
-  mutateInTwoSessions(&s1, &s2);
+  mutateTwoSession(&s1, &s2);
   TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD1->data);
   TEST_ASSERT_NULL(S1_HEAD2);
@@ -116,7 +116,7 @@ void test_mutateInTwoSessions_given_the_2session_all_element_conflict_with_other
  *    
  *   p2 is no confict to session2, but session2 all elements confict to session1, so do nothing
 */
-void test_mutateInTwoSessions_given_the_session2_all_elements_conflict_to_session1_should_do_nothing(void){
+void test_mutateTwoSession_given_the_session2_all_elements_conflict_to_session1_should_do_nothing(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -139,7 +139,7 @@ void test_mutateInTwoSessions_given_the_session2_all_elements_conflict_to_sessio
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //----------------------------------------------------------------------------------------
-  mutateInTwoSessions(&s1, &s2);
+  mutateTwoSession(&s1, &s2);
   TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD1->data);
   TEST_ASSERT_NULL(S1_HEAD2);
@@ -162,7 +162,7 @@ void test_mutateInTwoSessions_given_the_session2_all_elements_conflict_to_sessio
  *    
  *   p2 is no confict to session2, but session2 can not return a papers combo having close number to p2, so do nothing
 */
-void test_mutateInTwoSessions_given_the_session2_cannot_return_papers_combo_having_close_number_to_p2_should_do_nothing(void){
+void test_mutateTwoSession_given_the_session2_cannot_return_papers_combo_having_close_number_to_p2_should_do_nothing(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -185,7 +185,7 @@ void test_mutateInTwoSessions_given_the_session2_cannot_return_papers_combo_havi
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //----------------------------------------------------------------------------------------
-  mutateInTwoSessions(&s1, &s2);
+  mutateTwoSession(&s1, &s2);
   TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD1->data);
   TEST_ASSERT_NULL(S1_HEAD2);
@@ -208,7 +208,7 @@ void test_mutateInTwoSessions_given_the_session2_cannot_return_papers_combo_havi
  *    (p3 and p4 having c8 )
  *   p2 is no confict to session2, p3 and p4 together can meet p2 studentNum, but p3 p4 them selves has confict, so do nothing
 */
-void test_mutateInTwoSessions_given_the_p3_p4_having_c8_cause_conflict_so_do_nothing(void){
+void test_mutateTwoSession_given_the_p3_p4_having_c8_cause_conflict_so_do_nothing(void){
   setPaperWithPopulation(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
@@ -231,7 +231,7 @@ void test_mutateInTwoSessions_given_the_p3_p4_having_c8_cause_conflict_so_do_not
   addPaperToSession(&s2, &p4);
   addPaperToSession(&s2, &p3);
   //----------------------------------------------------------------------------------------
-  mutateInTwoSessions(&s1, &s2);
+  mutateTwoSession(&s1, &s2);
   TEST_ASSERT_EQUAL_PTR( &p1,S1_HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2,S1_HEAD1->data);
   TEST_ASSERT_NULL(S1_HEAD2);

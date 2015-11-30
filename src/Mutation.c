@@ -6,7 +6,7 @@
 #include "LinkedListRemove.h"
 #include <stdio.h>
 
-void mutateInTwoSessions(Session *session1, Session *session2){
+void mutateTwoSession(Session *session1, Session *session2){
   LinkedList *listA = session1->papers, *listB = session2->papers, *t2;
   Paper *t1;
 
