@@ -3,6 +3,7 @@
 #include "CalConflict.h"
 #include "RatioChecking.h"
 #include "LinkedList.h"
+#include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include <stdio.h>
 #include "printfStructs.h"
