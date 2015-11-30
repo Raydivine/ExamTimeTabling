@@ -9,7 +9,7 @@
 void mutateInTwoSessions(Session *session1, Session *session2){
   LinkedList *listA = session1->papers, *listB = session2->papers, *t2;
   Paper *t1;
-  //   printf("ink\n");
+
   while( listA !=NULL) {
     t1 = (Paper*)listA->data; 
     if(calConflictFromPaperToPaparList(t1, listB) == 0){
@@ -55,29 +55,6 @@ LinkedList *getPerfectPaperList(LinkedList *list1, LinkedList *list2, int *curre
 
 
 
-
-
-
-
-
-
-
-
-Paper *getTruePaperFromListA(LinkedList **listA, LinkedList *listB){
-  Paper *p;
-  LinkedList *list = *listA;
-  
-  while( list !=NULL) {
-    p = (Paper*)list->data;                                        
-    if( calConflictFromPaperToPaparList(p, listB) == 0 ){
-      removeDataFromList(listA, p);
-      return p; 
-    }
-    list = list->next;
-  }
-  
-  return NULL;
-}
 
 void printfPaperList(LinkedList *pList){
   
