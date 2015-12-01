@@ -65,18 +65,17 @@ void addSessionToTable(Table *target, Session *session){
 
 
 
-// The below is redundant function, created as tools for testing purpose
+// The below functions are redundant , created as tools for testing purpose
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
   target->code = paperCode;
   target->takersNum = num;
   target->programmes = NULL;
 }
 
-Session createSessionWithName(char *name){
+Session createSessionWithConflict(int score){
   Session session;
   
-  session.name = name;
-  session.conflict = 0;
+  session.conflict = score;
   session.population = 0;
   session.papers = NULL;
   return session;

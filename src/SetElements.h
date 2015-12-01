@@ -15,7 +15,7 @@ Table createTable();
 void addSessionToTable(Table *target, Session *session);
 
 //The below is redundant function, created as a tool for testing purpose
-Session createSessionWithName(char *name);
+Session createSessionWithConflict(int num);
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num);
 
 #endif // SetElements_H

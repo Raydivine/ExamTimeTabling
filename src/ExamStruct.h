@@ -43,7 +43,6 @@ struct Session{
   LinkedList *papers;
   int conflict;
   int population;
-  char *name;    //This name variable is redundant, created for observe purpose
 };
 
 struct Table{

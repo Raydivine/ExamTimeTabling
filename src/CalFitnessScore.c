@@ -3,6 +3,11 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
+
+void calFitnessScore(Table *table){
+  
+}
+
 void calConflictInSession(Session *session){
   int score =0;
   Paper *p;
