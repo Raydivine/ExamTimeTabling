@@ -1,6 +1,6 @@
 #include "Mutation.h"
 #include "ExamStruct.h"
-#include "CalConflict.h"
+#include "CalFitnessScore.h"
 #include "RatioChecking.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
@@ -11,7 +11,7 @@
 void mutateTable(Table *table){
   LinkedList *sList = table->sessions;
   
-  while(sList->next->next != NULL){
+  while(sList->next != NULL){
     mutateSessionList(&sList);
     sList = sList ->next;
   }
