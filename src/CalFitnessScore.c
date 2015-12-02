@@ -9,7 +9,7 @@ int calFitnessScore(LinkedList *sList){
   
   while(sList != NULL){
     s = (Session*)sList->data;                                              
-    fitnessScore = fitnessScore + s->conflict;
+    fitnessScore = fitnessScore + calConflict(s->papers);
     sList = sList->next;
   }
   return fitnessScore;
@@ -41,4 +41,3 @@ int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){
   
   return conflict;
 }
-

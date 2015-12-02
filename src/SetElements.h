@@ -11,8 +11,6 @@ Session createSession();
 void addPaperToSession(Session *target, Paper *paper);
 void addPapersToSession(Session *target, LinkedList *papers);
 
-
-
 Table createTable();
 void addSessionToTable(Table *target, Session *session);
 

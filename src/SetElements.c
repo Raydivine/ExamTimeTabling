@@ -56,6 +56,13 @@ void addSessionToTable(Table *target, Session *session){
   target->fitnessScore = target->fitnessScore + session->conflict;
 }
 
+void tableUpdate(Table *table){
+  
+}
+
+
+
+
 
 
 void setVenue(Venue *target, char *name, int venueCode, int seatNum){
