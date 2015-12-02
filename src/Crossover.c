@@ -14,14 +14,13 @@ Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parre
   Table child = createTable();
   Session *current = (Session*)sListA->data;
   
-  
   while( isElementsNotInChild( child.sessions, current->papers) ){
-    addToChildRemoveInList(current, &child, parrent);
+    addToChildAndRemoveInParrent(current, &child, parrent);
     sListA = sListA->next;
     current = (Session*)sListB->data;
        
     if( isElementsNotInChild( child.sessions, current->papers) ){
-      addSessionToTable(&child, current);
+      addToChildAndRemoveInParrent(current, &child, parrent);
       sListB = sListB->next;
       current = (Session*)sListA->data;
     } else break;
@@ -30,7 +29,7 @@ Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parre
   return child;
 }
 
-void addToChildRemoveInList(Session *s, Table *child, LinkedList **parrent){
+void addToChildAndRemoveInParrent(Session *s, Table *child, LinkedList **parrent){
   addSessionToTable(child, s);
   removeDatasFromList(parrent, s->papers);
 }
