@@ -18,18 +18,29 @@ void printfSessionList(LinkedList *sList){
   printf("\n");
 }
 
-void printfPaperList(LinkedList *pList){
-  
+void printfPaperList(LinkedList *pList){  
   Paper *p;
   
   while( pList !=NULL) {
     p = (Paper*)pList->data;                                        
-    printf("%s ",p->code);
+    printf("%s",p->code);
+    printfProgrammeList(p->programmes);
     pList = pList->next;
   }
-  printf("  ");
+  printf("|");
 }
 
+void printfProgrammeList(LinkedList *proList){
+  Programme *pro;
+  printf("(");
+  
+  while( proList !=NULL) {
+    pro = (Programme*)proList->data;                                        
+    printf("%s",pro->name);
+    proList = proList->next;
+  }
+  printf(")");
+}
 
 void printfPaper(Paper *p){
    

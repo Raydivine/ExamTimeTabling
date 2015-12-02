@@ -6,6 +6,7 @@
 void printfTable(Table table);
 void printfSessionList(LinkedList *sList);
 void printfPaperList(LinkedList *pList);
+void printfProgrammeList(LinkedList *proList);
 void printfPaper(Paper *p);
 
 

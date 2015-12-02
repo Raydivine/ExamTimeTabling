@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
-void calFitnessScore(Table *table){
+int calFitnessScore(LinkedList *sessions){
   
 }
 

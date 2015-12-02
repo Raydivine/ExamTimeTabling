@@ -18,6 +18,16 @@ Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 Session s1,s2,s3,s4;
 
 void setUp(void){
+  setProgramme(&c1,"c1", 0);
+  setProgramme(&c2,"c2", 0);
+  setProgramme(&c3,"c3", 0);
+  setProgramme(&c4,"c4", 0);
+  setProgramme(&c5,"c5", 0);
+  setProgramme(&c6,"c6", 0);
+  setProgramme(&c7,"c7", 0);
+  setProgramme(&c8,"c8", 0);
+  setProgramme(&c9,"c9", 0);
+  setProgramme(&c10,"c10", 0);
   
   setPaperWithPopulation(&p1, "p1", 50);
   setPaperWithPopulation(&p2, "p2", 50);
@@ -81,6 +91,8 @@ void tearDown(void){
 *          
 *     Notice : Un "X" to see the print input and output structure
 */  
+
+
 
 void test_mutateSessionList_given_s1_at_head_should_mutate(void){
   LinkedList *list = linkListNew(&s4);

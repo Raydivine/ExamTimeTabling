@@ -3,12 +3,6 @@
 #include "CalFitnessScore.h"
 #include <stdio.h>
 
-void setVenue(Venue *target, char *name, int venueCode, int seatNum){
-  target->blockName = name;
-  target->code = venueCode;
-  target->seats = seatNum;
-}
-
 void setProgramme(Programme *target ,char *programmeName, int numStudent){
   target->name = programmeName;
   target->studentNum = numStudent;
@@ -23,6 +17,15 @@ void setPaper(Paper *target ,char *paperCode){
 void addProgrammeToPaper(Paper *target, Programme *programme){
   addDataToHead(&(target->programmes), programme);
   target->takersNum = target->takersNum + programme->studentNum;
+}
+
+Session createSession(){
+  Session session;
+  
+  session.conflict = 0;
+  session.population = 0;
+  session.papers = NULL;
+  return session;
 }
 
 void addPaperToSession(Session *target, Paper *paper){
@@ -55,18 +58,17 @@ void addSessionToTable(Table *target, Session *session){
 
 
 
+void setVenue(Venue *target, char *name, int venueCode, int seatNum){
+  target->blockName = name;
+  target->code = venueCode;
+  target->seats = seatNum;
+}
+
 
 
 // The below functions are redundant , created as tools for testing purpose
 
-Session createSession(){
-  Session session;
-  
-  session.conflict = 0;
-  session.population = 0;
-  session.papers = NULL;
-  return session;
-}
+
 
 
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
