@@ -1,5 +1,6 @@
 #include "SetElements.h"
 #include "ExamStruct.h"
+#include "CalFitnessScore.h"
 #include <stdio.h>
 
 void setVenue(Venue *target, char *name, int venueCode, int seatNum){
@@ -24,12 +25,11 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
   target->takersNum = target->takersNum + programme->studentNum;
 }
 
-Session createSession(){
+Session buildSession(LinkedList **pList){
   Session session;
-  
-  session.conflict = 0;
-  session.population = 0;
-  session.papers = NULL;
+  session.papers = *pList;
+  session.conflict = calConflict(*pList);
+
   return session;
 }
 
@@ -66,6 +66,17 @@ void addSessionToTable(Table *target, Session *session){
 
 
 // The below functions are redundant , created as tools for testing purpose
+
+Session createSession(){
+  Session session;
+  
+  session.conflict = 0;
+  session.population = 0;
+  session.papers = NULL;
+  return session;
+}
+
+
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
   target->code = paperCode;
   target->takersNum = num;

@@ -3,7 +3,6 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
-
 void calFitnessScore(Table *table){
   
 }
@@ -17,7 +16,6 @@ int calConflict(LinkedList *paperList){
     conflict = conflict + calConflictFromPaperToPaparList(p, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
     paperList = paperList->next;
   }
-  
   return conflict;
 }
 
