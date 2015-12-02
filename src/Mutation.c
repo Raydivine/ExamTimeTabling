@@ -19,13 +19,13 @@ void mutateTable(Table *table){
 
 
 void mutateSessionList(LinkedList **sessionList){
-  LinkedList *sList = *sessionList, *list = sList->next;
-  Session *head = (Session*)sList->data, *tail;
+  LinkedList *headList = *sessionList, *tailList = headList->next;
+  Session *head = (Session*)headList->data, *tail;
   
-  while(list!= NULL){
-    tail = (Session*)list->data;
+  while(tailList!= NULL){
+    tail = (Session*)tailList->data;
     mutateTwoSession( head, tail);
-    list = list->next;
+    tailList = tailList->next;
   }
 }
 

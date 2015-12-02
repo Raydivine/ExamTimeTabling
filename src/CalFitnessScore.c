@@ -8,18 +8,17 @@ void calFitnessScore(Table *table){
   
 }
 
-void calConflictInSession(Session *session){
-  int score =0;
+int calConflict(LinkedList *paperList){
+  int conflict =0;
   Paper *p;
-  LinkedList *list = session->papers;
-  
-  while( list !=NULL) {
-    p = (Paper*)list->data;                                         //1. TypeClass the paperList->data to p
-    score = score + calConflictFromPaperToPaparList(p, list->next); //2. calculate conflict between paperX and the paperList->next,continue add 
-    list = list->next;
+ 
+  while( paperList !=NULL) {
+    p = (Paper*)paperList->data;                                               //1. TypeClass the paperList->data to p
+    conflict = conflict + calConflictFromPaperToPaparList(p, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
+    paperList = paperList->next;
   }
   
-  session->conflict = score;
+  return conflict;
 }
 
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList){

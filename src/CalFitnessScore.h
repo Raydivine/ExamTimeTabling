@@ -4,7 +4,7 @@
 #include "LinkedList.h"
 
 void calFitnessScore(Table *table);
-void calConflictInSession(Session *session);
+int calConflict(LinkedList *paperList);
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList);
 
 

@@ -58,7 +58,7 @@ void tearDown(void){
   clearLinkList(&(p7.programmes)); 
 }
 
-/** void calConflictInSession(Session *session)
+/** void calConflict(Session *session)
 *
 *   This function will calculate the conflict number in a session,
 *   the round to calculate , is euqal ( number papers - 1 )
@@ -82,17 +82,16 @@ void tearDown(void){
  * Papers                  :   p1              p3            p5 
  * programmes taking       : c1,c2            c3,c4         c7      
 */
-void test_calConflictInSession_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p3);
-  addPaperToSession(&ses, &p5);
+void test_calConflict_given_session_has_papers_p1_p3_p5_which_does_not_cause_conflict_in_programmes_should_get_0(void){
+	LinkedList *plist =  linkListNew(&p5);
+  addDataToHead(&plist, &p3);
+  addDataToHead(&plist, &p1);
+
   
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(0,ses.conflict);
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(0,ans);
   
-  clearLinkList(&(ses.papers)); 
+  clearLinkList(&plist); 
 }
 
 /**
@@ -102,17 +101,16 @@ void test_calConflictInSession_given_session_has_papers_p1_p3_p5_which_does_not_
  *                           round 1           -
  *                            ( 1 conflict, p1 conflict with p2)
 */
-void test_calConflictInSession_given_session_has_papers_p1_p2_p5_which_cause_1conflict_in_programmes_should_get_1(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p5);
+void test_calConflict_given_session_has_papers_p1_p2_p5_which_cause_1conflict_in_programmes_should_get_1(void){
+	LinkedList *plist =  linkListNew(&p5);
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p1);
+
   
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(1,ses.conflict);
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(1,ans);
   
-  clearLinkList(&(ses.papers)); 
+  clearLinkList(&plist); 
 }
 
 /**
@@ -123,17 +121,16 @@ void test_calConflictInSession_given_session_has_papers_p1_p2_p5_which_cause_1co
  *   p2 conflict with 1 paper                            round 2        -
  *                                                    ( 1+1 = 2 )
 */
-void test_calConflictInSession_given_session_has_papers_p1_p2_p3_which_cause_2conflict_in_programmes_should_get_2(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p3);
+void test_calConflict_given_session_has_papers_p1_p2_p3_which_cause_2conflict_in_programmes_should_get_2(void){
+	LinkedList *plist =  linkListNew(&p3);
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p1);
+
   
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(2,ses.conflict);
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(2,ans);
   
-  clearLinkList(&(ses.papers)); 
+  clearLinkList(&plist); 
 }
 
 /**
@@ -145,18 +142,17 @@ void test_calConflictInSession_given_session_has_papers_p1_p2_p3_which_cause_2co
  *   p3 conflict with 1 paper                                            round 3        -                   
  *                                                ( 1+1+1 = 3 )
 */
-void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_which_cause_3conflict_in_programmes_should_get_3(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p3);
-  addPaperToSession(&ses, &p4);
+void test_calConflict_given_session_has_papers_p1_p2_p3_p4_which_cause_3conflict_in_programmes_should_get_3(void){
+	LinkedList *plist =  linkListNew(&p4);
+  addDataToHead(&plist, &p3);
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p1);
+
   
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(3,ses.conflict);
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(3,ans);
   
-  clearLinkList(&(ses.papers)); 
+  clearLinkList(&plist); 
 }
 
 /**
@@ -169,19 +165,18 @@ void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_which_cause_
  *   p4 conflict with 1 paper                                                round 4             -                    
  *                            ( 2+2+2+1 = 7 )
 */
-void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p3);
-  addPaperToSession(&ses, &p4);
-  addPaperToSession(&ses, &p6);
+void test_calConflict_given_session_has_papers_p1_p2_p3_p4_p6_which_cause_7conflict_in_programmes_should_get_7(void){
+	LinkedList *plist =  linkListNew(&p6);
+  addDataToHead(&plist, &p4);
+  addDataToHead(&plist, &p3);
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p1);
 
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(7,ses.conflict);
   
-  clearLinkList(&(ses.papers)); 
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(7,ans);
+  
+  clearLinkList(&plist); 
 }
 
 /**
@@ -196,36 +191,34 @@ void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_p6_which_cau
 *
 *        (3+2+3+2+1+1 = 12 )
 */   
-void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_p6_p7_which_cause_12conflict_in_programmes_should_get_12(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p1);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p3);
-  addPaperToSession(&ses, &p4);
-  addPaperToSession(&ses, &p5);
-  addPaperToSession(&ses, &p6);
-  addPaperToSession(&ses, &p7);
+void test_calConflict_given_session_has_papers_p1_p2_p3_p4_p6_p5_p7_which_cause_12conflict_in_programmes_should_get_12(void){
+	LinkedList *plist =  linkListNew(&p7);
+  addDataToHead(&plist, &p6);
+  addDataToHead(&plist, &p5);
+  addDataToHead(&plist, &p4);
+  addDataToHead(&plist, &p3);
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p1);
 
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(12,ses.conflict);
   
-  clearLinkList(&(ses.papers)); 
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(12,ans);
+  
+  clearLinkList(&plist); 
 }
 
-void test_calConflictInSession_given_session_has_papers_p1_p2_p3_p4_p6_p7_even_the_order_is_reverse_also_should_get_12(void)
-{
-	Session ses = createSession();
-  addPaperToSession(&ses, &p7);
-  addPaperToSession(&ses, &p6);
-  addPaperToSession(&ses, &p5);
-  addPaperToSession(&ses, &p4);
-  addPaperToSession(&ses, &p3);
-  addPaperToSession(&ses, &p2);
-  addPaperToSession(&ses, &p1);    // reversed order
+void test_calConflict_given_session_has_papers_p7_p6_p5_p4_p3_p2_p1_even_the_order_is_reverse_also_should_get_12(void){
+	LinkedList *plist =  linkListNew(&p1);   // reversed order
+  addDataToHead(&plist, &p2);
+  addDataToHead(&plist, &p3);
+  addDataToHead(&plist, &p4);
+  addDataToHead(&plist, &p5);
+  addDataToHead(&plist, &p6);
+  addDataToHead(&plist, &p7);
 
-  calConflictInSession(&ses);
-  TEST_ASSERT_EQUAL(12,ses.conflict);
   
-  clearLinkList(&(ses.papers)); 
+  int ans = calConflict(plist);
+  TEST_ASSERT_EQUAL(12,ans);
+  
+  clearLinkList(&plist); 
 }
