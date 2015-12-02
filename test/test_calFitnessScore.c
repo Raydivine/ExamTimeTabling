@@ -177,7 +177,7 @@ void test_calFitnessScore_given_4_conflict_should_get_4(void){
 
 /** 
   *       s1             s2           s3          s4
-  *     p1,p2,p3,p4  p1,p2,p3,p4   p1,p2,p3,p4   p1,p2,p3,p4  
+  *     p1,p2,p3,p4  p1,p2,p3,p4   p1,p2,p3,p4   p1,p2,p3,p4     //  for saving time and test code , the test struture using same resouces, but it wont cause error
   *     c1,c1,c2,c2  c1,c1,c2,c2   c1,c1,c2,c2   c1,c1,c2,c2
   *
   *       2              2              2           2
@@ -211,7 +211,6 @@ void test_calFitnessScore_given_8_conflict_should_get_8(void){
   addPaperToSession(&s4, &p2);
   addPaperToSession(&s4, &p1);
   
-  
   LinkedList *list = linkListNew(&s4);
   addDataToHead(&list, &s3);
   addDataToHead(&list, &s2);
@@ -222,9 +221,6 @@ void test_calFitnessScore_given_8_conflict_should_get_8(void){
   
   clearLinkList(&list); 
 }
-
-
-
 
 /** 
   *       s1        s2         s3          s4
@@ -242,7 +238,6 @@ void test_calFitnessScore_given_12_conflict_should_get_12(void){
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p2, &c1);
   addProgrammeToPaper(&p3, &c1);
-
 
   addPaperToSession(&s1, &p3);
   addPaperToSession(&s1, &p2);
@@ -268,4 +263,5 @@ void test_calFitnessScore_given_12_conflict_should_get_12(void){
   
   clearLinkList(&list); 
 }
+
 

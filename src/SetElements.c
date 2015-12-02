@@ -53,17 +53,7 @@ Table createTable(){
 
 void addSessionToTable(Table *target, Session *session){
   addDataToHead(&(target->sessions), session);
-  target->fitnessScore = target->fitnessScore + session->conflict;
 }
-
-void tableUpdate(Table *table){
-  
-}
-
-
-
-
-
 
 void setVenue(Venue *target, char *name, int venueCode, int seatNum){
   target->blockName = name;
@@ -72,10 +62,7 @@ void setVenue(Venue *target, char *name, int venueCode, int seatNum){
 }
 
 
-
 // The below functions are redundant , created for tester as tools for testing purpose
-
-
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
   target->code = paperCode;
   target->takersNum = num;
