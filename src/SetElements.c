@@ -66,9 +66,7 @@ void setVenue(Venue *target, char *name, int venueCode, int seatNum){
 
 
 
-// The below functions are redundant , created as tools for testing purpose
-
-
+// The below functions are redundant , created for tester as tools for testing purpose
 
 
 void setPaperWithPopulation(Paper *target ,char *paperCode, int num){

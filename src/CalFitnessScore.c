@@ -3,18 +3,26 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
-int calFitnessScore(LinkedList *sessions){
+int calFitnessScore(LinkedList *sList){
+  int fitnessScore = 0;
+  Session *s;
   
+  while(sList != NULL){
+    s = (Session*)sList->data;                                              
+    fitnessScore = fitnessScore + s->conflict;
+    sList = sList->next;
+  }
+  return fitnessScore;
 }
 
-int calConflict(LinkedList *paperList){
+int calConflict(LinkedList *pList){
   int conflict =0;
   Paper *p;
  
-  while( paperList !=NULL) {
-    p = (Paper*)paperList->data;                                               //1. TypeClass the paperList->data to p
-    conflict = conflict + calConflictFromPaperToPaparList(p, paperList->next); //2. calculate conflict between paperX and the paperList->next,continue add 
-    paperList = paperList->next;
+  while( pList !=NULL) {
+    p = (Paper*)pList->data;                                               //1. TypeClass the pList->data to p
+    conflict = conflict + calConflictFromPaperToPaparList(p, pList->next); //2. calculate conflict between paperX and the pList->next,continue add 
+    pList = pList->next;
   }
   return conflict;
 }
