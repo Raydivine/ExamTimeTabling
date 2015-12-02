@@ -1,5 +1,8 @@
 #include "Crossover.h"
+#include "ExamStruct.h"
 #include "LinkedList.h"
+#include "LinkedListRemove.h"
+#include "SetElements.h"
 #include "printfStructs.h"
 #include <stdio.h>
 
@@ -7,8 +10,29 @@ Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int pop
   
 }
 
-Table buildChildTable(Table tableA, Table tableB, LinkedList *parrent){
+Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parrent){
+  Table child = createTable();
+  Session *current = (Session*)sListA->data;
   
+  
+  while( isElementsNotInChild( child.sessions, current->papers) ){
+    addToChildRemoveInList(current, &child, parrent);
+    sListA = sListA->next;
+    current = (Session*)sListB->data;
+       
+    if( isElementsNotInChild( child.sessions, current->papers) ){
+      addSessionToTable(&child, current);
+      sListB = sListB->next;
+      current = (Session*)sListA->data;
+    } else break;
+  }
+  
+  return child;
+}
+
+void addToChildRemoveInList(Session *s, Table *child, LinkedList **parrent){
+  addSessionToTable(child, s);
+  removeDatasFromList(parrent, s->papers);
 }
 
 int isElementsNotInChild(LinkedList *sList, LinkedList *pList){

@@ -69,7 +69,7 @@ void tearDown(void){
  *   plist's element not in slist  , return 1
 */
 
-void test_isElementsInChild_plist_has_p9_which_not_in_slist_should_return1(void){
+void test_isElementsNotInChild_plist_has_p9_which_not_in_slist_should_return1(void){
   plist = linkListNew(&p9);
   
   int ans =  isElementsNotInChild(slist, plist);
@@ -86,7 +86,7 @@ void test_isElementsInChild_plist_has_p9_which_not_in_slist_should_return1(void)
  *   plist's element not in slist  , return 1
 */
 
-void test_isElementsInChild_plist_has_p9_p10_which_not_in_slist_should_return1(void){
+void test_isElementsNotInChild_plist_has_p9_p10_which_not_in_slist_should_return1(void){
   plist = linkListNew(&p9);
   addDataToHead(&plist, &p10);
   
@@ -104,12 +104,31 @@ void test_isElementsInChild_plist_has_p9_p10_which_not_in_slist_should_return1(v
  *   plist's element not in slist  , return 1
 */
 
-void test_isElementsInChild_plist_NULL_which_not_in_slist_should_return1(void){
+void test_isElementsNotInChild_plist_NULL_which_not_in_slist_should_return1(void){
   plist = NULL;
   
   int ans =  isElementsNotInChild(slist, plist);
   TEST_ASSERT_EQUAL(1, ans);
 }
+
+/** 
+ *    slist                                                    
+ *     NULL       
+ *     
+ * 
+ *   pList = p1
+ * 
+ *   plist's element  in slist , return 0
+*/
+
+void test_isElementsNotInChild_slist_NULL_which_in_slist_should_return1(void){
+  plist = linkListNew(&p1);
+  slist = NULL;
+
+  int ans =  isElementsNotInChild(slist, plist);
+  TEST_ASSERT_EQUAL(1, ans);
+}
+
 
 /** 
  *    slist                                                    
@@ -121,7 +140,7 @@ void test_isElementsInChild_plist_NULL_which_not_in_slist_should_return1(void){
  *   plist's element  in slist , return 0
 */
 
-void test_isElementsInChild_plist_has_p1_which_in_slist_should_return0(void){
+void test_isElementsNotInChild_plist_has_p1_which_in_slist_should_return0(void){
   plist = linkListNew(&p1);
 
   int ans =  isElementsNotInChild(slist, plist);
@@ -138,7 +157,7 @@ void test_isElementsInChild_plist_has_p1_which_in_slist_should_return0(void){
  *   plist's element  in slist , return 0
 */
 
-void test_isElementsInChild_plist_has_p8_which_in_slist_should_return0(void){
+void test_isElementsNotInChild_plist_has_p8_which_in_slist_should_return0(void){
   plist = linkListNew(&p8);
 
   int ans =  isElementsNotInChild(slist, plist);
@@ -155,7 +174,7 @@ void test_isElementsInChild_plist_has_p8_which_in_slist_should_return0(void){
  *   plist's element not in slist  , return 0
 */
 
-void test_isElementsInChild_plist_has_p4_p7_which_in_slist_should_return0(void){
+void test_isElementsNotInChild_plist_has_p4_p7_which_in_slist_should_return0(void){
   plist = linkListNew(&p4);
   addDataToHead(&plist, &p7);
   
