@@ -7,9 +7,6 @@ void setVenue(Venue *target, char *name, int venueCode, int seatNum);
 void setProgramme(Programme *target ,char *programmeName, int numStudent);
 void addProgrammeToPaper(Paper *target, Programme *programme);
 
-Session buildSession(LinkedList **pList);
-
-
 Table createTable();
 void addSessionToTable(Table *target, Session *session);
 

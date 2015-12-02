@@ -25,14 +25,6 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
   target->takersNum = target->takersNum + programme->studentNum;
 }
 
-Session buildSession(LinkedList **pList){
-  Session session;
-  session.papers = *pList;
-  session.conflict = calConflict(*pList);
-
-  return session;
-}
-
 void addPaperToSession(Session *target, Paper *paper){
   addDataToHead(&(target->papers), paper);
   target->population = target->population + paper->takersNum;
