@@ -28,7 +28,6 @@ int isDataInList(LinkedList *list, void *data){
       return 1;
     else  list = list->next;  
   }
-  
   return 0;
 }
 
@@ -39,6 +38,15 @@ int isListsHaveSameElement(LinkedList *list1, LinkedList *list2){
       return 1;
     else  list1 = list1->next;  
   }
-  
   return 0;
+}
+
+int getLengthOfList(LinkedList *list){
+  int i = 0;
+  
+  while(list != NULL){
+    i++;
+    list = list->next;
+  }
+  return i;
 }

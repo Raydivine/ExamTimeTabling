@@ -41,7 +41,6 @@ void setUp(void){
   setPaperTakersNum(&p9, "p9", 50);
   setPaperTakersNum(&p10, "p10", 50);
   
-  
   child = createTable();
 }
 
@@ -85,7 +84,6 @@ void test_addRemainToChild_should_build_child_with_4_session(void){
    //-------------------------------------------------------------------------------------------
    
   addRemainToChild(&child, remains, 50);
- // TEST_ASSERT_NOT_NULL(HEAD);
- // printfTable( child);
- 
+  TEST_ASSERT_NOT_NULL(HEAD);
+  printfTable( child);
 }

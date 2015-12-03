@@ -1,5 +1,5 @@
-#include "Crossover.h"
 #include "ExamStruct.h"
+#include "Crossover.h"
 #include "LinkedList.h"
 #include "LinkedListRemove.h"
 #include "SetElements.h"
@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <stdio.h>
 
+#define MAX_SESSIONS 100
 
 Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int population){
   
@@ -49,7 +50,8 @@ int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
 }
 
 void addRemainToChild(Table *child, LinkedList *remain, int population){
-   Session s[MAX_SESSIONS];
+   int arrSize = getLengthOfList(remain);
+   Session s[population];
    int i = 0;
 
    while( remain !=NULL){
