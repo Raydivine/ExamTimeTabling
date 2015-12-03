@@ -101,14 +101,14 @@ void test_mutateSessionList_given_s1_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   
   printf("--------------testing muteSessionList()----------------\n\n ");
-  printf(" mutateSesionList test1\n");
+  printf("mutateSesionList test1\n");
   
-  printf("  input :   ");
+  printf("input :");
   printfSessionList(list);
   
   mutateSessionList(&list);
   
-  printf("  output:   ");
+  printf("output:");
   printfSessionList(list);
   printf("\n");
   
@@ -121,13 +121,13 @@ void test_mutateSessionList_given_s2_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s2);
   
-  printf("  mutateSesionList test2\n");
-  printf("  input :   ");
+  printf("mutateSesionList test2\n");
+  printf("input :");
   printfSessionList(list);
   
   mutateSessionList(&list);
   
-  printf("  output:   ");
+  printf("output:");
   printfSessionList(list);
   printf("\n");
 
@@ -140,13 +140,13 @@ void test_mutateSessionList_given_s3_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s3);
   
-  printf("  mutateSesionList test3\n");
-  printf("  input :   ");
+  printf("mutateSesionList test3\n");
+  printf("input :");
   printfSessionList(list);
   
   mutateSessionList(&list);
   
-  printf("  output:   ");
+  printf("output:");
   printfSessionList(list);
   printf("\n");
   
@@ -160,13 +160,13 @@ void test_mutateSessionList_given_s4_at_head_should_mutate(void){
   addDataToHead(&list, &s1);
   addDataToHead(&list, &s4);
   
-  printf("  mutateSesionList test4\n");
-  printf("  input :   ");
+  printf("mutateSesionList test4\n");
+  printf("input :");
   printfSessionList(list);
   
   mutateSessionList(&list);
   
-  printf("  output:   ");
+  printf("output:");
   printfSessionList(list);
   printf("\n");
   

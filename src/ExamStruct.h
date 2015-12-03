@@ -3,7 +3,11 @@
 #include "LinkedList.h"
 #include "Node.h"
 
-#define MAX 100
+#define MAX_SESSIONS 100
+
+
+
+//extern maxSessions;
 
 typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;

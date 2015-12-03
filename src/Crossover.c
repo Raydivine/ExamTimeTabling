@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <stdio.h>
 
+
 Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int population){
   
 }
@@ -48,11 +49,13 @@ int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
 }
 
 void addRemainToChild(Table *child, LinkedList *remain, int population){
-  
+   Session s[MAX_SESSIONS];
+   int i = 0;
+
    while( remain !=NULL){
-     Session s = useRemainBuildSession(&remain , population );
-     addSessionToTable( child, &s);
-     printfTable( *child);
+     s[i] = useRemainBuildSession(&remain , population ); // 1. using array to store the coming element, to prevent overWrite
+     addSessionToTable( child, &s[i]);                    // 2. add the session to child, which stored in array
+     i++;                                                  
   }
 }
 
