@@ -84,8 +84,8 @@ void test_addRemainToChild_should_build_child_with_4_session(void){
   addDataToHead(&remains, &p1);
    //-------------------------------------------------------------------------------------------
    
-  // addRemainToChild(&child, remains, 50);
-  // TEST_ASSERT_NOT_NULL(HEAD);
-  // printfTable( child);
+  addRemainToChild(&child, remains, 50);
+  TEST_ASSERT_NOT_NULL(HEAD);
+ // printfTable( child);
  
 }

@@ -284,7 +284,8 @@ void test_useRemainBuildSession_given_remains_NULL_should_return_Session_with_no
 }
 
 //Notice : This test will cause error, because the number is 10, which small than
-//         papers.takersNum (50), the assertion() is used in its program
+//         papers.takersNum (50), the assertion() is used in its function
+//         If not using assertion , the error wont occur and the function will not thing
 void xtest_useRemainBuildSession_given_num_is_10_which_less_than_papers_takerNum(void){
   
   Session s = useRemainBuildSession(&remains, 10);

@@ -48,11 +48,12 @@ int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
 }
 
 void addRemainToChild(Table *child, LinkedList *remain, int population){
-  Paper *p;
   
-  
-
-  
+   while( remain !=NULL){
+     Session s = useRemainBuildSession(&remain , population );
+     addSessionToTable( child, &s);
+     printfTable( *child);
+  }
 }
 
 Session useRemainBuildSession(LinkedList **remain, int num){
@@ -70,5 +71,6 @@ Session useRemainBuildSession(LinkedList **remain, int num){
     pList = pList->next;
   }
   *remain = pList;
+  
   return s;
 }
