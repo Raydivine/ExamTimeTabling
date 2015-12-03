@@ -147,8 +147,8 @@ void test_getTruePapersFromListB_given_ListB_1_element_not_conflict_with_listA_b
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
   
-  // setPaperWithPopulation(Paper *target ,char *paperCode, int num) , tool function
-  setPaperWithPopulation(&p3 ,"p3", 140);
+  // setPaperTakersNum(Paper *target ,char *paperCode, int num) , tool function
+  setPaperTakersNum(&p3 ,"p3", 140);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
@@ -198,7 +198,7 @@ void test_getTruePapersFromListB_given_p3_not_conflict_with_listA_and__meet_targ
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
 
-  setPaperWithPopulation(&p3 ,"p3", 40);
+  setPaperTakersNum(&p3 ,"p3", 40);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
@@ -250,11 +250,11 @@ void test_getTruePapersFromListB_given_p3_p4_not_conflict_with_listA_and_meet_ta
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
 
-  setPaperWithPopulation(&p3 ,"p3", 20);
+  setPaperTakersNum(&p3 ,"p3", 20);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
-  setPaperWithPopulation(&p4 ,"p4", 20);
+  setPaperTakersNum(&p4 ,"p4", 20);
   addProgrammeToPaper(&p4, &c3);  
   addProgrammeToPaper(&p4, &c2);  
   
@@ -300,11 +300,11 @@ void test_getTruePapersFromListB_given_p3_p4_single_or_together_cant_meet_target
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
 
-  setPaperWithPopulation(&p3 ,"p3", 40);
+  setPaperTakersNum(&p3 ,"p3", 40);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
-  setPaperWithPopulation(&p4 ,"p4", 150);
+  setPaperTakersNum(&p4 ,"p4", 150);
   addProgrammeToPaper(&p4, &c3);  
   addProgrammeToPaper(&p4, &c2);  
   

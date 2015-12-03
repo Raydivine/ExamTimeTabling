@@ -45,3 +45,30 @@ int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
   }
   return 1;
 }
+
+void addRemainToChild(Table *child, LinkedList *remain, int population){
+  Paper *p;
+  
+  
+
+  
+}
+
+Session useRemainBuildSession(LinkedList **remain, int num){
+   Session s = createSession();
+   LinkedList *pList = *remain;
+   Paper *p;
+   
+   while( s.population < num ){
+    p = (Paper*)pList->data;
+    
+    if( (s.population + p->takersNum) <= num)
+      addPaperToSession(&s, p);
+    else 
+      break;
+    
+    pList = pList->next;
+   }
+   
+   return s;
+}

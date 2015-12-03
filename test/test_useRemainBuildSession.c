@@ -27,7 +27,6 @@
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 LinkedList *remains, *sList;
-Table child;
 
 void setUp(void){
   setPaperTakersNum(&p1, "p1", 50);
@@ -40,52 +39,42 @@ void setUp(void){
   setPaperTakersNum(&p8, "p8", 50);
   setPaperTakersNum(&p9, "p9", 50);
   setPaperTakersNum(&p10, "p10", 50);
-  
-  
-  child = createTable();
 }
 
 void tearDown(void){
   clearLinkList(&remains);
-  clearLinkList(&(child.sessions));
 }
 
-/**  addRemainToChild(Table *child, LinkedList *remains, int population)
+/**  s = Session useRemainBuildSession(LinkedList **remain, int num)
 *
-*    This function add remains(paperList) to child,
-*    First, it build the Session by using element in paperList (while Session's totalStudent must <= population)
-*    , then add the session to table, this process continuously until all the remains are added to child.
-*    
-*    Input Condition
-*    1. remains must not has repeated element in child ( this feature is handle by previous function, buildChildTable() )
-*    2. population must larger then unit paper's studentNum
+*    use remain's element to build session ( which remain is paperList),
+*    the session's population must <= num,
+*    while building session , remain elements are reducing
+*    finally, return the session to s
 */ 
 
-/**  parrent = p1,p2,p3,p4
-  *
-  *  child =  NULL
+/**  remains = p1,p2,p3,p4
   *
   *  population = 50 
   *
-  *  Because each paper has 50 person, so should build 4 session 
+  *  Because each paper has 50 person, so should build 1 session 
   *
   *----------------output-------------------
   *
-  *     child =   s1  s2  s3  s4
-  *               p1  p2  p3  p4
+  * remains = p2,p3,p4
+  *
+  *    s 
+  *   p1             
   * 
 */
-void test_addRemainToChild_should_build_child_with_4_session(void){
+void test_useRemainBuildSession_should_build_session_with_p1(void){
   
    
   remains = linkListNew(&p4);
   addDataToHead(&remains, &p3);
   addDataToHead(&remains, &p2);
   addDataToHead(&remains, &p1);
-   //-------------------------------------------------------------------------------------------
-   
-  // addRemainToChild(&child, remains, 50);
-  // TEST_ASSERT_NOT_NULL(HEAD);
-  // printfTable( child);
+  
+  Session s = useRemainBuildSession(&remains, 50);
  
 }

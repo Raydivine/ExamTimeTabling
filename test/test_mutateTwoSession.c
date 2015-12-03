@@ -75,19 +75,19 @@ void tearDown(void){}
  *             
 */
 void test_mutateTwoSession_given_p3_p2_no_conflict_should_exchange(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2 ,"p2", 50);
+  setPaperTakersNum(&p2 ,"p2", 50);
   addProgrammeToPaper(&p2, &c2);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c4);
   addProgrammeToPaper(&p3, &c5);
   
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c5);  
   addProgrammeToPaper(&p4, &c1);  
   
@@ -130,23 +130,23 @@ void test_mutateTwoSession_given_p3_p2_no_conflict_should_exchange(void){
  *             
 */
 void test_mutateTwoSession_given_p2_and_p3_p4_no_conflict_should_exchange(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2 ,"p2", 50);
+  setPaperTakersNum(&p2 ,"p2", 50);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 25);
+  setPaperTakersNum(&p3 ,"p3", 25);
   addProgrammeToPaper(&p3, &c4);
   addProgrammeToPaper(&p3, &c5);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c6);  
   addProgrammeToPaper(&p4, &c7);  
   
-  setPaperWithPopulation(&p5 ,"p5", 50);
+  setPaperTakersNum(&p5 ,"p5", 50);
   addProgrammeToPaper(&p5, &c1);  
   addProgrammeToPaper(&p5, &c2);
  
@@ -191,27 +191,27 @@ void test_mutateTwoSession_given_p2_and_p3_p4_no_conflict_should_exchange(void){
  *             
 */
 void test_mutateTwoSession_given_p1_p2_no_conflict_s2_but_p1_has_100_stundet_which_s2_cant_return_possible_combo_therefore_should_use_p2(void){
-  setPaperWithPopulation(&p1, "p1", 100);
+  setPaperTakersNum(&p1, "p1", 100);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 50);
+  setPaperTakersNum(&p2 ,"p2", 50);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c1);
   addProgrammeToPaper(&p3, &c9);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 25);
+  setPaperTakersNum(&p5 ,"p5", 25);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 50);
+  setPaperTakersNum(&p6 ,"p6", 50);
   addProgrammeToPaper(&p6, &c1);  
   addProgrammeToPaper(&p6, &c9);
  
@@ -259,27 +259,27 @@ void test_mutateTwoSession_given_p1_p2_no_conflict_s2_but_p1_has_100_stundet_whi
  *             
 */
 void test_mutateTwoSession_given_p1_p2_no_conflict_s2_and_s2_can_return_possible_combo_close_to_p1_studentNum_therefore_should_use_p1(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 50);
+  setPaperTakersNum(&p2 ,"p2", 50);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c1);
   addProgrammeToPaper(&p3, &c9);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 25);
+  setPaperTakersNum(&p5 ,"p5", 25);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 50);
+  setPaperTakersNum(&p6 ,"p6", 50);
   addProgrammeToPaper(&p6, &c1);  
   addProgrammeToPaper(&p6, &c9);
  
@@ -326,27 +326,27 @@ void test_mutateTwoSession_given_p1_p2_no_conflict_s2_and_s2_can_return_possible
  *             
 */
 void test_mutateTwoSession_given_p1_p2_p3_but_s2_only_can_return_papers_combo_for_p3_therefore_exchange_with_p3(void){
-  setPaperWithPopulation(&p1, "p1", 100);
+  setPaperTakersNum(&p1, "p1", 100);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 100);
+  setPaperTakersNum(&p2 ,"p2", 100);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c8);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 25);
+  setPaperTakersNum(&p5 ,"p5", 25);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 5);
+  setPaperTakersNum(&p6 ,"p6", 5);
   addProgrammeToPaper(&p6, &c1);  
   addProgrammeToPaper(&p6, &c9);
  
@@ -393,27 +393,27 @@ void test_mutateTwoSession_given_p1_p2_p3_but_s2_only_can_return_papers_combo_fo
  *             
 */
 void test_mutateTwoSession_given_p4_p5_p6_equal_60_which_more_than_20percent_of_p3_therefore_only_change_with_p4_p5(void){
-  setPaperWithPopulation(&p1, "p1", 100);
+  setPaperTakersNum(&p1, "p1", 100);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 100);
+  setPaperTakersNum(&p2 ,"p2", 100);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c8);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 25);
+  setPaperTakersNum(&p5 ,"p5", 25);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 10);
+  setPaperTakersNum(&p6 ,"p6", 10);
   addProgrammeToPaper(&p6, &c1);  
   addProgrammeToPaper(&p6, &c9);
  
@@ -461,27 +461,27 @@ void test_mutateTwoSession_given_p4_p5_p6_equal_60_which_more_than_20percent_of_
  *             
 */
 void test_mutateTwoSession_given_p4_p5_p6_equal_45_which_close_to_50_therefore_all_also_exchange(void){
-  setPaperWithPopulation(&p1, "p1", 100);
+  setPaperTakersNum(&p1, "p1", 100);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 100);
+  setPaperTakersNum(&p2 ,"p2", 100);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c8);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4 ,"p4", 15);
+  setPaperTakersNum(&p4 ,"p4", 15);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 15);
+  setPaperTakersNum(&p5 ,"p5", 15);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 15);
+  setPaperTakersNum(&p6 ,"p6", 15);
   addProgrammeToPaper(&p6, &c1);  
   addProgrammeToPaper(&p6, &c9);
  
@@ -528,27 +528,27 @@ void test_mutateTwoSession_given_p4_p5_p6_equal_45_which_close_to_50_therefore_a
  *             
 */
 void test_mutateTwoSession_given_p6_conflict_with_p4_p5_so_only_exchanged_with_p4_p5_no_p6(void){
-  setPaperWithPopulation(&p1, "p1", 100);
+  setPaperTakersNum(&p1, "p1", 100);
   addProgrammeToPaper(&p1, &c8);
   addProgrammeToPaper(&p1, &c3);
   
-  setPaperWithPopulation(&p2 ,"p2", 100);
+  setPaperTakersNum(&p2 ,"p2", 100);
   addProgrammeToPaper(&p2, &c8);  
   addProgrammeToPaper(&p2, &c3);  
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c8);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4 ,"p4", 25);
+  setPaperTakersNum(&p4 ,"p4", 25);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c5);  
   
-  setPaperWithPopulation(&p5 ,"p5", 25);
+  setPaperTakersNum(&p5 ,"p5", 25);
   addProgrammeToPaper(&p5, &c6);  
   addProgrammeToPaper(&p5, &c7);
   
-  setPaperWithPopulation(&p6 ,"p6", 5);
+  setPaperTakersNum(&p6 ,"p6", 5);
   addProgrammeToPaper(&p6, &c7);  
   addProgrammeToPaper(&p6, &c9);
  

@@ -69,19 +69,19 @@ void tearDown(void){}
  *   so no matter how exchange will just only cause confict, therefore should not do mutation
 */
 void test_mutateTwoSession_given_the_2session_all_element_conflict_with_other_should_not_do_Mutation(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2, "p2", 50);
+  setPaperTakersNum(&p2, "p2", 50);
   addProgrammeToPaper(&p2, &c3);
   addProgrammeToPaper(&p2, &c4);
   
-  setPaperWithPopulation(&p3, "p3", 50);
+  setPaperTakersNum(&p3, "p3", 50);
   addProgrammeToPaper(&p3, &c2);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4, "p4", 50);
+  setPaperTakersNum(&p4, "p4", 50);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c1);  
   
@@ -117,19 +117,19 @@ void test_mutateTwoSession_given_the_2session_all_element_conflict_with_other_sh
  *   p2 is no confict to session2, but session2 all elements confict to session1, so do nothing
 */
 void test_mutateTwoSession_given_the_session2_all_elements_conflict_to_session1_should_do_nothing(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2, "p2", 50);
+  setPaperTakersNum(&p2, "p2", 50);
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
   
-  setPaperWithPopulation(&p3, "p3", 50);
+  setPaperTakersNum(&p3, "p3", 50);
   addProgrammeToPaper(&p3, &c2);
   addProgrammeToPaper(&p3, &c3);
   
-  setPaperWithPopulation(&p4, "p4", 50);
+  setPaperTakersNum(&p4, "p4", 50);
   addProgrammeToPaper(&p4, &c4);  
   addProgrammeToPaper(&p4, &c1);  
   
@@ -163,19 +163,19 @@ void test_mutateTwoSession_given_the_session2_all_elements_conflict_to_session1_
  *   p2 is no confict to session2, but session2 can not return a papers combo having close number to p2, so do nothing
 */
 void test_mutateTwoSession_given_the_session2_cannot_return_papers_combo_having_close_number_to_p2_should_do_nothing(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2, "p2", 100);
+  setPaperTakersNum(&p2, "p2", 100);
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
   
-  setPaperWithPopulation(&p3, "p3", 10);
+  setPaperTakersNum(&p3, "p3", 10);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
-  setPaperWithPopulation(&p4, "p4", 10);
+  setPaperTakersNum(&p4, "p4", 10);
   addProgrammeToPaper(&p4, &c9);  
   addProgrammeToPaper(&p4, &c10);  
   
@@ -209,19 +209,19 @@ void test_mutateTwoSession_given_the_session2_cannot_return_papers_combo_having_
  *   p2 is no confict to session2, p3 and p4 together can meet p2 studentNum, but p3 p4 them selves has confict, so do nothing
 */
 void test_mutateTwoSession_given_the_p3_p4_having_c8_cause_conflict_so_do_nothing(void){
-  setPaperWithPopulation(&p1, "p1", 50);
+  setPaperTakersNum(&p1, "p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p2, "p2", 100);
+  setPaperTakersNum(&p2, "p2", 100);
   addProgrammeToPaper(&p2, &c5);
   addProgrammeToPaper(&p2, &c6);
   
-  setPaperWithPopulation(&p3, "p3", 50);
+  setPaperTakersNum(&p3, "p3", 50);
   addProgrammeToPaper(&p3, &c7);
   addProgrammeToPaper(&p3, &c8);
   
-  setPaperWithPopulation(&p4, "p4", 50);
+  setPaperTakersNum(&p4, "p4", 50);
   addProgrammeToPaper(&p4, &c8);  
   addProgrammeToPaper(&p4, &c1);  
   

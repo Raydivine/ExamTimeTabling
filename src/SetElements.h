@@ -16,6 +16,6 @@ void addSessionToTable(Table *target, Session *session);
 
 //---------------------Tester tool function-----------------
 Session createSessionWithConflict(int num);
-void setPaperWithPopulation(Paper *target ,char *paperCode, int num);
+void setPaperTakersNum(Paper *target ,char *paperCode, int num);
 
 #endif // SetElements_H

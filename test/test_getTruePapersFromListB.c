@@ -54,11 +54,11 @@ void tearDown(void){}
 */
 void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void){
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c1);
   addProgrammeToPaper(&p3, &c5);
   
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c7);  
   addProgrammeToPaper(&p4, &c6);  
   
@@ -94,19 +94,19 @@ void test_getTruePapersFromListB_given_ListA_is_NULL_should_take_out_p3_p4(void)
 */
 void test_getTruePapersFromListB_given_p3_p5_no_conflict_but_p4_has_should_take_out_p3_p5(void){
   
-  setPaperWithPopulation(&p1 ,"p1", 50);
+  setPaperTakersNum(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c3);
   addProgrammeToPaper(&p3, &c4);
  
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c1);  
   addProgrammeToPaper(&p4, &c2);  
   
-  setPaperWithPopulation(&p5 ,"p3", 50);
+  setPaperTakersNum(&p5 ,"p3", 50);
   addProgrammeToPaper(&p5, &c5);
   addProgrammeToPaper(&p5, &c6);
   
@@ -143,19 +143,19 @@ void test_getTruePapersFromListB_given_p3_p5_no_conflict_but_p4_has_should_take_
 */
 void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p4_has_100_student_should_take_out_p3_p5(void){
   
-  setPaperWithPopulation(&p1 ,"p1", 50);
+  setPaperTakersNum(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c3);
   addProgrammeToPaper(&p3, &c4);
  
-  setPaperWithPopulation(&p4 ,"p4", 100);
+  setPaperTakersNum(&p4 ,"p4", 100);
   addProgrammeToPaper(&p4, &c7);  
   addProgrammeToPaper(&p4, &c8);  
   
-  setPaperWithPopulation(&p5 ,"p3", 50);
+  setPaperTakersNum(&p5 ,"p3", 50);
   addProgrammeToPaper(&p5, &c5);
   addProgrammeToPaper(&p5, &c6);
   
@@ -192,19 +192,19 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p4_has_100_stude
 */
 void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150_student_should_take_out_p3_p4(void){
   
-  setPaperWithPopulation(&p1 ,"p1", 50);
+  setPaperTakersNum(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p3 ,"p3", 50);
+  setPaperTakersNum(&p3 ,"p3", 50);
   addProgrammeToPaper(&p3, &c3);
   addProgrammeToPaper(&p3, &c4);
  
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c7);  
   addProgrammeToPaper(&p4, &c8);  
   
-  setPaperWithPopulation(&p5 ,"p3", 50);
+  setPaperTakersNum(&p5 ,"p3", 50);
   addProgrammeToPaper(&p5, &c5);
   addProgrammeToPaper(&p5, &c6);
   
@@ -240,19 +240,19 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_p4_p5_has_150
 */
 void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_150_student_should_take_out_p4_p5(void){
   
-  setPaperWithPopulation(&p1 ,"p1", 50);
+  setPaperTakersNum(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p3 ,"p3", 150);
+  setPaperTakersNum(&p3 ,"p3", 150);
   addProgrammeToPaper(&p3, &c3);
   addProgrammeToPaper(&p3, &c4);
  
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c7);  
   addProgrammeToPaper(&p4, &c8);  
   
-  setPaperWithPopulation(&p5 ,"p3", 50);
+  setPaperTakersNum(&p5 ,"p3", 50);
   addProgrammeToPaper(&p5, &c5);
   addProgrammeToPaper(&p5, &c6);
   
@@ -288,19 +288,19 @@ void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_150_student_s
 */
 void test_getTruePapersFromListB_given_p3_p4_p5_no_conflict_but_p3_has_100_student_should_take_out_p3_only(void){
   
-  setPaperWithPopulation(&p1 ,"p1", 50);
+  setPaperTakersNum(&p1 ,"p1", 50);
   addProgrammeToPaper(&p1, &c1);
   addProgrammeToPaper(&p1, &c2);
   
-  setPaperWithPopulation(&p3 ,"p3", 100);
+  setPaperTakersNum(&p3 ,"p3", 100);
   addProgrammeToPaper(&p3, &c3);
   addProgrammeToPaper(&p3, &c4);
  
-  setPaperWithPopulation(&p4 ,"p4", 50);
+  setPaperTakersNum(&p4 ,"p4", 50);
   addProgrammeToPaper(&p4, &c7);  
   addProgrammeToPaper(&p4, &c8);  
   
-  setPaperWithPopulation(&p5 ,"p3", 50);
+  setPaperTakersNum(&p5 ,"p3", 50);
   addProgrammeToPaper(&p5, &c5);
   addProgrammeToPaper(&p5, &c6);
   

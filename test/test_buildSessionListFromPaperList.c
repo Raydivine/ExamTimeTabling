@@ -21,16 +21,16 @@ Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 LinkedList *pList, *sList;
 
 void setUp(void){
-  setPaperWithPopulation(&p1, "p1", 50);
-  setPaperWithPopulation(&p2, "p2", 50);
-  setPaperWithPopulation(&p3, "p3", 50);
-  setPaperWithPopulation(&p4, "p4", 50);
-  setPaperWithPopulation(&p5, "p5", 50);
-  setPaperWithPopulation(&p6, "p6", 50);
-  setPaperWithPopulation(&p7, "p7", 50);
-  setPaperWithPopulation(&p8, "p8", 50);
-  setPaperWithPopulation(&p9, "p9", 50);
-  setPaperWithPopulation(&p10, "p10", 50);
+  setPaperTakersNum(&p1, "p1", 50);
+  setPaperTakersNum(&p2, "p2", 50);
+  setPaperTakersNum(&p3, "p3", 50);
+  setPaperTakersNum(&p4, "p4", 50);
+  setPaperTakersNum(&p5, "p5", 50);
+  setPaperTakersNum(&p6, "p6", 50);
+  setPaperTakersNum(&p7, "p7", 50);
+  setPaperTakersNum(&p8, "p8", 50);
+  setPaperTakersNum(&p9, "p9", 50);
+  setPaperTakersNum(&p10, "p10", 50);
   
   pList = linkListNew(&p10);
   addDataToHead(&pList, &p9);

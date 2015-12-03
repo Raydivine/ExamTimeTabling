@@ -29,14 +29,14 @@ void setUp(void){
   setProgramme(&c9,"c9", 0);
   setProgramme(&c10,"c10", 0);
   
-  setPaperWithPopulation(&p1, "p1", 50);
-  setPaperWithPopulation(&p2, "p2", 50);
-  setPaperWithPopulation(&p3, "p3", 50);
-  setPaperWithPopulation(&p4, "p4", 50);
-  setPaperWithPopulation(&p5, "p5", 50);
-  setPaperWithPopulation(&p6, "p6", 50);
-  setPaperWithPopulation(&p7, "p7", 50);
-  setPaperWithPopulation(&p8, "p8", 50);
+  setPaperTakersNum(&p1, "p1", 50);
+  setPaperTakersNum(&p2, "p2", 50);
+  setPaperTakersNum(&p3, "p3", 50);
+  setPaperTakersNum(&p4, "p4", 50);
+  setPaperTakersNum(&p5, "p5", 50);
+  setPaperTakersNum(&p6, "p6", 50);
+  setPaperTakersNum(&p7, "p7", 50);
+  setPaperTakersNum(&p8, "p8", 50);
   
   s1 = createSession();
   s2 = createSession();
