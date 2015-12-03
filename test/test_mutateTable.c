@@ -117,14 +117,14 @@ void test_mutateTable_given_s1_at_head_should_mutate(void){
   addSessionToTable(&table, &s1);
   
   printf("--------------testing mutateTable()----------------\n\n ");
-  printf("mutateTable test1\n");
+  printf(" mutateSesionList test1\n");
   
-  printf("input : ");
+  printf("  input :   ");
   printfTable(table);
   
   mutateTable(&table);
   
-  printf("output: ");
+  printf("  output:   ");
   printfTable(table);
   printf("\n");
   
@@ -138,13 +138,13 @@ void test_mutateTable_given_s2_at_head_should_mutate(void){
   addSessionToTable(&table, &s1);
   addSessionToTable(&table, &s2);
   
-  printf("mutateTable test2\n");
-  printf("input : ");
+  printf("  mutateSesionList test2\n");
+  printf("  input :   ");
   printfTable(table);
   
   mutateTable(&table);
   
-  printf("output: ");
+  printf("  output:   ");
   printfTable(table);
   printf("\n");
 
@@ -158,13 +158,13 @@ void test_mutateTable_given_s3_at_head_should_mutate(void){
   addSessionToTable(&table, &s2);
   addSessionToTable(&table, &s3);
   
-  printf("mutateTable test3\n");
-  printf("input : ");
+  printf("  mutateSesionList test3\n");
+  printf("  input :   ");
   printfTable(table);
   
   mutateTable(&table);
   
-  printf("output: ");
+  printf("  output:   ");
   printfTable(table);
   printf("\n");
   
@@ -179,13 +179,13 @@ void test_mutateTable_given_s4_at_head_should_mutate(void){
   addSessionToTable(&table, &s2);
   addSessionToTable(&table, &s4);
   
-  printf("mutateTable test4\n");
-  printf("input : ");
+  printf("  mutateSesionList test4\n");
+  printf("  input :   ");
   printfTable(table);
   
   mutateTable(&table);
   
-  printf("output: ");
+  printf("  output:   ");
   printfTable(table);
   printf("\n");
   

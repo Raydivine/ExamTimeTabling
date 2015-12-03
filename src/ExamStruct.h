@@ -41,6 +41,7 @@ struct Paper{
 
 struct Session{
   LinkedList *papers;
+  int conflict;
   int population;
 };
 
