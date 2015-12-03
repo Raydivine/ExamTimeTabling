@@ -22,7 +22,6 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
 Session createSession(){
   Session session;
   
-  session.conflict = 0;
   session.population = 0;
   session.papers = NULL;
   return session;
@@ -69,14 +68,6 @@ void setPaperWithPopulation(Paper *target ,char *paperCode, int num){
   target->programmes = NULL;
 }
 
-Session createSessionWithConflict(int score){
-  Session session;
-  
-  session.conflict = score;
-  session.population = 0;
-  session.papers = NULL;
-  return session;
-}
 
 
 
