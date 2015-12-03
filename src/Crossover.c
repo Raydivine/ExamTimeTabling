@@ -29,11 +29,6 @@ Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parre
   return child;
 }
 
-void addToChildAndRemoveInParrent(Session *s, Table *child, LinkedList **parrent){
-  addSessionToTable(child, s);
-  removeDatasFromList(parrent, s->papers);
-}
-
 int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
   Session *s;
   
@@ -44,4 +39,14 @@ int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
     sList = sList->next;
   }
   return 1;
+}
+
+
+void addToChildAndRemoveInParrent(Session *s, Table *child, LinkedList **parrent){
+  addSessionToTable(child, s);
+  removeDatasFromList(parrent, s->papers);
+}
+
+void addRemainToChild(Table *child, LinkedList *remains, int population){
+  
 }
