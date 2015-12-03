@@ -4,6 +4,7 @@
 #include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
+#include <assert.h>
 #include <stdio.h>
 
 Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int population){
@@ -62,6 +63,7 @@ Session useRemainBuildSession(LinkedList **remain, int num){
    while( s.population < num ){
     p = (Paper*)pList->data;
     
+    assert((p->takersNum) <= num);
     if( (s.population + p->takersNum) <= num)
       addPaperToSession(&s, p);
     else 
@@ -70,5 +72,6 @@ Session useRemainBuildSession(LinkedList **remain, int num){
     pList = pList->next;
    }
    
+   *remain = pList;
    return s;
 }
