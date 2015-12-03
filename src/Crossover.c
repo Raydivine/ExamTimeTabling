@@ -56,22 +56,19 @@ void addRemainToChild(Table *child, LinkedList *remain, int population){
 }
 
 Session useRemainBuildSession(LinkedList **remain, int num){
-   Session s = createSession();
-   LinkedList *pList = *remain;
-   Paper *p;
+  Session s = createSession();
+  LinkedList *pList = *remain;
+  Paper *p;
    
-   while( s.population < num ){
+  while( s.population < num && pList!=NULL){
     p = (Paper*)pList->data;
-    
     assert((p->takersNum) <= num);
+    
     if( (s.population + p->takersNum) <= num)
       addPaperToSession(&s, p);
-    else 
-      break;
-    
+    else break;
     pList = pList->next;
-   }
-   
-   *remain = pList;
-   return s;
+  }
+  *remain = pList;
+  return s;
 }
