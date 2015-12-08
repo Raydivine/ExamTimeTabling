@@ -13,6 +13,22 @@ Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int pop
   
 }
 
+
+int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
+  Session *s;
+  
+  while(sList != NULL){
+    s = (Session*)sList->data;                                              
+    if( isListsHaveSameElement(s->papers, pList) )
+      return 0;
+    sList = sList->next;
+  }
+  return 1;
+}
+
+
+
+/**
 Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parrent){
   Table child = createTable();
   Session *current = (Session*)sListA->data;
@@ -37,26 +53,14 @@ void addToChildAndRemoveInParrent(Session *s, Table *child, LinkedList **parrent
   removeDatasFromList(parrent, s->papers);
 }
 
-int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
-  Session *s;
-  
-  while(sList != NULL){
-    s = (Session*)sList->data;                                              
-    if( isListsHaveSameElement(s->papers, pList) )
-      return 0;
-    sList = sList->next;
-  }
-  return 1;
-}
-
 void addRemainToChild(Table *child, LinkedList *remain, int population){
    int arrSize = getLengthOfList(remain);
    Session s[population];
    int i = 0;
 
    while( remain !=NULL){
-     s[i] = useRemainBuildSession(&remain , population ); // 1. using array to store the coming element, to prevent overWrite
-     addSessionToTable( child, &s[i]);                    // 2. add the session to child, which stored in array
+     s[i] = useRemainBuildSession(&remain , population ); 
+     addSessionToTable( child, &s[i]);                    
      i++;                                                  
   }
 }
@@ -78,4 +82,4 @@ Session useRemainBuildSession(LinkedList **remain, int num){
   *remain = pList;
   
   return s;
-}
+}*/ 

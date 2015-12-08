@@ -5,8 +5,6 @@
 
 #define MAX_SESSIONS 100
 
-
-
 //extern maxSessions;
 
 typedef struct Lecturer Lecturer;
@@ -41,7 +39,6 @@ struct Paper{
 
 
 //------------------SYSTEM VARIABLE---------------------------
-
 
 struct Session{
   LinkedList *papers;

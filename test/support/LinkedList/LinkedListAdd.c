@@ -3,6 +3,7 @@
 #include "LinkedListERR.h"
 #include <string.h>
 #include <malloc.h>
+#include <stdio.h>
 
 void addDataToTail(LinkedList **list, void *data){
   LinkedList *current = *list;
@@ -42,4 +43,11 @@ void addDataToMid(LinkedList **list, void *data, void *addAfterThis){
   }
   
   Throw(LL_ERR_DATA_IS_NOT_EXIST);
+}
+
+void addListToHead(LinkedList **list, LinkedList *dataList){
+  while( dataList != NULL){
+    addDataToHead( list, dataList->data);
+    dataList = dataList->next;
+  }
 }
