@@ -4,11 +4,10 @@
 #include "LinkedList.h"
 
 Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int population);
-int isElementsNotInChild(LinkedList *sList, LinkedList *pList);
-Table buildChildTable(LinkedList *sListA, LinkedList *sListB, LinkedList **parrent);
-void addToChildAndRemoveInParrent(Session *s, Table *child, LinkedList **parrent);
 
-void addRemainToChild(Table *child, LinkedList *remain, int population);
-Session useRemainBuildSession(LinkedList **remain, int num);
+LinkedList *buildChildList(void *mid, LinkedList *pListA, LinkedList *pListB);
+
+
+
 
 #endif // Crossover_H

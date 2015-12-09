@@ -14,18 +14,26 @@ Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int pop
 }
 
 
-int isElementsNotInChild(LinkedList *sList, LinkedList *pList){
-  Session *s;
+LinkedList *buildChildList(void *mid, LinkedList *listA, LinkedList *listB){
+  LinkedList *child = linkListNew(mid);
   
-  while(sList != NULL){
-    s = (Session*)sList->data;                                              
-    if( isListsHaveSameElement(s->papers, pList) )
-      return 0;
-    sList = sList->next;
+  while( isDataNotInList(child,listA->data) ){
+    addDataToHead( &child, listA->data);
+    listA = listA->next;
+    
+    if( isDataNotInList(child,listB->data) ){
+      addDataToTail( &child, listB->data);
+      listB = listB->next;
+    }else break;
   }
-  return 1;
+  
+  while( listA->data != mid ){
+    if( isDataNotInList(child,listA->data) )
+      addDataToTail( &child, listA->data);
+    listA = listA->next;
+  }
+  return child;
 }
-
 
 
 /**

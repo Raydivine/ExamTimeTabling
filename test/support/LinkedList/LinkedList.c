@@ -46,6 +46,15 @@ int isDataInList(LinkedList *list, void *data){
   return 0;
 }
 
+int isDataNotInList(LinkedList *list, void *data){
+  while(list != NULL){
+    if(list->data == data)
+      return 0;
+    else  list = list->next;  
+  }
+  return 1;
+}
+
 int isListsHaveSameElement(LinkedList *list1, LinkedList *list2){
 
   while(list1 != NULL){
