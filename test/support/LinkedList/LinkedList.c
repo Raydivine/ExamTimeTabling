@@ -21,6 +21,21 @@ void clearLinkList(LinkedList **link){
   *link = NULL;
 }
 
+void clearLinkLoop(LinkedList **loop){
+  if( *loop == NULL)
+    return; 
+  LinkedList *head = *loop, *current = head->next, *nexts;
+  
+  while (current != head) {
+    nexts = current->next; 
+    free(current); 
+    current = nexts; 
+  }
+  free(current); 
+  
+  *loop = NULL;
+}
+
 int isDataInList(LinkedList *list, void *data){
 
   while(list != NULL){

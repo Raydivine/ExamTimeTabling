@@ -5,25 +5,25 @@
 #include <stdio.h>
 
 LinkedList *sessionListToPapersLoop(LinkedList *sList){
-  LinkedList *pLoop = NULL, *tail;
-  Session *s;
-  
-  if( sList != NULL){
-    s = (Session*)sList->data;
-    addListToHead( &pLoop, s->papers);
-    sList = sList->next;
-  }
+  if( sList == NULL)
+    return;
 
-  tail = pLoop; 
+  LinkedList *head = NULL, *tail;
+  Session *s = (Session*)sList->data;
+  addListToHead( &head, s->papers);
+  sList = sList->next; 
+  
+  tail = head; 
   while( tail->next!=NULL)
-     tail = tail->next;
-   
+    tail = tail->next;    
   
   while( sList != NULL){
     s = (Session*)sList->data;
-    addListToHead( &pLoop, s->papers);
+    addListToHead( &head, s->papers);
     sList = sList->next;
   }  
-  tail->next = pLoop;
-  return pLoop;
+ // printfPaperList(head);
+  
+  tail->next = head;
+  return head;
 }

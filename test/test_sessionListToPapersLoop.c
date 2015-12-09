@@ -58,14 +58,35 @@ void setUp(void){
 /** LinkedList *sessionListToPapersLoop(LinkedList *sList)
   *
   *  convert the sessionList to paperlist ( paper is element of session)
-  *  , and the paperlist is looped , called as papersLoop
+  *  , and the paperlist is looped , called as papersLoop.
+  *
+  *  The purpose to create papersLoop is for crossover
+  * 
 */
 }
 
 void tearDown(void){
   CLEAR_ALL_SESSION;
   clearLinkList(&sList);
- // clearLinkList(&pList);
+  clearLinkLoop(&pList);
+}
+
+
+/** 
+  *     NULL          
+  *     
+  *
+  *------------OUTPUT------------
+  *
+  *    NULL
+  *
+*/
+void test_sessionListToPapersLoop_given_NULL_should_create_loop_NULL(void){
+
+  sList = NULL;
+  
+  pList = sessionListToPapersLoop(sList);
+  TEST_ASSERT_NULL(HEAD);
 }
 
 /** 
@@ -74,10 +95,10 @@ void tearDown(void){
   *
   *------------OUTPUT------------
   *
-  *    p1
+  *    p1---->p1
   *
 */
-void test_sessionListToPapersLoop_should_create_loop_p1(void){
+void test_sessionListToPapersLoop_given_one_paper_only_should_create_loop_p1(void){
   addPaperToSession(&s1, &p1);
   sList = linkListNew(&s1);
   
@@ -86,7 +107,6 @@ void test_sessionListToPapersLoop_should_create_loop_p1(void){
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
-  
 }
 
 /** 
@@ -98,7 +118,7 @@ void test_sessionListToPapersLoop_should_create_loop_p1(void){
   *    p1p2 --->p1 (loop back to head)
   *
 */
-void test_sessionListToPapersLoop_should_create_loop_p1_p2(void){
+void test_sessionListToPapersLoop_given_2_paper_only_should_create_loop_p1_p2(void){
   addPaperToSession(&s1, &p1);
   addPaperToSession(&s1, &p2);
   sList = linkListNew(&s1);
@@ -109,5 +129,99 @@ void test_sessionListToPapersLoop_should_create_loop_p1_p2(void){
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD3->data);
+}
 
+/** 
+  *      s1          
+  *     p1p2p3
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p2p3 --->p1 (loop back to head)
+  *
+*/
+void test_sessionListToPapersLoop_given_3_paper_should_create_loop_p1_p2_p3(void){
+  addPaperToSession(&s1, &p1);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p3);
+  sList = linkListNew(&s1);
+  
+  pList = sessionListToPapersLoop(sList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD3->data);
+}
+
+/** 
+  *      s1          s2    
+  *     p1p2p3    p4p5p6
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p2p3p4p5p6 --->p1 (loop back to head)
+  *
+*/
+void test_sessionListToPapersLoop_given_2_session_6_paper_should_create_loop_p1_to_p6(void){
+  addPaperToSession(&s1, &p1);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p3);
+  
+  addPaperToSession(&s2, &p4);
+  addPaperToSession(&s2, &p5);
+  addPaperToSession(&s2, &p6);
+  
+  sList = linkListNew(&s1);
+  addDataToHead( &sList, &s2);
+  
+  pList = sessionListToPapersLoop(sList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, HEAD4->data);
+  TEST_ASSERT_EQUAL_PTR( &p6, HEAD5->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD6->data);
+}
+
+/** 
+  *      s1          s2           s3
+  *     p1p2p3    p4p5p6        p7p8p9
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p2p3p4p5p6p7p8p9 --->p1 (loop back to head)
+  *
+*/
+void test_sessionListToPapersLoop_given_3_session_9_paper_should_create_loop_p1_to_p6(void){
+  addPaperToSession(&s1, &p1);
+  addPaperToSession(&s1, &p2);
+  addPaperToSession(&s1, &p3);
+  
+  addPaperToSession(&s2, &p4);
+  addPaperToSession(&s2, &p5);
+  addPaperToSession(&s2, &p6);
+  
+  addPaperToSession(&s3, &p7);
+  addPaperToSession(&s3, &p8);
+  addPaperToSession(&s3, &p9);
+  
+  sList = linkListNew(&s1);
+  addDataToHead( &sList, &s2);
+  addDataToHead( &sList, &s3);
+  
+  pList = sessionListToPapersLoop(sList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, HEAD4->data);
+  TEST_ASSERT_EQUAL_PTR( &p6, HEAD5->data);
+  TEST_ASSERT_EQUAL_PTR( &p7, HEAD6->data);
+  TEST_ASSERT_EQUAL_PTR( &p8, HEAD7->data);
+  TEST_ASSERT_EQUAL_PTR( &p9, HEAD8->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD9->data);
 }
