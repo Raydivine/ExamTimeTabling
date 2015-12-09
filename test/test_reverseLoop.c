@@ -36,7 +36,7 @@ void setUp(void){
 }
 
 void tearDown(void){
-//  clearLinkLoop(&pList);
+  clearLinkLoop(&pList);
 }
 
 /** void reverseLoop(LinkedList **loop)
@@ -53,32 +53,128 @@ void tearDown(void){
 */
 
 
+void test_reverseLoop_given_null_should_just_return(void){
+  pList = NULL;
+
+  reverseLoop(&pList);
+  TEST_ASSERT_NULL(HEAD);
+}
+
+void test_reverseLoop_given_p1_only_should_do_nothing(void){
+  pList = linkListNew(&p1);
+  pList->next = pList;
+
+  reverseLoop(&pList);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD1->data);
+}
 
 
 
-/** 
-  *          
+/**           
   *     p1p2
   *
   *------------OUTPUT------------
   *
   *    p1p2 ( output is still p1p2, becase only got 2 element, their next is each other)
-  *
 */
 void test_reverseLoop_given_p1p2_should_still_form_p1p2(void){
-
   pList = linkListNew(&p2);
   addDataToHead( &pList, &p1);
-
-  
   listToLoop(&pList);
   
-  
- // reverseLoop(&pList);
+  reverseLoop(&pList);
   TEST_ASSERT_NOT_NULL(HEAD);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
   TEST_ASSERT_NOT_NULL(HEAD2);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD3->data);
 }
 
+/**           
+  *  p3--->p1p2p3-->p1     ( the previous node of p1 is p3)
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p3p2-->p1  ( The head still is p1, and p1 point to its previous node, the loop is reversed)
+*/
+void test_reverseLoop_given_p1p2p3_should_still_form_p1p3p2(void){
+
+  pList = linkListNew(&p3);
+  addDataToHead( &pList, &p2);
+  addDataToHead( &pList, &p1);
+  listToLoop(&pList);
+  
+  reverseLoop(&pList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD2->data);
+  TEST_ASSERT_NOT_NULL(HEAD3);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD4->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD5->data);
+}
+
+
+/**           
+  *     p1p2p3p4-->p1
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p4p3p2-->p1  
+*/
+void test_reverseLoop_given_p1p2p3p4_should_form_p1p4p3p2(void){
+
+  pList = linkListNew(&p4);
+  addDataToHead( &pList, &p3);
+  addDataToHead( &pList, &p2);
+  addDataToHead( &pList, &p1);
+  listToLoop(&pList);
+  
+  reverseLoop(&pList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD3->data);
+  
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD4->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD5->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD6->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD7->data);
+}
+
+
+/**           
+  *     p1p2p3p4p5p6p7p8-->p1
+  *
+  *------------OUTPUT------------
+  *
+  *    p1p8p7p6p5p4p3p2-->p1  
+*/
+void test_reverseLoop_given_p1p2p3p4p5p6p7p8_should_form_p1p8p7p6p5p4p3p2(void){
+
+  pList = linkListNew(&p8);
+  addDataToHead( &pList, &p7);
+  addDataToHead( &pList, &p6);
+  addDataToHead( &pList, &p5);
+  addDataToHead( &pList, &p4);
+  addDataToHead( &pList, &p3);
+  addDataToHead( &pList, &p2);
+  addDataToHead( &pList, &p1);
+  listToLoop(&pList);
+  
+  reverseLoop(&pList);
+  TEST_ASSERT_NOT_NULL(HEAD);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p8, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p7, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p6, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p5, HEAD4->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD5->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD6->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD7->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD8->data);
+}

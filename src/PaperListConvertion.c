@@ -27,11 +27,25 @@ LinkedList *sessionListToPapersLoop(LinkedList *sList){
 }
 
 void reverseLoop(LinkedList **loop){
+  if( *loop == NULL)
+    return;
+  LinkedList *head = *loop, *curr = head->next, *pre = head, *nxt;
   
+  while(curr != head){ 
+    nxt = curr->next; 
+    curr->next = pre; 
+    pre = curr; 
+    curr = nxt; 
+  } 
+  nxt = curr->next;     // the while loop point curr to head, then head do last reverse
+  curr->next = pre; 
+  pre = curr; 
+  curr = nxt; 
 }
 
 // tester tool : convert the list to loop
 void listToLoop(LinkedList **list){
+
   LinkedList *head = *list, *tail = head->next;
   
   while( tail->next != NULL)
