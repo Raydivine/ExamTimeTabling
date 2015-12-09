@@ -17,7 +17,7 @@ Table crossoverTwoTable(Table tableA, Table tableB, LinkedList *parrent, int pop
 LinkedList *buildChildList(void *mid, LinkedList *listA, LinkedList *listB){
   LinkedList *child = linkListNew(mid);
   
-  while( isDataNotInList(child,listA->data) ){
+  while( isDataNotInList(child,listA->data) ){      // Doing crossover from listA and listB
     addDataToHead( &child, listA->data);
     listA = listA->next;
     
@@ -27,7 +27,7 @@ LinkedList *buildChildList(void *mid, LinkedList *listA, LinkedList *listB){
     }else break;
   }
   
-  while( listA->data != mid ){
+  while( listA->data != mid ){                    // add the mising element to the tail 
     if( isDataNotInList(child,listA->data) )
       addDataToTail( &child, listA->data);
     listA = listA->next;

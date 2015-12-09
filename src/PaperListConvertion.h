@@ -6,6 +6,6 @@
 LinkedList *sessionListToPapersLoop(LinkedList *sList);
 void reverseLoop(LinkedList **loop);
 
-void listToLoop(LinkedList **list); // Tester tool
+void listToLoop(LinkedList **list); // Tester tool  ( this funntion is not used in main program )
 
 #endif // PaperListConvertion_H

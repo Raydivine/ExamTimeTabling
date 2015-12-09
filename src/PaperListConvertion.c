@@ -43,7 +43,7 @@ void reverseLoop(LinkedList **loop){
   curr = nxt; 
 }
 
-// tester tool : convert the list to loop
+// tester tool : convert the list to loop   ( this funntion is not used in main program )
 void listToLoop(LinkedList **list){
 
   LinkedList *head = *list, *tail = head->next;
