@@ -22,8 +22,20 @@ LinkedList *sessionListToPapersLoop(LinkedList *sList){
     addListToHead( &head, s->papers);
     sList = sList->next;
   }  
- // printfPaperList(head);
-  
   tail->next = head;
   return head;
+}
+
+void reverseLoop(LinkedList **loop){
+  
+}
+
+// tester tool : convert the list to loop
+void listToLoop(LinkedList **list){
+  LinkedList *head = *list, *tail = head->next;
+  
+  while( tail->next != NULL)
+    tail = tail->next; 
+  
+  tail->next = head;
 }

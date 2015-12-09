@@ -45,24 +45,6 @@ void setUp(void){
   
   sList = NULL;
   pList = NULL;
-  
-  // addPaperToSession(&s1, &p2);
-  // addPaperToSession(&s1, &p1);
-  // addPaperToSession(&s2, &p4);
-  // addPaperToSession(&s2, &p3);
-  // addPaperToSession(&s3, &p6);
-  // addPaperToSession(&s3, &p5);
-  // addPaperToSession(&s4, &p8);
-  // addPaperToSession(&s4, &p7);
-  
-/** LinkedList *sessionListToPapersLoop(LinkedList *sList)
-  *
-  *  convert the sessionList to paperlist ( paper is element of session)
-  *  , and the paperlist is looped , called as papersLoop.
-  *
-  *  The purpose to create papersLoop is for crossover
-  * 
-*/
 }
 
 void tearDown(void){
@@ -70,6 +52,14 @@ void tearDown(void){
   clearLinkList(&sList);
   clearLinkLoop(&pList);
 }
+
+/** LinkedList *sessionListToPapersLoop(LinkedList *sList)
+  *
+  *  convert the sessionList to paperlist ( paper is element of session)
+  *  and the paperlist is looped , called as papersLoop.
+  *
+  *  The purpose to create papersLoop is for crossover
+*/
 
 
 /** 
@@ -82,9 +72,8 @@ void tearDown(void){
   *
 */
 void test_sessionListToPapersLoop_given_NULL_should_create_loop_NULL(void){
-
-  sList = NULL;
   
+  sList = NULL;
   pList = sessionListToPapersLoop(sList);
   TEST_ASSERT_NULL(HEAD);
 }
