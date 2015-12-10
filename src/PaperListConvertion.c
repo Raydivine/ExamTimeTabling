@@ -1,8 +1,60 @@
 #include "PaperListConvertion.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
+#include "LinkedListAdd.h"
+#include "LinkedListRemove.h"
+#include "SetElements.h"
 #include "printfStructs.h"
 #include <stdio.h>
+#include <assert.h>
+
+void papersListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
+
+  Session s = paperListToSession(pList, max);
+  addDataToHead(sList, &s);
+  
+   // printfSessionList( *sList);
+ 
+  if( pList == NULL)
+    return;
+  papersListIntoSessionList( sList, pList, max);
+  
+  
+  
+}
+
+LinkedList *paperListToSessionList(LinkedList *pList, int max){
+  LinkedList *sList = NULL;
+  
+  while( pList != NULL){
+    Session s = paperListToSession( &pList, max);
+    addDataToHead(&sList, &s);
+     printfSessionList( sList);
+  }
+
+   
+  
+  return sList;
+}
+
+Session paperListToSession(LinkedList **pLists, int max){
+  Session s = createSession();
+  LinkedList *pList = *pLists;
+  Paper *p;
+  
+  while( s.population < max && pList!=NULL){
+    p = (Paper*)pList->data;
+    assert((p->takersNum) <= max);
+    
+    if( (s.population + p->takersNum) <= max)
+      addPaperToSession(&s, p);
+    else break;
+    pList = pList->next;
+  }
+  *pLists = pList;
+  
+  return s;
+}
 
 LinkedList *sessionListToPapersLoop(LinkedList *sList){
   if( sList == NULL)
@@ -50,6 +102,5 @@ void listToLoop(LinkedList **list){
   
   while( tail->next != NULL)
     tail = tail->next; 
-  
   tail->next = head;
 }

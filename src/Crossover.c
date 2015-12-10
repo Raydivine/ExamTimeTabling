@@ -4,7 +4,6 @@
 #include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
-#include <assert.h>
 #include <stdio.h>
 
 #define MAX_SESSIONS 100
