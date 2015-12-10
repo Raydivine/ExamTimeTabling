@@ -2,11 +2,38 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
-#include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
 #include <stdio.h>
 #include <assert.h>
+
+void papersListIntoTable(Table *table, LinkedList *pList, int max){
+
+  Session s = takeSessionFromPaperList(&pList, max);
+  addSessionToTable( table, &s);
+  
+  if( pList != NULL)
+    papersListIntoTable( table, pList, max);
+}
+
+Session takeSessionFromPaperList(LinkedList **pLists, int max){
+  Session s = createSession();
+  LinkedList *pList = *pLists;
+  Paper *p;
+  
+  while( s.population < max && pList!=NULL){
+    p = (Paper*)pList->data;
+    assert((p->takersNum) <= max);
+    
+    if( (s.population + p->takersNum) <= max)
+      addPaperToSession(&s, p);
+    else break;
+    pList = pList->next;
+  }
+  *pLists = pList;
+  
+  return s;
+}
 
 LinkedList *sessionListToPapersLoop(LinkedList *sList){
   if( sList == NULL)
@@ -45,34 +72,6 @@ void reverseLoop(LinkedList **loop){
   curr->next = pre; 
   pre = curr; 
   curr = nxt; 
-}
-
-void papersListIntoTable(Table *table, LinkedList *pList, int max){
-
-  Session s = takeSessionFromPaperList(&pList, max);
-  addSessionToTable( table, &s);
-  
-  if( pList != NULL)
-    papersListIntoTable( table, pList, max);
-}
-
-Session takeSessionFromPaperList(LinkedList **pLists, int max){
-  Session s = createSession();
-  LinkedList *pList = *pLists;
-  Paper *p;
-  
-  while( s.population < max && pList!=NULL){
-    p = (Paper*)pList->data;
-    assert((p->takersNum) <= max);
-    
-    if( (s.population + p->takersNum) <= max)
-      addPaperToSession(&s, p);
-    else break;
-    pList = pList->next;
-  }
-  *pLists = pList;
-  
-  return s;
 }
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )

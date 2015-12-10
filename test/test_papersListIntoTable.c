@@ -2,7 +2,6 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
-#include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
 #include "PaperListConvertion.h"
@@ -83,14 +82,13 @@ void tearDown(void){
   clearLinkList(&(table.sessions));
 }
 
-/**  LinkedList *paperListToSessionList(LinkedList *pList, int max)
+/**  void papersListIntoTable(Table *table, LinkedList *pList, int max)
 *
-*    This function convert the paperList to sessionList
-*    pList is the list of paper
-*    max is the maximum seat in school
-*    while the populatoin in each session can not more than the max
-*    (population : number of student do exam in same session)
-*
+*    This put the plist(paperList) to table
+*    First, it collect session 1 by 1 from plist, by using  takeSessionFromPaperList()
+*    Then, put the session 1 by 1 to the table
+* 
+*    max : the maximum seat in school
 */ 
 
 /**  plist = p4,p3,p2,p1
@@ -139,8 +137,6 @@ void test_papersListIntoTable_should_given_populatoin_is_50_should_create_4_sess
   *           p1p2   p3p4
   * 
 */
-
-
 void test_papersListIntoTable_should_given_populatoin_is_100_should_create_4_session(void){
   pList = linkListNew(&p1);
   addDataToHead(&pList, &p2);
