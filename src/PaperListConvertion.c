@@ -8,33 +8,13 @@
 #include <stdio.h>
 #include <assert.h>
 
-void papersListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
+void papersListIntoTable(Table *table, LinkedList *pList, int max){
 
-  Session s = paperListToSession(pList, max);
-  addDataToHead(sList, &s);
+  Session s = paperListToSession(&pList, max);
+  addSessionToTable( table, &s);
   
-   // printfSessionList( *sList);
- 
-  if( pList == NULL)
-    return;
-  papersListIntoSessionList( sList, pList, max);
-  
-  
-  
-}
-
-LinkedList *paperListToSessionList(LinkedList *pList, int max){
-  LinkedList *sList = NULL;
-  
-  while( pList != NULL){
-    Session s = paperListToSession( &pList, max);
-    addDataToHead(&sList, &s);
-     printfSessionList( sList);
-  }
-
-   
-  
-  return sList;
+  if( pList != NULL)
+    papersListIntoTable( table, pList, max);
 }
 
 Session paperListToSession(LinkedList **pLists, int max){

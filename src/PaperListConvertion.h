@@ -3,7 +3,10 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-void papersListIntoSessionList(LinkedList **sList, LinkedList **pList, int max);
+void papersListIntoTable(Table *table, LinkedList *pList, int max);
+
+
+//void papersListIntoSessionList(LinkedList **sList, LinkedList **pList, int max);
 //LinkedList *papersListIntoSessionList(LinkedList *pList, int max);
 
 
