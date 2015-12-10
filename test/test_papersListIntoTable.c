@@ -7,48 +7,49 @@
 #include "printfStructs.h"
 #include "PaperListConvertion.h"
  
-#define S1 sList->data
-#define S2 sList->next->data
-#define S3 sList->next->next->data
-#define S4 sList->next->next->next->data
-#define S5 sList->next->next->next->next->data
-#define S6 sList->next->next->next->next->next->data
-#define S7 sList->next->next->next->next->next->next->data
+#define S1 table.sessions
+#define S2 table.sessions->next
+#define S3 table.sessions->next->next
+#define S4 table.sessions->next->next->next
+#define S5 table.sessions->next->next->next->next
+#define S6 table.sessions->next->next->next->next->next
+#define S7 table.sessions->next->next->next->next->next->next
 
-#define S1_P1 S1
-#define S1_P2 S1->next
-#define S1_P3 S1->next->next
-#define S1_P4 S1->next->next->next
-#define S1_P5 S1->next->next->next->next
-#define S1_P6 S1->next->next->next->next->next
-#define S1_P7 S1->next->next->next->next->next->next
+#define S1_1 ((Session*)S1->data)->papers
+#define S1_2 ((Session*)S1->data)->papers->next
+#define S1_3 ((Session*)S1->data)->papers->next->next
+#define S1_4 ((Session*)S1->data)->papers->next->next->next
+#define S1_5 ((Session*)S1->data)->papers->next->next->next->next
+#define S1_6 ((Session*)S1->data)->papers->next->next->next->next->next
+#define S1_7 ((Session*)S1->data)->papers->next->next->next->next->next->next
 
-#define S2_P1 S2
-#define S2_P2 S2->next
-#define S2_P3 S2->next->next
-#define S2_P4 S2->next->next->next
-#define S2_P5 S2->next->next->next->next
-#define S2_P6 S2->next->next->next->next->next
-#define S2_P7 S2->next->next->next->next->next->next
+#define S2_1 ((Session*)S2->data)->papers
+#define S2_2 ((Session*)S2->data)->papers->next
+#define S2_3 ((Session*)S2->data)->papers->next->next
+#define S2_4 ((Session*)S2->data)->papers->next->next->next
+#define S2_5 ((Session*)S2->data)->papers->next->next->next->next
+#define S2_6 ((Session*)S2->data)->papers->next->next->next->next->next
+#define S2_7 ((Session*)S2->data)->papers->next->next->next->next->next->next
 
-#define S3_P1 S3
-#define S3_P2 S3->next
-#define S3_P3 S3->next->next
-#define S3_P4 S3->next->next->next
-#define S3_P5 S3->next->next->next->next
-#define S3_P6 S3->next->next->next->next->next
-#define S3_P7 S3->next->next->next->next->next->next
+#define S3_1 ((Session*)S3->data)->papers
+#define S3_2 ((Session*)S3->data)->papers->next
+#define S3_3 ((Session*)S3->data)->papers->next->next
+#define S3_4 ((Session*)S3->data)->papers->next->next->next
+#define S3_5 ((Session*)S3->data)->papers->next->next->next->next
+#define S3_6 ((Session*)S3->data)->papers->next->next->next->next->next
+#define S3_7 ((Session*)S3->data)->papers->next->next->next->next->next->next
 
-#define S4_P1 S4
-#define S4_P2 S4->next
-#define S4_P3 S4->next->next
-#define S4_P4 S4->next->next->next
-#define S4_P5 S4->next->next->next->next
-#define S4_P6 S4->next->next->next->next->next
-#define S4_P7 S4->next->next->next->next->next->next
+#define S4_1 ((Session*)S4->data)->papers
+#define S4_2 ((Session*)S4->data)->papers->next
+#define S4_3 ((Session*)S4->data)->papers->next->next
+#define S4_4 ((Session*)S4->data)->papers->next->next->next
+#define S4_5 ((Session*)S4->data)->papers->next->next->next->next
+#define S4_6 ((Session*)S4->data)->papers->next->next->next->next->next
+#define S4_7 ((Session*)S4->data)->papers->next->next->next->next->next->next
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
-LinkedList *pList, *sList;
+LinkedList *pList;
+Table table;
 
 
 void setUp(void){
@@ -73,11 +74,13 @@ void setUp(void){
   addDataToHead(&pList, &p3); 
   addDataToHead(&pList, &p2); 
   addDataToHead(&pList, &p1); 
+  
+  table = createTable();
 }
 
 void tearDown(void){
   clearLinkList(&pList);
-  clearLinkList(&sList);
+  clearLinkList(&(table.sessions));
 }
 
 /**  LinkedList *paperListToSessionList(LinkedList *pList, int max)
@@ -104,25 +107,54 @@ void tearDown(void){
 */
 
 
-void test_papersListIntoTable_should_create_4_session(void){
-  sList = NULL;
+void test_papersListIntoTable_should_given_populatoin_is_50_should_create_4_session(void){
   pList = linkListNew(&p1);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p3);
   addDataToHead(&pList, &p4); 
-
   //-------------------------------------------------------------------------------------------
-  Table table = createTable();
+
   papersListIntoTable( &table, pList, 50);
-  sList = table.sessions;
-  TEST_ASSERT_NOT_NULL(sList);
-  TEST_ASSERT_NOT_NULL(sList->next);
-  TEST_ASSERT_NOT_NULL(sList->next->next);
-  TEST_ASSERT_NOT_NULL(sList->next->next->next);
-  TEST_ASSERT_NULL(sList->next->next->next->next);
-  
-  
-//  TEST_ASSERT_EQUAL_PTR(&p1, S1_P1->data);
-  
-  printfTable( table);
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+  TEST_ASSERT_EQUAL_PTR(&p1, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S4_1->data);
+  //printfTable( table);
+}
+
+/**  plist = p4,p3,p2,p1
+  *
+  *  population = 100 
+  *
+  *  Because each paper has 50 person, so should build 2 session 
+  *
+  *----------------output-------------------
+  *
+  *   Table:    s1    s2  
+  *           p1p2   p3p4
+  * 
+*/
+
+
+void test_papersListIntoTable_should_given_populatoin_is_100_should_create_4_session(void){
+  pList = linkListNew(&p1);
+  addDataToHead(&pList, &p2);
+  addDataToHead(&pList, &p3);
+  addDataToHead(&pList, &p4); 
+  //-------------------------------------------------------------------------------------------
+
+  papersListIntoTable( &table, pList, 100);
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NULL(S3);
+  TEST_ASSERT_EQUAL_PTR(&p1, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S2_2->data);
+  //printfTable( table);
 }
