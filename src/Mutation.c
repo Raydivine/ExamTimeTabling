@@ -15,6 +15,7 @@ void mutateTable(Table *table){
     mutateSessionList(&sList);
     sList = sList ->next;
   }
+  table->fitnessScore = calFitnessScore(table->sessions);
 }
 
 

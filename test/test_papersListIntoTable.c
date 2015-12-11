@@ -96,8 +96,20 @@ void tearDown(void){
 *    First, it collect session 1 by 1 from plist, by using  takeSessionFromPaperList()
 *    Then, put the session 1 by 1 to the table
 * 
-*    max : the maximum seat in school (means the population in a session)
+*    max : the maximum seat in school (also is the population in a session)
 */ 
+
+/**  plist = NULL 
+*/
+void test_papersListIntoTable_given_plist_is_NULL_should_create_session_with_nothing(void){
+  pList = NULL;
+  //-------------------------------------------------------------------------------------------
+
+  papersListIntoTable( &table, pList, 50);
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NULL(S1_1);
+  //printfTable( table);
+}
 
 /**  plist = p4,p3,p2,p1
   *

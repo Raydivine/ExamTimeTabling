@@ -119,12 +119,10 @@ void test_mutateTable_given_s1_at_head_should_mutate(void){
   printf("--------------testing mutateTable()----------------\n\n ");
   printf("mutateTable test1\n");
   
-  printf("input : ");
+  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
   printfTable(table);
-  
   mutateTable(&table);
-  
-  printf("output: ");
+  printf("\noutput fitnessScore: %d\n", table.fitnessScore);
   printfTable(table);
   printf("\n");
   
@@ -139,12 +137,10 @@ void test_mutateTable_given_s2_at_head_should_mutate(void){
   addSessionToTable(&table, &s2);
   
   printf("mutateTable test2\n");
-  printf("input : ");
+  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
   printfTable(table);
-  
   mutateTable(&table);
-  
-  printf("output: ");
+  printf("\noutput fitnessScore: %d\n", table.fitnessScore);
   printfTable(table);
   printf("\n");
 
@@ -159,12 +155,10 @@ void test_mutateTable_given_s3_at_head_should_mutate(void){
   addSessionToTable(&table, &s3);
   
   printf("mutateTable test3\n");
-  printf("input : ");
+  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
   printfTable(table);
-  
   mutateTable(&table);
-  
-  printf("output: ");
+  printf("\noutput fitnessScore: %d\n", table.fitnessScore);
   printfTable(table);
   printf("\n");
   
@@ -180,12 +174,10 @@ void test_mutateTable_given_s4_at_head_should_mutate(void){
   addSessionToTable(&table, &s4);
   
   printf("mutateTable test4\n");
-  printf("input : ");
+  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
   printfTable(table);
-  
   mutateTable(&table);
-  
-  printf("output: ");
+  printf("\noutput fitnessScore: %d\n", table.fitnessScore);
   printfTable(table);
   printf("\n");
   

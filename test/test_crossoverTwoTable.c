@@ -5,6 +5,7 @@
 #include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
+#include "PaperListConvertion.h"
 #include "Crossover.h"
 
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
@@ -25,15 +26,23 @@ void tearDown(void)
 }
 
 
-/**  Table crossoverTwoTable(Table tableA, Table tableB)
+/**  Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population)
 *
-*    This function will return a table which having cross elements(Session) from tableA and tableB
+*    This function will build a child from tableA and tableB
+*    a) target is the choosen point while doing crossover between tableA and tableB
+*    b) population is the total student in session , while this number is depend on the total seat in school
 *
-*    First, build a new LinkedList, and it is empty
-*    get the session in sequence from tableA and tableB,
-*    1 by 1 add into the LinkedList,
-*
-*    until the session has used resouces(papers), that already contain in linkedList, then stopped, and put the rest element from previous list
+*    ProccessFlow
+*    1. Convert tableA and tableB to paperLoopA and paperLoopB 
+*       ( paper is the unit element in chromosome, convert to loop is for the convenient of crossover)
+*    2. Point the head of them to target
+*       ( as the starting middle point to do croosover )
+*    3. Reverse paperLoopA
+*       ( reversed paperLoopA so its direction go to left, while paperLoopB go to right)
+*    4.  Pass paperLoopA and paperLoopB to buildChildList()
+*       ( this will return a croosover child list)  
+*    5.  Convert the child list to child table
+*    6.  child table do mutation for effectively get the good output 
 *
 *
 */
