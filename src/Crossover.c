@@ -7,6 +7,25 @@
 #include "PaperListConvertion.h"
 #include <stdio.h>
 
+/**
+Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population){
+  Table child = createTable();
+  LinkedList *loopA, *loopB, *childList;
+  loopA = sessionListToPapersLoop( tableA.sessions);
+  loopB = sessionListToPapersLoop( tableB.sessions);
+
+  while(loopA->data != target)
+    loopA = loopA->next;
+  while(loopB->data != target)
+    loopB = loopB->next;
+  
+  reverseLoop(&loopA);
+  childList = buildChildList( target, loopA->next, loopB->next);    //loopA and loopB already pointed to target, so pass "next"
+  papersListIntoTable( child, childList, population);
+  return child;
+}
+*/
+
 void crossoverTwoTable(Table *child, Table tableA, Table tableB, Paper *target, int population){
   LinkedList *loopA, *loopB, *childList;
   loopA = sessionListToPapersLoop( tableA.sessions);
@@ -20,7 +39,7 @@ void crossoverTwoTable(Table *child, Table tableA, Table tableB, Paper *target, 
   reverseLoop(&loopA);
   childList = buildChildList( target, loopA->next, loopB->next);    //loopA and loopB already pointed to target, so pass "next"
   papersListIntoTable( child, childList, population);
-  printfTable(*child);
+ // printfTable(*child);
 
 }
 
