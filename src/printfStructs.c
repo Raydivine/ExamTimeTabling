@@ -18,6 +18,19 @@ void printfSessionList(LinkedList *sList){
   printf("\n");
 }
 
+void printfPaperLoop(LinkedList *pLoop){
+  LinkedList *head = pLoop;
+  Paper *p = (Paper*)pLoop->data;                                        
+  printf("%s",p->code);
+  pLoop = pLoop->next;
+  
+  while( pLoop != head) {
+    p = (Paper*)pLoop->data;                                        
+    printf("%s",p->code);
+    pLoop = pLoop->next;
+  }
+}
+
 void printfPaperList(LinkedList *pList){  
   Paper *p;
   

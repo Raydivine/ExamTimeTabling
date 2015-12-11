@@ -114,8 +114,6 @@ void test_buildChildTable_given_the_listAlistB_are_same_order_should_break_at_pl
   clearLinkList(&child);
 }
 
-
-
 /**                 H   H    B    
   *  pListA : p1   p2   p3   p4   p5   p6   p7   p8
   *
