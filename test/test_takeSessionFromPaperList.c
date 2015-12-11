@@ -49,6 +49,16 @@ void tearDown(void){
 *    finally, return the session to s
 */ 
 
+void test_takeSessionFromPaperList_given_pList_NULL_should_return_Session_with_nothing(void){
+  
+  pList = NULL;
+  Session s = takeSessionFromPaperList(&pList, 250);
+  TEST_ASSERT_NULL(HEAD);
+  
+  TEST_ASSERT_NULL(LIST);
+  clearLinkList(&(s.papers));
+}
+
 /**  pList = p1,p2,p3,p4
   *
   *  num = 50 
@@ -270,20 +280,19 @@ void test_takeSessionFromPaperList_given_num_is_250__which_use_all_the_pList_sho
   clearLinkList(&(s.papers));
 }
 
-void test_takeSessionFromPaperList_given_pList_NULL_should_return_Session_with_nothing(void){
-  
-  pList = NULL;
-  Session s = takeSessionFromPaperList(&pList, 250);
-  TEST_ASSERT_NULL(HEAD);
-  
-  TEST_ASSERT_NULL(LIST);
-  clearLinkList(&(s.papers));
-}
 
-//Notice : This test will cause error, because the number is 10, which small than
-//         papers.takersNum (50), the assertion() is used in its program
+/**  pList = p1,p2,p3,p4
+  *
+  *  num = 25
+  *
+  *  each paper has 50 person, num has 25, 
+  *  means the paper's taker are larger then the total seat in school
+  *  this is a violation, to avoid this violation accure,
+  *  the assertion is written in takeSessionFromPaperList()
+  *
+  *  Because the assertion is used, un "X" this test will cause system error
+*/
 void xtest_takeSessionFromPaperList_given_num_is_10_which_less_than_papers_takerNum(void){
   
   Session s = takeSessionFromPaperList(&pList, 10);
-
 }

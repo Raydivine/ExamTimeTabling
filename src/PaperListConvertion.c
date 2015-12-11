@@ -39,21 +39,21 @@ LinkedList *sessionListToPapersLoop(LinkedList *sList){
   if( sList == NULL)
     return;
 
-  LinkedList *head = NULL, *tail;
+  LinkedList *head = NULL, *tail;          
   Session *s = (Session*)sList->data;
-  addListToHead( &head, s->papers);
+  addListToHead( &head, s->papers);      //1. add first session in 1 time, for remember the tail
   sList = sList->next; 
   
   tail = head; 
-  while( tail->next!=NULL)
+  while( tail->next!=NULL)               //2. remember the tail 
     tail = tail->next;    
   
   while( sList != NULL){
     s = (Session*)sList->data;
-    addListToHead( &head, s->papers);
+    addListToHead( &head, s->papers);    //3. add rest of session
     sList = sList->next;
   }  
-  tail->next = head;
+  tail->next = head;                     //4. form the loop 
   return head;
 }
 
