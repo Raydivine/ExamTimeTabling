@@ -7,6 +7,7 @@
 #include "LinkedListRemove.h"
 #include "Random.h"
 #include "printfStructs.h"
+#include "PaperListConvertion.h"
 
 #define SIZE sizeof(papersArr)/sizeof(*papersArr)
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));

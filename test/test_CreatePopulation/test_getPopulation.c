@@ -5,29 +5,17 @@
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
-#include "mock_Random.h"
-#include "printfStructs.h"
 #include "PaperListConvertion.h"
+#include "Random.h"
 
-#define SIZE sizeof(papersArr)/sizeof(*papersArr)
-
+#define TOTAL_PAPERS sizeof(papersArr)/sizeof(*papersArr)
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
 #define CLEAR_PAPPER_6_TO_10  clearLinkList(&(p6.programmes)); clearLinkList(&(p7.programmes)); clearLinkList(&(p8.programmes)); clearLinkList(&(p9.programmes)); clearLinkList(&(p10.programmes)); 
 
-#define HEAD  pList
-#define HEAD1 pList->next
-#define HEAD2 pList->next->next
-#define HEAD3 pList->next->next->next
-#define HEAD4 pList->next->next->next->next
-#define HEAD5 pList->next->next->next->next->next
-#define HEAD6 pList->next->next->next->next->next->next
-#define HEAD7 pList->next->next->next->next->next->next->next
-#define HEAD8 pList->next->next->next->next->next->next->next->next
-#define HEAD9 pList->next->next->next->next->next->next->next->next->next
-#define HEAD10 pList->next->next->next->next->next->next->next->next->next->next
-
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
+
+const int maxPeopleInSession = 500;
 
 void setUp(void){
   
@@ -106,76 +94,14 @@ void setUp(void){
 */
 }
 
-void tearDown(void){
+void tearDown(void)
+{
   CLEAR_PAPPER_1_TO_5;
   CLEAR_PAPPER_6_TO_10;
 }
 
-
-void test_shuffleArray_given_papersArr_are_no_shuffle_because_random_number_are_same_as_i(void){
-	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5};
+void test_getPopulation_needs_to_be_implemented(void){
   
-  random_IgnoreAndReturn(0);
-  random_IgnoreAndReturn(1);
-  random_IgnoreAndReturn(2);
-  random_IgnoreAndReturn(3);
-  random_IgnoreAndReturn(4);  // the number return is same as the i in for loop, therefore is no shuffering
-  shuffleArray( papersArr, SIZE);
-  
-  TEST_ASSERT_EQUAL_PTR(&p1, papersArr[0]);
-  TEST_ASSERT_EQUAL_PTR(&p2, papersArr[1]);
-  TEST_ASSERT_EQUAL_PTR(&p3, papersArr[2]);
-  TEST_ASSERT_EQUAL_PTR(&p4, papersArr[3]);
-  TEST_ASSERT_EQUAL_PTR(&p5, papersArr[4]);
-}
-
-void test_shuffleArray_given_p1_shuffle_with_p5(void){
-	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5};
-  
-  random_IgnoreAndReturn(4); // p1 is shuffle with p5 
-  random_IgnoreAndReturn(1);
-  random_IgnoreAndReturn(2);
-  random_IgnoreAndReturn(3);
-  random_IgnoreAndReturn(4);  
-  shuffleArray( papersArr, SIZE);
-  
-  TEST_ASSERT_EQUAL_PTR(&p5, papersArr[0]);
-  TEST_ASSERT_EQUAL_PTR(&p2, papersArr[1]);
-  TEST_ASSERT_EQUAL_PTR(&p3, papersArr[2]);
-  TEST_ASSERT_EQUAL_PTR(&p4, papersArr[3]);
-  TEST_ASSERT_EQUAL_PTR(&p1, papersArr[4]);
-}
-
-void test_shuffleArray_given_p4_shuffle_with_p2(void){
-	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5};
-  
-  random_IgnoreAndReturn(0); 
-  random_IgnoreAndReturn(1);
-  random_IgnoreAndReturn(2);
-  random_IgnoreAndReturn(1); // p4 is shuffle with p2 
-  random_IgnoreAndReturn(4);  
-  shuffleArray( papersArr, SIZE);
-  
-  TEST_ASSERT_EQUAL_PTR(&p1, papersArr[0]);
-  TEST_ASSERT_EQUAL_PTR(&p4, papersArr[1]);
-  TEST_ASSERT_EQUAL_PTR(&p3, papersArr[2]);
-  TEST_ASSERT_EQUAL_PTR(&p2, papersArr[3]);
-  TEST_ASSERT_EQUAL_PTR(&p5, papersArr[4]);
-}
-
-void test_shuffleArray_given_p4_shuffle_with_p2_and_p3_shuffle_with_p1(void){
-	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5};
-  
-  random_IgnoreAndReturn(0); 
-  random_IgnoreAndReturn(1);
-  random_IgnoreAndReturn(0); // p3 is shuffle with p1
-  random_IgnoreAndReturn(1); // p4 is shuffle with p2 
-  random_IgnoreAndReturn(4);  
-  shuffleArray( papersArr, SIZE);
-  
-  TEST_ASSERT_EQUAL_PTR(&p3, papersArr[0]);
-  TEST_ASSERT_EQUAL_PTR(&p4, papersArr[1]);
-  TEST_ASSERT_EQUAL_PTR(&p1, papersArr[2]);
-  TEST_ASSERT_EQUAL_PTR(&p2, papersArr[3]);
-  TEST_ASSERT_EQUAL_PTR(&p5, papersArr[4]);
+	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
+  Table *population = getPopulation(papersArr, TOTAL_PAPERS, maxPeopleInSession, 10);
 }

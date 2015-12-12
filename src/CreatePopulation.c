@@ -6,18 +6,22 @@
 #include <stdio.h>
 
 
-Table *getPopulation(Paper *papersArr[], int size, int maxPeopleInSession, int populationNum){
-  Table *tabArr, arr[size];
+Table *getPopulation(Paper *papersArr[], int totalPapers, int maxPeopleInSession, int populationNum){
+  Table *tabArr ,*arr[populationNum];
   LinkedList *pList;
   int i;
   
   for( i = 0; i < populationNum; i++){
-    shuffleArray( papersArr, size);
-    pList = convertArrayToLinkedList( papersArr, size);
+    shuffleArray( papersArr, totalPapers);
+    pList = convertArrayToLinkedList( papersArr, totalPapers);
+    arr[i]= buildTable( pList,  maxPeopleInSession);
+    
    // papersListIntoTable( &arr[i], pList, maxPeopleInSession);
   }
   
-  return tabArr;
+
+  
+  return arr;
 }
 
 
