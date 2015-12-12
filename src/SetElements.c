@@ -22,12 +22,12 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
 
 void addPaperToSessionTail(Session *target, Paper *paper){
   addDataToTail(&(target->papers), paper);
-  target->population = target->population + paper->takersNum;
+  target->size = target->size + paper->takersNum;
 }
 
 void addPaperToSession(Session *target, Paper *paper){
   addDataToHead(&(target->papers), paper);
-  target->population = target->population + paper->takersNum;
+  target->size = target->size + paper->takersNum;
 }
 
 void addPapersToSession(Session *target, LinkedList *papers){
@@ -48,7 +48,7 @@ void addSessionToTable(Table *target, Session *session){
 Session *createDynamicSession(){
   Session *s = malloc(sizeof(Session));
   
-  s->population = 0;
+  s->size = 0;
   s->papers = NULL;
   return s;
 }
@@ -74,7 +74,7 @@ void setPaperTakersNum(Paper *target ,char *paperCode, int num){
 Session createSession(){
   Session session;
   
-  session.population = 0;
+  session.size = 0;
   session.papers = NULL;
   return session;
 }

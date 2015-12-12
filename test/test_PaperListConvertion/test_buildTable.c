@@ -59,6 +59,7 @@
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 LinkedList *pList;
+Table *table;
 
 void setUp(void){
  
@@ -85,23 +86,6 @@ void setUp(void){
   setPaperTakersNum(&p9, "p9", 50);
   setPaperTakersNum(&p10, "p10", 50);
   
-  // addProgrammeToPaper(&p1, &c2);
-  // addProgrammeToPaper(&p1, &c1);
-  // addProgrammeToPaper(&p2, &c3);
-  // addProgrammeToPaper(&p2, &c2);
-  // addProgrammeToPaper(&p3, &c4);
-  // addProgrammeToPaper(&p3, &c3);
-  // addProgrammeToPaper(&p4, &c5);
-  // addProgrammeToPaper(&p4, &c4);
-  // addProgrammeToPaper(&p5, &c6);
-  // addProgrammeToPaper(&p5, &c5);
-  // addProgrammeToPaper(&p6, &c7);
-  // addProgrammeToPaper(&p6, &c6);
-  // addProgrammeToPaper(&p7, &c8);
-  // addProgrammeToPaper(&p7, &c7); 
-  // addProgrammeToPaper(&p8, &c1);
-  // addProgrammeToPaper(&p8, &c8);
-  
   // This test sturcture share to all test
   pList = linkListNew(&p10);
   addDataToHead(&pList, &p9);
@@ -116,26 +100,26 @@ void setUp(void){
 }
 
 void tearDown(void){
- // clearLinkList(&pList);
- // clearLinkList(&(table->sessions));
+  clearLinkList(&pList);
+  clearLinkList(&(table->sessions));
 }
 
-/**  void papersListIntoTable(Table *table, LinkedList *pList, int max)
+/**  Table *buildTable(LinkedList *pList, int max)
 *
-*    This put the plist(paperList) to table
+*    This fucntion put the plist(paperList) into table
 *    First, it collect session 1 by 1 from plist, by using  takeSessionFromPaperList()
-*    Then, put the session 1 by 1 to the table
+*    Then, put the session 1 by 1 to the table, finally return the table
 * 
 *    max : the maximum seat in school (also is the population in a session)
 */ 
 
 /**  plist = NULL 
 */
-void test_papersListIntoTable_given_plist_is_NULL_should_create_session_with_nothing(void){
+void test_buildTable_given_plist_is_NULL_should_create_session_with_nothing(void){
   pList = NULL;
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 50);
+  table = buildTable( pList, 50);
   TEST_ASSERT_NULL(S1);
   printfTable( table);
 }
@@ -152,14 +136,14 @@ void test_papersListIntoTable_given_plist_is_NULL_should_create_session_with_not
   *           p1  p2  p3  p4
   * 
 */
-void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(void){
+void test_buildTable_given_populatoin_is_50_should_create_4_session(void){
   pList = linkListNew(&p4);
   addDataToHead(&pList, &p3);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 50);
+  table = buildTable( pList, 50);
  // printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -174,27 +158,6 @@ void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(voi
   TEST_ASSERT_NULL(S2_2);
   TEST_ASSERT_NULL(S3_2);
   TEST_ASSERT_NULL(S4_2);
-//  //printfTable( table);
-
-  // Session s1 =createSession();
-  // Session s2 =createSession();
-  // Session s3 =createSession();
-  // Session s4 =createSession();
-  
-  // addPaperToSession( &s1, &p1);
-  // addPaperToSession( &s2, &p2);
-  // addPaperToSession( &s3, &p3);
-  // addPaperToSession( &s4, &p4);
-  
-  // Table tab = createTable();
-  
-  // addSessionToTable(&tab, &s1);
-  // addSessionToTable(&tab, &s2);
-  // addSessionToTable(&tab, &s3);
-  // addSessionToTable(&tab, &s4);
-  
-  // printfTable( tab);
-
 }
 
 /**  plist = p1,p2,p3,p4
@@ -210,15 +173,15 @@ void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(voi
   *           p1  p2  p3  p4
   * 
 */
-void test_papersListIntoTable_given_populatoin_is_75_should_create_4_session(void){
+void test_buildTable_given_populatoin_is_75_should_create_4_session(void){
   pList = linkListNew(&p4);
   addDataToHead(&pList, &p3);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 50);
-  ////printfTable( table);
+  table = buildTable( pList, 50);
+  //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
   TEST_ASSERT_NOT_NULL(S3);
@@ -249,14 +212,14 @@ void test_papersListIntoTable_given_populatoin_is_75_should_create_4_session(voi
   *           p1p2    p3p4
   * 
 */
-void test_papersListIntoTable_given_populatoin_is_100_should_create_2_session(void){
+void test_buildTable_given_populatoin_is_100_should_create_2_session(void){
   pList = linkListNew(&p4);
   addDataToHead(&pList, &p3);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 100);
+  table = buildTable( pList, 100);
   //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -283,7 +246,7 @@ void test_papersListIntoTable_given_populatoin_is_100_should_create_2_session(vo
   *           p1p2p3    p4p5p6    p7p8p9
   * 
 */
-void test_papersListIntoTable_given_9paper_populatoin_is_150_should_create_3_session(void){
+void test_buildTable_given_9paper_populatoin_is_150_should_create_3_session(void){
   pList = linkListNew(&p9);
   addDataToHead(&pList, &p8);
   addDataToHead(&pList, &p7);
@@ -295,7 +258,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_150_should_create_3_ses
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 150);
+  table = buildTable( pList, 150);
   //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -329,7 +292,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_150_should_create_3_ses
   *           p1p2p3  p4p5p6p7p8    p9
   * 
 */
-void test_papersListIntoTable_given_9paper_populatoin_is_200_should_create_3_session(void){
+void test_buildTable_given_9paper_populatoin_is_200_should_create_3_session(void){
   pList = linkListNew(&p9);
   addDataToHead(&pList, &p8);
   addDataToHead(&pList, &p7);
@@ -341,7 +304,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_200_should_create_3_ses
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table= buildTable( pList, 200);
+  table= buildTable( pList, 200);
   //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -375,7 +338,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_200_should_create_3_ses
   *            p1p2p3p4p5p    6p7p8p9     
   * 
 */
-void test_papersListIntoTable_given_9paper_populatoin_is_300_should_create_2_session(void){
+void test_buildTable_given_9paper_populatoin_is_300_should_create_2_session(void){
   pList = linkListNew(&p9);
   addDataToHead(&pList, &p8);
   addDataToHead(&pList, &p7);
@@ -387,7 +350,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_300_should_create_2_ses
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 300);
+  table = buildTable( pList, 300);
   //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -420,7 +383,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_300_should_create_2_ses
   *            p1p2p3p4p5p6p7p8p9     
   * 
 */
-void test_papersListIntoTable_given_9paper_populatoin_is_600_should_create_1_session(void){
+void test_buildTable_given_9paper_populatoin_is_600_should_create_1_session(void){
   pList = linkListNew(&p9);
   addDataToHead(&pList, &p8);
   addDataToHead(&pList, &p7);
@@ -432,7 +395,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_600_should_create_1_ses
   addDataToHead(&pList, &p1); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table = buildTable( pList, 600);
+  table = buildTable( pList, 600);
   //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NULL(S2);
@@ -462,12 +425,12 @@ void test_papersListIntoTable_given_9paper_populatoin_is_600_should_create_1_ses
   *
   *  Because the assertion is used, un "X" this test will cause system error
 */
-void xtest_papersListIntoTable_given_populatoin_is_25_should_system_fail_due_to_assertion(void){
+void xtest_buildTable_given_populatoin_is_25_should_system_fail_due_to_assertion(void){
   pList = linkListNew(&p1);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p3);
   addDataToHead(&pList, &p4); 
   //-------------------------------------------------------------------------------------------
 
-  Table *table= buildTable( pList, 25);
+  table= buildTable( pList, 25);
 }

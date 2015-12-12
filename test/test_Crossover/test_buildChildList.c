@@ -7,6 +7,7 @@
 #include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
+#include "CalFitnessScore.h"
 
 #define HEAD  child
 #define HEAD1 child->next

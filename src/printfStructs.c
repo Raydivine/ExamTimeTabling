@@ -1,18 +1,16 @@
 #include "printfStructs.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
-#include "CalFitnessScore.h"
 #include <stdio.h>
 
 void printfTable(Table *table){
-  
-  printf("FitnessScore : %d\n",  calFitnessScore(table->sessions));
   printfSessionList(table->sessions);
   printf("\n");
 }
 void printfTablePointer(Table *table){
-   printfSessionList(table->sessions);
+  printfSessionList(table->sessions);
   printf("\n");
+  
 }
 
 void printfTableWithPaperOnly(Table *table){

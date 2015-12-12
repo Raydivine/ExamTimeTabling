@@ -54,11 +54,11 @@ Session *takeSessionFromPaperList(LinkedList **pLists, int max){
   LinkedList *pList = *pLists, *temp; 
   Paper *p;
   
-  while( s->population < max && pList!=NULL){
+  while( s->size < max && pList!=NULL){
     p = (Paper*)pList->data;
     assert((p->takersNum) <= max);
     
-    if( (s->population + p->takersNum) <= max){
+    if( (s->size + p->takersNum) <= max){
       addPaperToSessionTail(s, p);
       pList = pList->next;
     }else break;

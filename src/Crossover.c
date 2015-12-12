@@ -5,6 +5,7 @@
 #include "SetElements.h"
 #include "printfStructs.h"
 #include "PaperListConvertion.h"
+#include "CalFitnessScore.h"
 #include <stdio.h>
 
 Table *crossoverTwoTable(Table tableA, Table tableB, Paper *target, int size){
