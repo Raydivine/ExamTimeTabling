@@ -46,13 +46,20 @@ void addSessionToTable(Table *target, Session *session){
 
 
 Session *createDynamicSession(){
-  Session *s = malloc( sizeof(Session) );
+  Session *s = malloc(sizeof(Session));
   
   s->population = 0;
   s->papers = NULL;
   return s;
 }
 
+Table *createDynamicTable(){
+  Table *t = malloc(sizeof(Table));
+  
+  t->fitnessScore = 0;
+  t->sessions = NULL;
+  return t;
+}
 
 
 

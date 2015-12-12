@@ -5,9 +5,8 @@
 
 LinkedList *sessionListToPapersLoop(LinkedList *sList);
 Session *takeSessionFromPaperList(LinkedList **pLists, int max);
-void papersListIntoTable(Table *table, LinkedList *pList, int max);
+Table *buildTable(LinkedList *pList, int max);
 void reverseLoop(LinkedList **loop);
-
 
 // Tester tool  ( this funntion is not used in main program )
 void listToLoop(LinkedList **list); 

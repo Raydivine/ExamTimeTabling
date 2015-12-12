@@ -68,14 +68,15 @@ Session *takeSessionFromPaperList(LinkedList **pLists, int max){
   return s;
 }
 
-void papersListIntoTable(Table *table, LinkedList *pList, int max){
+Table *buildTable(LinkedList *pList, int max){
+  Table *t = createDynamicTable();
   
   while( pList != NULL){
     Session *s = takeSessionFromPaperList(&pList, max);
-    addDataToTail(&(table->sessions), s);
+    addDataToTail(&(t->sessions), s);
   }
+  return t;
 }
-
 
 
 

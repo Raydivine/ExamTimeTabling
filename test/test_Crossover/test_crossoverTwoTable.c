@@ -15,13 +15,13 @@
 #define CLEAR_SESSION_5_TO_8 clearLinkList(&(s5.papers)); clearLinkList(&(s6.papers)); clearLinkList(&(s7.papers)); clearLinkList(&(s8.papers));
 
 
-#define S1 child.sessions
-#define S2 child.sessions->next
-#define S3 child.sessions->next->next
-#define S4 child.sessions->next->next->next
-#define S5 child.sessions->next->next->next->next
-#define S6 child.sessions->next->next->next->next->next
-#define S7 child.sessions->next->next->next->next->next->next
+#define S1 child->sessions
+#define S2 child->sessions->next
+#define S3 child->sessions->next->next
+#define S4 child->sessions->next->next->next
+#define S5 child->sessions->next->next->next->next
+#define S6 child->sessions->next->next->next->next->next
+#define S7 child->sessions->next->next->next->next->next->next
 
 // The below define are the paper sequence in session
 //  example:  S1_1  = session1's first paper
@@ -65,7 +65,7 @@
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 Session s1,s2,s3,s4,s5,s6,s7,s8;
-Table tableA, tableB, child;
+Table tableA, tableB, *child;
 int population;
 
 void setUp(void){
@@ -147,7 +147,7 @@ void setUp(void){
   addSessionToTable(&tableB, &s6);
   addSessionToTable(&tableB, &s5);
   
-  child = createTable();
+  child = createDynamicTable();
 
 /** Table A
   *
@@ -174,7 +174,7 @@ void tearDown(void){
   CLEAR_SESSION_5_TO_8;
   clearLinkList(&tableA.sessions); 
   clearLinkList(&tableB.sessions); 
-  clearLinkList(&child.sessions); 
+  clearLinkList(&(child->sessions)); 
 }
 
 
@@ -316,7 +316,7 @@ void test_crossoverTwoTable_given_target_is_p1_should_crossover(void){
 void test_crossoverTwoTable_given_target_is_p6_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p6, population);
-   //printfTable(child);
+  //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -363,7 +363,7 @@ void test_crossoverTwoTable_given_target_is_p6_should_crossover(void){
 void test_crossoverTwoTable_given_target_is_p5_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p5, population);
-   //printfTable(child);
+  //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -410,7 +410,7 @@ void test_crossoverTwoTable_given_target_is_p5_should_crossover(void){
 void test_crossoverTwoTable_given_target_is_p2_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p2, population);
-   //printfTable(child);
+  //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);

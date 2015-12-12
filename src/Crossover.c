@@ -7,13 +7,13 @@
 #include "PaperListConvertion.h"
 #include <stdio.h>
 
-Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population){
+Table *crossoverTwoTable(Table tableA, Table tableB, Paper *target, int size){
   LinkedList *childList = crossoverPaperLists( tableA, tableB, target);
   
   //Table childTable = paperListToTable(childList, population);
   
-  Table childTable = createTable();
-  papersListIntoTable( &childTable, childList, population);
+  Table *childTable = buildTable(childList,  size);
+
 
  // printfTable(childTable);
   

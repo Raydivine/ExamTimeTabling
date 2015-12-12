@@ -16,6 +16,7 @@
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 Session s1,s2,s3,s4;
+Table *table;
 
 void setUp(void){
   setProgramme(&c1,"c1", 0);
@@ -69,6 +70,8 @@ void setUp(void){
   addPaperToSession(&s4, &p8);
   addPaperToSession(&s4, &p7);
   
+  table = createDynamicTable();
+  
 /** The Table show below
   *
   *               s1           |          s2         |         s3          |        s4
@@ -86,6 +89,7 @@ void tearDown(void){
   CLEAR_PAPPER_1_TO_5;
   CLEAR_PAPPER_6_TO_10;
   CLEAR_ALL_SESSION;
+  clearLinkList(&(table->sessions));
 }
 
 /**   void mutateTable(Table *table)
@@ -126,72 +130,71 @@ void tearDown(void){
 */  
 
 void test_mutateTable_given_s1_at_head_should_mutate(void){
-  Table table = createTable();
-  addSessionToTable(&table, &s4);
-  addSessionToTable(&table, &s3);
-  addSessionToTable(&table, &s2);
-  addSessionToTable(&table, &s1);
+  Table *table = createDynamicTable();
+  addSessionToTable(table, &s4);
+  addSessionToTable(table, &s3);
+  addSessionToTable(table, &s2);
+  addSessionToTable(table, &s1);
   
   printf("--------------testing mutateTable()----------------\n\n");
   printf("test1\n");
   
-  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
+  printf("input fitnessScore : %d\n",  calFitnessScore(table->sessions));
   printfTable(table);
-  mutateTable(&table);
-  printf("output fitnessScore: %d\n", table.fitnessScore);
+  mutateTable(table);
+  printf("output fitnessScore: %d\n", table->fitnessScore);
   printfTable(table);
 
-  clearLinkList(&table.sessions); 
+
 }
 
 void test_mutateTable_given_s2_at_head_should_mutate(void){
-  Table table = createTable();
-  addSessionToTable(&table, &s4);
-  addSessionToTable(&table, &s3);
-  addSessionToTable(&table, &s1);
-  addSessionToTable(&table, &s2);
+  Table *table = createDynamicTable();
+  addSessionToTable(table, &s4);
+  addSessionToTable(table, &s3);
+  addSessionToTable(table, &s1);
+  addSessionToTable(table, &s2);
   
   printf("test2\n");
-  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
+  printf("input fitnessScore : %d\n",  calFitnessScore(table->sessions));
   printfTable(table);
-  mutateTable(&table);
-  printf("output fitnessScore: %d\n", table.fitnessScore);
+  mutateTable(table);
+  printf("output fitnessScore: %d\n", table->fitnessScore);
   printfTable(table);
 
-  clearLinkList(&table.sessions); 
+  
 }
 
 void test_mutateTable_given_s3_at_head_should_mutate(void){
-  Table table = createTable();
-  addSessionToTable(&table, &s4);
-  addSessionToTable(&table, &s1);
-  addSessionToTable(&table, &s2);
-  addSessionToTable(&table, &s3);
+  Table *table = createDynamicTable();
+  addSessionToTable(table, &s4);
+  addSessionToTable(table, &s1);
+  addSessionToTable(table, &s2);
+  addSessionToTable(table, &s3);
   
   printf("test3\n");
-  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
+  printf("input fitnessScore : %d\n",  calFitnessScore(table->sessions));
   printfTable(table);
-  mutateTable(&table);
-  printf("output fitnessScore: %d\n", table.fitnessScore);
+  mutateTable(table);
+  printf("output fitnessScore: %d\n", table->fitnessScore);
   printfTable(table);
 
-  clearLinkList(&table.sessions); 
+ 
 }
 
 
 void test_mutateTable_given_s4_at_head_should_mutate(void){
-  Table table = createTable();
-  addSessionToTable(&table, &s1);
-  addSessionToTable(&table, &s3);
-  addSessionToTable(&table, &s2);
-  addSessionToTable(&table, &s4);
+  Table *table = createDynamicTable();
+  addSessionToTable(table, &s1);
+  addSessionToTable(table, &s3);
+  addSessionToTable(table, &s2);
+  addSessionToTable(table, &s4);
   
   printf("test4\n");
-  printf("input fitnessScore : %d\n",  calFitnessScore(table.sessions));
+  printf("input fitnessScore : %d\n",  calFitnessScore(table->sessions));
   printfTable(table);
-  mutateTable(&table);
-  printf("output fitnessScore: %d\n", table.fitnessScore);
+  mutateTable(table);
+  printf("output fitnessScore: %d\n", table->fitnessScore);
   printfTable(table);
 
-  clearLinkList(&table.sessions); 
 }

@@ -13,9 +13,6 @@ void addSessionToTable(Table *target, Session *session);
 Session *createDynamicSession();
 Table *createDynamicTable();
 
-
-
-
 //---------------------Tester tool function-----------------
 void setPaperTakersNum(Paper *target ,char *paperCode, int num);
 

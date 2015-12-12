@@ -3,7 +3,7 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-Table crossoverTwoTable( Table tableA, Table tableB, Paper *target, int population);
+Table *crossoverTwoTable( Table tableA, Table tableB, Paper *target, int size);
 LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target);
 LinkedList *buildChildList(void *mid, LinkedList *pListA, LinkedList *pListB);
 
