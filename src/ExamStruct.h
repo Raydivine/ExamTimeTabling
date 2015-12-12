@@ -12,6 +12,9 @@ typedef struct Programme Programme;
 typedef struct Paper Paper;
 typedef struct Venue Venue;
 typedef struct Session Session;
+typedef struct Ses Ses;
+
+
 typedef struct Table Table;
 
 //-----------------USER VARAIBLE----------------------
@@ -45,9 +48,16 @@ struct Session{
   int population;
 };
 
+
 struct Table{
   LinkedList *sessions;
   int fitnessScore;
+};
+
+struct Ses{
+  Ses *next;
+  LinkedList *papers;
+  int size;
 };
 
 

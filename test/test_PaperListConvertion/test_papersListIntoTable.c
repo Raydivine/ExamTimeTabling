@@ -139,8 +139,7 @@ void test_papersListIntoTable_given_plist_is_NULL_should_create_session_with_not
   //-------------------------------------------------------------------------------------------
 
   papersListIntoTable( &table, pList, 50);
-  TEST_ASSERT_NOT_NULL(S1);
-  TEST_ASSERT_NULL(S1_1);
+  TEST_ASSERT_NULL(S1);
   //printfTable( table);
 }
 
@@ -164,7 +163,7 @@ void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(voi
   //-------------------------------------------------------------------------------------------
 
   papersListIntoTable( &table, pList, 50);
-  ////printfTable( table);
+  printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
   TEST_ASSERT_NOT_NULL(S3);

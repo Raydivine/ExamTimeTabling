@@ -9,13 +9,18 @@ void addPaperToSession(Session *target, Paper *paper);
 void addPapersToSession(Session *target, LinkedList *papers);
 void addPaperToSessionTail(Session *target, Paper *paper);
 void addSessionToTable(Table *target, Session *session);
-void testTable(Table *tab, Session *s);
 
+Session *createDynamicSession();
+Table *createDynamicTable();
+
+
+
+
+//---------------------Tester tool function-----------------
+void setPaperTakersNum(Paper *target ,char *paperCode, int num);
 
 Session createSession();
 Table createTable();
 
-//---------------------Tester tool function-----------------
-void setPaperTakersNum(Paper *target ,char *paperCode, int num);
 
 #endif // SetElements_H

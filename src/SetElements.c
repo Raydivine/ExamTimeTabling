@@ -20,14 +20,6 @@ void addProgrammeToPaper(Paper *target, Programme *programme){
   target->takersNum = target->takersNum + programme->studentNum;
 }
 
-Session createSession(){
-  Session session;
-  
-  session.population = 0;
-  session.papers = NULL;
-  return session;
-}
-
 void addPaperToSessionTail(Session *target, Paper *paper){
   addDataToTail(&(target->papers), paper);
   target->population = target->population + paper->takersNum;
@@ -48,17 +40,21 @@ void addPapersToSession(Session *target, LinkedList *papers){
   }
 }
 
-Table createTable(){
-  Table table;
-  
-  table.fitnessScore = 0;
-  table.sessions = NULL;
-  return table;
-}
-
 void addSessionToTable(Table *target, Session *session){
   addDataToHead(&(target->sessions), session);
 }
+
+
+Session *createDynamicSession(){
+  Session *s = malloc( sizeof(Session) );
+  
+  s->population = 0;
+  s->papers = NULL;
+  return s;
+}
+
+
+
 
 
 // The below functions are redundant , created for tester as tools for testing purpose
@@ -68,21 +64,19 @@ void setPaperTakersNum(Paper *target ,char *paperCode, int num){
   target->programmes = NULL;
 }
 
+Session createSession(){
+  Session session;
+  
+  session.population = 0;
+  session.papers = NULL;
+  return session;
+}
 
-void testTable(Table *tab, Session *s){
-  Paper p1;
-  setPaperTakersNum(&p1, "p1", 50);
-   
-  Session s1 = createSession();
-  addPaperToSession(&s1, &p1);
+Table createTable(){
+  Table table;
   
- 
-  int i;
-  
-  for( i=0; i<5; i ++){
-    addDataToTail(&(tab->sessions), &s1);
-  }
-  
-    printfTable(*tab);
+  table.fitnessScore = 0;
+  table.sessions = NULL;
+  return table;
 }
 

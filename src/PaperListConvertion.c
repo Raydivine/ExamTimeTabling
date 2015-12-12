@@ -1,4 +1,3 @@
-
 #include "PaperListConvertion.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
@@ -49,18 +48,18 @@ void reverseLoop(LinkedList **loop){
   curr = nxt; 
 }
 
-Session takeSessionFromPaperList(LinkedList **pLists, int max){
+Session *takeSessionFromPaperList(LinkedList **pLists, int max){
 
-  Session s = createSession();
+  Session *s = createDynamicSession();
   LinkedList *pList = *pLists, *temp; 
   Paper *p;
   
-  while( s.population < max && pList!=NULL){
+  while( s->population < max && pList!=NULL){
     p = (Paper*)pList->data;
     assert((p->takersNum) <= max);
     
-    if( (s.population + p->takersNum) <= max){
-      addPaperToSessionTail(&s, p);
+    if( (s->population + p->takersNum) <= max){
+      addPaperToSessionTail(s, p);
       pList = pList->next;
     }else break;
   }
@@ -70,42 +69,14 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
 }
 
 void papersListIntoTable(Table *table, LinkedList *pList, int max){
-  Session s = takeSessionFromPaperList(&pList, max);
-  addDataToTail(&(table->sessions), &s);
   
-  if( pList != NULL)
-    papersListIntoTable( table, pList, max);
-}
-
-
-void paperListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
-  Session s = createSession();
-  LinkedList *list = *pList, *temp; 
-  Paper *p;
-  
-  while( s.population < max && list!=NULL){
-    p = (Paper*)list->data;
-    assert((p->takersNum) <= max);
-    
-    if( (s.population + p->takersNum) <= max){
-      addPaperToSessionTail(&s, p);
-      list = list->next;
-    }else break;
+  while( pList != NULL){
+    Session *s = takeSessionFromPaperList(&pList, max);
+    addDataToTail(&(table->sessions), s);
   }
-  
-  addDataToTail(sList, &s);
-  *pList = list;
 }
 
-// void papersListIntoTable(Table *table, LinkedList *pList, int max){
-   
-  // paperListIntoSessionList( &(table->sessions), &pList, max);
-  
-  // printfSessionList(table->sessions);
 
-  // if( pList != NULL)
-    // papersListIntoTable(table, pList, max);
-// }
 
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )
