@@ -169,8 +169,6 @@ void test_takeSessionFromPaperList_given_num_is_130_maximum_can_put_in_2_should_
   clearLinkList(&(s.papers));
 }
 
-
-
 /**  pList = p1,p2,p3,p4
   *
   *  num = 150 

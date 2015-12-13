@@ -145,6 +145,7 @@ void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(voi
   TEST_ASSERT_NULL(S3_2);
   TEST_ASSERT_NULL(S4_2);
   //printfTable( table);
+
 }
 
 /**  plist = p4,p3,p2,p1
@@ -406,7 +407,7 @@ void test_papersListIntoTable_given_9paper_populatoin_is_600_should_create_1_ses
   *
   *  Because the assertion is used, un "X" this test will cause system error
 */
-void xtest_papersListIntoTable_given_populatoin_is_50_should_create_4_session(void){
+void xtest_papersListIntoTable_given_populatoin_is_25_should_system_fail_due_to_assertion(void){
   pList = linkListNew(&p1);
   addDataToHead(&pList, &p2);
   addDataToHead(&pList, &p3);

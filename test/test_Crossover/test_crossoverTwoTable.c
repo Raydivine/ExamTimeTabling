@@ -200,12 +200,15 @@ void tearDown(void){
 */
 
 void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
+  
   child = crossoverTwoTable( tableA, tableB, &p4, population);
-  TEST_ASSERT_NOT_NULL(S1);
-  TEST_ASSERT_NOT_NULL(S2);
-  TEST_ASSERT_NOT_NULL(S3);
-  TEST_ASSERT_NOT_NULL(S4);
-  TEST_ASSERT_NULL(S5);
+ // printfTable(child);
+  
+  // TEST_ASSERT_NOT_NULL(S1);
+  // TEST_ASSERT_NOT_NULL(S2);
+  // TEST_ASSERT_NOT_NULL(S3);
+  // TEST_ASSERT_NOT_NULL(S4);
+  // TEST_ASSERT_NULL(S5);
   
   // TEST_ASSERT_EQUAL_PTR(&p3, S1_1->data);
   // TEST_ASSERT_EQUAL_PTR(&p1, S1_2->data);
@@ -216,7 +219,7 @@ void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){
   // TEST_ASSERT_EQUAL_PTR(&p6, S4_1->data); 
   // TEST_ASSERT_EQUAL_PTR(&p7, S4_2->data); 
   
-  //printfTable(child);
+  
   // Session *ss1 = (Session*)S1->data;
   // LinkedList *pList = ss1->papers;
   // printfPaperList(pList);

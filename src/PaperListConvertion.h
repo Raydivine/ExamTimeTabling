@@ -3,6 +3,7 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
+void paperListToSessionList(LinkedList **sList, LinkedList *pList, int max);
 LinkedList *sessionListToPapersLoop(LinkedList *sList);
 Session takeSessionFromPaperList(LinkedList **pLists, int max);
 void papersListIntoTable(Table *table, LinkedList *pList, int max);

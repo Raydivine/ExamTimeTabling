@@ -7,16 +7,18 @@
 #include <stdio.h>
 #include <assert.h>
 
-void papersListIntoTable(Table *table, LinkedList *pList, int max){
-
-  // Session s[100];
-  // int i = 0;
+// Session s[100];
+// int i = 0;
   
-  // while(pList != NULL){
+// while(pList != NULL){
     // s[i] = takeSessionFromPaperList(&pList, max);
     // addSessionToTable( table, &s[i]);
     // i++;
   // }
+
+
+
+void papersListIntoTable(Table *table, LinkedList *pList, int max){
 
   Session s = takeSessionFromPaperList(&pList, max);
   addSessionToTable( table, &s);
@@ -28,18 +30,19 @@ void papersListIntoTable(Table *table, LinkedList *pList, int max){
 }
 
 Session takeSessionFromPaperList(LinkedList **pLists, int max){
+ // int total = 0;
   Session s = createSession();
-  LinkedList *pList = *pLists;
+  LinkedList *pList = *pLists; // *tail = pList;
   Paper *p;
   
   while( s.population < max && pList!=NULL){
     p = (Paper*)pList->data;
     assert((p->takersNum) <= max);
     
-    if( (s.population + p->takersNum) <= max)
+    if( (s.population + p->takersNum) <= max){
       addPaperToSession(&s, p);
-    else break;
-    pList = pList->next;
+      pList = pList->next;
+    }else break;
   }
   *pLists = pList;
   
