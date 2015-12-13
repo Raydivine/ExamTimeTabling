@@ -16,39 +16,6 @@
     // i++;
   // }
 
-
-
-void papersListIntoTable(Table *table, LinkedList *pList, int max){
-
-  Session s = takeSessionFromPaperList(&pList, max);
-  addSessionToTable( table, &s);
-  
-  if( pList != NULL)
-    papersListIntoTable( table, pList, max);
-  else 
-    return;
-}
-
-Session takeSessionFromPaperList(LinkedList **pLists, int max){
- // int total = 0;
-  Session s = createSession();
-  LinkedList *pList = *pLists; // *tail = pList;
-  Paper *p;
-  
-  while( s.population < max && pList!=NULL){
-    p = (Paper*)pList->data;
-    assert((p->takersNum) <= max);
-    
-    if( (s.population + p->takersNum) <= max){
-      addPaperToSession(&s, p);
-      pList = pList->next;
-    }else break;
-  }
-  *pLists = pList;
-  
-  return s;
-}
-
 LinkedList *sessionListToPapersLoop(LinkedList *sList){
   if( sList == NULL)
     return;
@@ -87,6 +54,42 @@ void reverseLoop(LinkedList **loop){
   pre = curr; 
   curr = nxt; 
 }
+
+Session takeSessionFromPaperList(LinkedList **pLists, int max){
+
+  Session s = createSession();
+  LinkedList *pList = *pLists; 
+  Paper *p;
+  
+  while( s.population < max && pList!=NULL){
+    p = (Paper*)pList->data;
+    assert((p->takersNum) <= max);
+    
+    if( (s.population + p->takersNum) <= max){
+      addPaperToSession(&s, p);
+      pList = pList->next;
+    }else break;
+  }
+  *pLists = pList;
+  
+  return s;
+}
+
+void papersListIntoTable(Table *table, LinkedList *pList, int max){
+
+  Session s = takeSessionFromPaperList(&pList, max);
+  addSessionToTable( table, &s);
+  
+  if( pList != NULL)
+    papersListIntoTable( table, pList, max);
+  else 
+    return;
+}
+
+void papersListIntoTable1(Table *table, LinkedList *pList, int max){
+  papersListIntoTable(table, pList,  max);
+}
+
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )
 void listToLoop(LinkedList **list){

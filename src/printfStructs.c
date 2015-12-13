@@ -5,6 +5,7 @@
 
 void printfTable(Table table){
   printfSessionList(table.sessions);
+  printf("\n");
 }
 
 void printfTableWithPaperOnly(Table *table){
@@ -42,6 +43,7 @@ void printfPaperLoop(LinkedList *pLoop){
     printf("%s",p->code);
     pLoop = pLoop->next;
   }
+  printf("\n");
 }
 
 void printfPaperList(LinkedList *pList){  
