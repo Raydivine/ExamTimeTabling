@@ -14,6 +14,12 @@ void setPaper(Paper *target ,char *paperCode){
   target->programmes = NULL;
 }
 
+void setVenue(Venue *target, char *name, int venueCode, int seatNum){
+  target->blockName = name;
+  target->code = venueCode;
+  target->seats = seatNum;
+}
+
 void addProgrammeToPaper(Paper *target, Programme *programme){
   addDataToHead(&(target->programmes), programme);
   target->takersNum = target->takersNum + programme->studentNum;
@@ -52,12 +58,6 @@ Table createTable(){
 
 void addSessionToTable(Table *target, Session *session){
   addDataToHead(&(target->sessions), session);
-}
-
-void setVenue(Venue *target, char *name, int venueCode, int seatNum){
-  target->blockName = name;
-  target->code = venueCode;
-  target->seats = seatNum;
 }
 
 
