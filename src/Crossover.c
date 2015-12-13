@@ -12,7 +12,6 @@ Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int populatio
   
   Table childTable = createTable();
   papersListIntoTable( &childTable, childList, population);
-  printfTable(childTable);
 
   return childTable;
 }
@@ -51,21 +50,3 @@ LinkedList *buildChildList(void *mid, LinkedList *listA, LinkedList *listB){
   }
   return child;
 }
-
-/*
-void crossoverTwoTable(Table *child, Table tableA, Table tableB, Paper *target, int population){
-  LinkedList *loopA, *loopB, *childList;
-  loopA = sessionListToPapersLoop( tableA.sessions);
-  loopB = sessionListToPapersLoop( tableB.sessions);
-  
-  while(loopA->data != target)
-    loopA = loopA->next;
-  while(loopB->data != target)
-    loopB = loopB->next;
-  
-  reverseLoop(&loopA);
-  childList = buildChildList( target, loopA->next, loopB->next);    //loopA and loopB already pointed to target, so pass "next"
-  papersListIntoTable( child, childList, population);
- // printfTable(*child);
-
-}*/

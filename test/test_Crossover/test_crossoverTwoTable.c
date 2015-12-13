@@ -188,7 +188,8 @@ void tearDown(void){
 *
 *   The tests below are same as the test of crossoverPaperLists()
 *   because crossoverPaperLists is its sub fucntion, and also core function
-*   This function is just convert the paperList to table only, so the result still is same of order.
+*   This function is just convert the paperList to table only, during the convertion
+*   will make the order become reverse due to addDataToHead()
 *
 *   Notice : That is an unsolve in this function,
 *            The result table can be print in function 
@@ -196,25 +197,31 @@ void tearDown(void){
 *             ( printfTable(child) )
 */
 
-/**                       target = p1 
+/**                       target = p4 
   * 
   *
   * Table A      p1   p2    p3    p4    p5   p6    p7    p8
-  *              X                                       <-
+  *              <--------------- X
   *                                
   * Table B      p7   p3    p5    p1    p8    p2    p4    p6
-  *                                X   break
+  *              --> break                          X------- 
   *           
   * 
-  * output list  =   p1  p8  (p7  p6  p5  p4  p3 p2)  
-  *                            added mising element from tableA                               
+  * output list  =   p1  p2  p3  p4  p6  p7  (p8 p5)  
+  *                                           added mising element from tableA      
+  *  
+  * ----------Due to convertion using addDataToHead(), the child has reversed ----------------
+  *  child
   *
+  *               s1           |          s2         |         s3          |        s4
+  *           p5,       p8    |     p7,      p6     |    p4,       p3     |     p2,      p1
+  *      
+  * 
 */
 void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p4, population);
- // printfTable(child);
-  
+
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
   TEST_ASSERT_NOT_NULL(S3);

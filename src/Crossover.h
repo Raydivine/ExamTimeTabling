@@ -4,7 +4,6 @@
 #include "LinkedList.h"
 
 Table crossoverTwoTable( Table tableA, Table tableB, Paper *target, int population);
-//void crossoverTwoTable(Table *child, Table tableA, Table tableB, Paper *target, int population);
 LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target);
 LinkedList *buildChildList(void *mid, LinkedList *pListA, LinkedList *pListB);
 

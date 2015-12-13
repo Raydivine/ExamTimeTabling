@@ -7,15 +7,6 @@
 #include <stdio.h>
 #include <assert.h>
 
-// Session s[100];
-// int i = 0;
-  
-// while(pList != NULL){
-    // s[i] = takeSessionFromPaperList(&pList, max);
-    // addSessionToTable( table, &s[i]);
-    // i++;
-  // }
-
 LinkedList *sessionListToPapersLoop(LinkedList *sList){
   if( sList == NULL)
     return;
@@ -85,11 +76,6 @@ void papersListIntoTable(Table *table, LinkedList *pList, int max){
   else 
     return;
 }
-
-void papersListIntoTable1(Table *table, LinkedList *pList, int max){
-  papersListIntoTable(table, pList,  max);
-}
-
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )
 void listToLoop(LinkedList **list){
