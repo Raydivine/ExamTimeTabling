@@ -7,6 +7,19 @@ void printfTable(Table table){
   printfSessionList(table.sessions);
 }
 
+void printfTableWithPaperOnly(Table *table){
+  LinkedList *sList = table->sessions;
+  Session *s;
+  
+  while( sList != NULL){
+    s = (Session*)sList->data;
+    printfPaperListOnly(s->papers);
+    sList = sList ->next;
+  }
+  printf("\n");
+  
+}
+
 void printfSessionList(LinkedList *sList){
   Session *s;
   
@@ -41,6 +54,16 @@ void printfPaperList(LinkedList *pList){
     pList = pList->next;
   }
   printf("|");
+}
+
+void printfPaperListOnly(LinkedList *pList){
+  Paper *p;
+  
+  while( pList !=NULL) {
+    p = (Paper*)pList->data;                                        
+    printf("%s",p->code);
+    pList = pList->next;
+  }
 }
 
 void printfProgrammeList(LinkedList *proList){

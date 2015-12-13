@@ -180,6 +180,5 @@ void test_mutateTable_given_s4_at_head_should_mutate(void){
   printf("\noutput fitnessScore: %d\n", table.fitnessScore);
   printfTable(table);
   printf("\n");
-  
   clearLinkList(&table.sessions); 
 }

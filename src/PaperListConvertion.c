@@ -9,11 +9,22 @@
 
 void papersListIntoTable(Table *table, LinkedList *pList, int max){
 
+  // Session s[100];
+  // int i = 0;
+  
+  // while(pList != NULL){
+    // s[i] = takeSessionFromPaperList(&pList, max);
+    // addSessionToTable( table, &s[i]);
+    // i++;
+  // }
+
   Session s = takeSessionFromPaperList(&pList, max);
   addSessionToTable( table, &s);
   
   if( pList != NULL)
     papersListIntoTable( table, pList, max);
+  else 
+    return;
 }
 
 Session takeSessionFromPaperList(LinkedList **pLists, int max){

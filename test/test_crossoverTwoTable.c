@@ -22,7 +22,6 @@
 #define S6 child.sessions->next->next->next->next->next
 #define S7 child.sessions->next->next->next->next->next->next
 
-
 // The below define are the paper sequence in session
 //  example:  S1_1  = session1's first paper
 //  example:  S1_2  = session1's second paper
@@ -63,12 +62,10 @@
 #define S4_7 ((Session*)S4->data)->papers->next->next->next->next->next->next
 
 
-
-
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 Session s1,s2,s3,s4,s5,s6,s7,s8;
-Table tableA, tableB;
+Table tableA, tableB, child;
 int population;
 
 void setUp(void){
@@ -149,6 +146,8 @@ void setUp(void){
   addSessionToTable(&tableB, &s7);
   addSessionToTable(&tableB, &s6);
   addSessionToTable(&tableB, &s5);
+  
+  child = createTable();
 
 /** Table A
   *
@@ -175,6 +174,7 @@ void tearDown(void){
   CLEAR_SESSION_5_TO_8;
   clearLinkList(&tableA.sessions); 
   clearLinkList(&tableB.sessions); 
+  clearLinkList(&child.sessions); 
 }
 
 
@@ -199,20 +199,31 @@ void tearDown(void){
 * Due to it is a global function, the result is unprediable, so testing is by print out 
 */
 
-void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){
-  Table child = createTable();
+void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
+  child = crossoverTwoTable( tableA, tableB, &p4, population);
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
   
-  // printf("tableA :\n ");
-  // printfTable(tableA);
-  // printf("tableB :\n ");
-  // printfTable(tableB);
-  // printf("Chosse %s as point to do croosover\n", p4.code);
+  // TEST_ASSERT_EQUAL_PTR(&p3, S1_1->data);
+  // TEST_ASSERT_EQUAL_PTR(&p1, S1_2->data);
+  // TEST_ASSERT_EQUAL_PTR(&p8, S2_1->data);
+  // TEST_ASSERT_EQUAL_PTR(&p2, S2_2->data);
+  // TEST_ASSERT_EQUAL_PTR(&p4, S3_1->data);
+  // TEST_ASSERT_EQUAL_PTR(&p5, S3_2->data);
+  // TEST_ASSERT_EQUAL_PTR(&p6, S4_1->data); 
+  // TEST_ASSERT_EQUAL_PTR(&p7, S4_2->data); 
   
-  crossoverTwoTable( &child, tableA, tableB, &p4, population);
-  // LinkedList *sList = child.sessions;
-  // Session *s = (Session*)sList->data;
-  // LinkedList *pList = s->papers;
+  //printfTable(child);
+  // Session *ss1 = (Session*)S1->data;
+  // LinkedList *pList = ss1->papers;
   // printfPaperList(pList);
+  
+  // Session *ss2 = (Session*)S2->data;
+  // LinkedList *pList2 = ss2->papers;
+  // printfPaperList(pList2);
   
   
  // Paper *p = (Paper*)S1_1->data;
@@ -220,6 +231,6 @@ void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){
 //  TEST_ASSERT_EQUAL_PTR(&p1, S2_1->data);
 
   //printf("child :\n ");
-  printfTable(child);
+
  //   clearLinkList(&child.sessions); 
 }
