@@ -136,8 +136,8 @@ void tearDown(void){
 
 /**  LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target)
 *    This function return croosovered paperList form tableA and tableB
+*    target is the choosen point while doing crossover between tableA and tableB
 *  
-*
 *    ProccessFlow
 *    1. Convert tableA and tableB to paperLoopA and paperLoopB 
 *       ( paper is the unit element in chromosome, convert to loop is for the convenient of crossover
@@ -152,7 +152,6 @@ void tearDown(void){
 *    4.  Get the croosovered paperList by pass them to buildChildList()
 *    5.  return croosovered paperList
 *  
-*
 * Due to it is a global function, the result is unprediable, so testing is by print out 
 */
 

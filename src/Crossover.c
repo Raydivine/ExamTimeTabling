@@ -8,16 +8,13 @@
 #include <stdio.h>
 
 Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population){
+  LinkedList *childList = crossoverPaperLists( tableA, tableB, target);
   
-  
-  
-  //Table child = createTable();
+  Table childTable = createTable();
+  papersListIntoTable( &childTable, childList, population);
+  printfTable(childTable);
 
-  //papersListIntoTable( &child, childList, population);
-  
- // printfTable(child);
-
-  //return child;
+  return childTable;
 }
 
 LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target){

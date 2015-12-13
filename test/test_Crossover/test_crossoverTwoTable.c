@@ -60,7 +60,6 @@
 #define S4_6 ((Session*)S4->data)->papers->next->next->next->next->next
 #define S4_7 ((Session*)S4->data)->papers->next->next->next->next->next->next
 
-
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
 Session s1,s2,s3,s4,s5,s6,s7,s8;
@@ -179,60 +178,55 @@ void tearDown(void){
 
 /**  Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population)
 *
-*    This function will build a child from tableA and tableB
+*    This function will build a child table from tableA and tableB
 *    a) target is the choosen point while doing crossover between tableA and tableB
 *    b) population is the total student in session , while this number is depend on the total seat in school
 *
 *    ProccessFlow
-*    1. Convert tableA and tableB to paperLoopA and paperLoopB 
-*       ( paper is the unit element in chromosome, convert to loop is for the convenient of crossover)
-*    2. Point the head of them to target
-*       ( as the starting middle point to do croosover )
-*    3. Reverse paperLoopA
-*       ( reversed paperLoopA so its direction go to left, while paperLoopB go to right)
-*    4.  Pass paperLoopA and paperLoopB to buildChildList()
-*       ( this will return a croosover child list)  
-*    5.  Convert the child list to child table
-*  
+*    1. Get the crossovered paperList by passing tableA,tableB and target to  crossoverPaperLists()
+*    2. convert the crossovered paperList, and return it
 *
-* Due to it is a global function, the result is unprediable, so testing is by print out 
+*   The tests below are same as the test of crossoverPaperLists()
+*   because crossoverPaperLists is its sub fucntion, and also core function
+*   This function is just convert the paperList to table only, so the result still is same of order.
+*
+*   Notice : That is an unsolve in this function,
+*            The result table can be print in function 
+*            but print out in test will cause bad memory access,
+*             ( printfTable(child) )
 */
 
+/**                       target = p1 
+  * 
+  *
+  * Table A      p1   p2    p3    p4    p5   p6    p7    p8
+  *              X                                       <-
+  *                                
+  * Table B      p7   p3    p5    p1    p8    p2    p4    p6
+  *                                X   break
+  *           
+  * 
+  * output list  =   p1  p8  (p7  p6  p5  p4  p3 p2)  
+  *                            added mising element from tableA                               
+  *
+*/
 void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p4, population);
  // printfTable(child);
   
-  // TEST_ASSERT_NOT_NULL(S1);
-  // TEST_ASSERT_NOT_NULL(S2);
-  // TEST_ASSERT_NOT_NULL(S3);
-  // TEST_ASSERT_NOT_NULL(S4);
-  // TEST_ASSERT_NULL(S5);
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
   
-  // TEST_ASSERT_EQUAL_PTR(&p3, S1_1->data);
-  // TEST_ASSERT_EQUAL_PTR(&p1, S1_2->data);
-  // TEST_ASSERT_EQUAL_PTR(&p8, S2_1->data);
-  // TEST_ASSERT_EQUAL_PTR(&p2, S2_2->data);
-  // TEST_ASSERT_EQUAL_PTR(&p4, S3_1->data);
-  // TEST_ASSERT_EQUAL_PTR(&p5, S3_2->data);
-  // TEST_ASSERT_EQUAL_PTR(&p6, S4_1->data); 
-  // TEST_ASSERT_EQUAL_PTR(&p7, S4_2->data); 
-  
-  
-  // Session *ss1 = (Session*)S1->data;
-  // LinkedList *pList = ss1->papers;
-  // printfPaperList(pList);
-  
-  // Session *ss2 = (Session*)S2->data;
-  // LinkedList *pList2 = ss2->papers;
-  // printfPaperList(pList2);
-  
-  
- // Paper *p = (Paper*)S1_1->data;
- // TEST_ASSERT_EQUAL_PTR(&p3, S1_1->data);
-//  TEST_ASSERT_EQUAL_PTR(&p1, S2_1->data);
-
-  //printf("child :\n ");
-
- //   clearLinkList(&child.sessions); 
+  TEST_ASSERT_EQUAL_PTR(&p5, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p8, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p7, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p6, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p1, S4_2->data); 
 }
