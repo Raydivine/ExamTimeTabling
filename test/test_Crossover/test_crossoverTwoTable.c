@@ -2,9 +2,11 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
+#include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
 #include "PaperListConvertion.h"
+#include "CalFitnessScore.h"
 #include "Crossover.h"
 
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
@@ -220,6 +222,7 @@ void tearDown(void){
 void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
   
   child = crossoverTwoTable( tableA, tableB, &p4, population);
+  //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);

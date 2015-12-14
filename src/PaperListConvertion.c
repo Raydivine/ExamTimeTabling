@@ -2,8 +2,10 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
+#include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
+#include "CalFitnessScore.h"
 #include <stdio.h>
 #include <assert.h>
 
@@ -49,7 +51,7 @@ void reverseLoop(LinkedList **loop){
 Session takeSessionFromPaperList(LinkedList **pLists, int max){
 
   Session s = createSession();
-  LinkedList *pList = *pLists; 
+  LinkedList *pList = *pLists, *temp; 
   Paper *p;
   
   while( s.population < max && pList!=NULL){
@@ -63,13 +65,15 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
   }
   *pLists = pList;
   
+ // removeDatasFromList( pLists, s.papers);
+  
   return s;
 }
 
 void papersListIntoTable(Table *table, LinkedList *pList, int max){
   Session s = takeSessionFromPaperList(&pList, max);
   addDataToTail(&(table->sessions), &s);
-
+  
   if( pList != NULL)
     papersListIntoTable( table, pList, max);
 }

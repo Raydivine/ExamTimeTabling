@@ -5,6 +5,22 @@
 #include "printfStructs.h"
 #include <stdio.h>
 
+
+Table *getPopulation(Paper *papersArr[], int size, int maxPeopleInSession, int populationNum){
+  Table *tabArr, arr[size];
+  LinkedList *pList;
+  int i;
+  
+  for( i = 0; i < populationNum; i++){
+    shuffleArray( papersArr, size);
+    pList = convertArrayToLinkedList( papersArr, size);
+   // papersListIntoTable( &arr[i], pList, maxPeopleInSession);
+  }
+  
+  return tabArr;
+}
+
+
 LinkedList *convertArrayToLinkedList(Paper *papersArr[], int size){
   int i;
   LinkedList *paperList = NULL;

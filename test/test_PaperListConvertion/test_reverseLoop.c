@@ -5,6 +5,7 @@
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include "SetElements.h"
+#include "CalFitnessScore.h"
 #include "printfStructs.h"
 
 #define HEAD  pList

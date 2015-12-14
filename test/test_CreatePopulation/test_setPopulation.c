@@ -5,12 +5,17 @@
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
+#include "PaperListConvertion.h"
+#include "Random.h"
 
+#define SIZE sizeof(papersArr)/sizeof(*papersArr)
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
 #define CLEAR_PAPPER_6_TO_10  clearLinkList(&(p6.programmes)); clearLinkList(&(p7.programmes)); clearLinkList(&(p8.programmes)); clearLinkList(&(p9.programmes)); clearLinkList(&(p10.programmes)); 
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
+
+const int maxPeopleInSession = 500;
 
 void setUp(void){
   
@@ -95,7 +100,8 @@ void tearDown(void)
   CLEAR_PAPPER_6_TO_10;
 }
 
-void test_module_generator_needs_to_be_implemented(void)
-{
-	Paper pArr[] = {p1,p2,p3,p4,p5,p6,p7,p8,p9,p10};
+void test_getPopulation_needs_to_be_implemented(void){
+  
+	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
+  Table *population = getPopulation(papersArr, SIZE, maxPeopleInSession, 10);
 }

@@ -10,8 +10,14 @@
 Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int population){
   LinkedList *childList = crossoverPaperLists( tableA, tableB, target);
   
+  //Table childTable = paperListToTable(childList, population);
+  
   Table childTable = createTable();
   papersListIntoTable( &childTable, childList, population);
+  
+  
+  
+  //childTable.fitnessScore = calFitnessScore( childTable.sessions);
 
   return childTable;
 }

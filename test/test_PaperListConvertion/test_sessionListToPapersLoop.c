@@ -5,6 +5,7 @@
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include "SetElements.h"
+#include "CalFitnessScore.h"
 #include "printfStructs.h"
 
 #define CLEAR_ALL_SESSION clearLinkList(&(s1.papers)); clearLinkList(&(s2.papers)); clearLinkList(&(s3.papers)); clearLinkList(&(s4.papers));

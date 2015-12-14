@@ -2,8 +2,10 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 #include "LinkedListAdd.h"
+#include "LinkedListRemove.h"
 #include "SetElements.h"
 #include "printfStructs.h"
+#include "CalFitnessScore.h"
 #include "PaperListConvertion.h"
  
 #define HEAD  s.papers
