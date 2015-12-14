@@ -5,23 +5,23 @@
 #include "printfStructs.h"
 #include <stdio.h>
 
-LinkedList *convertArrayToLinkedList(Paper *papersArr[], int papersNum){
+LinkedList *convertArrayToLinkedList(Paper *papersArr[], int size){
   int i;
   LinkedList *paperList = NULL;
   
-  for( i = 0 ; i < papersNum ; i++)
+  for( i = 0 ; i < size ; i++)
     addDataToHead( &paperList, papersArr[i]);
   
   return paperList;
 }
 
-void shuffleArray( Paper papers[], int size){ 
+void shuffleArray( Paper *papersArr[], int size){ 
   int i,x; 
-  Paper temp; 
+  Paper *temp; 
   for( i=0 ; i < size ; i++){    
     x = random(size); 
-    temp = papers[x]; 
-    papers[x] = papers[i]; 
-    papers[i] = temp; 
+    temp = papersArr[x]; 
+    papersArr[x] = papersArr[i]; 
+    papersArr[i] = temp; 
   } 
 } 
