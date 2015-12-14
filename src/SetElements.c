@@ -33,6 +33,11 @@ Session createSession(){
   return session;
 }
 
+void addPaperToSessionTail(Session *target, Paper *paper){
+  addDataToTail(&(target->papers), paper);
+  target->population = target->population + paper->takersNum;
+}
+
 void addPaperToSession(Session *target, Paper *paper){
   addDataToHead(&(target->papers), paper);
   target->population = target->population + paper->takersNum;
