@@ -1,8 +1,11 @@
 #ifndef CreatePopulation_H
 #define CreatePopulation_H
 #include "ExamStruct.h"
+#include "LinkedList.h"
 
-Table[] createPopulation( Paper papers[], int papersNum, int maxPeopleInSession, int populationNum);
-Table paperArrToTable( Paper papers[], int papersNum, int maxPeopleInSession);
+void setPopulation( Table table[], Paper papers[], int papersNum, int maxPeopleInSession, int populationNum);
+void shuffleArray( Paper papers[], int size);
+LinkedList *convertArrayToLinkedList(Paper *papersArr[], int papersNum);
+
 
 #endif // CreatePopulation_H

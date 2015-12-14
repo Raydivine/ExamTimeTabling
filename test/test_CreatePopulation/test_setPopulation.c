@@ -1,6 +1,10 @@
 #include "unity.h"
 #include "CreatePopulation.h"
 #include "ExamStruct.h"
+#include "SetElements.h"
+#include "LinkedList.h"
+#include "LinkedListAdd.h"
+#include "LinkedListRemove.h"
 
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
 #define CLEAR_PAPPER_6_TO_10  clearLinkList(&(p6.programmes)); clearLinkList(&(p7.programmes)); clearLinkList(&(p8.programmes)); clearLinkList(&(p9.programmes)); clearLinkList(&(p10.programmes)); 
@@ -43,13 +47,13 @@ void setUp(void){
   
   addProgrammeToPaper(&p5, &c2);
   addProgrammeToPaper(&p5, &c4);
-  addProgrammeToPaper(&p5, &c6);
+  addProgrammeToPaper(&p5, &c3);
   
   addProgrammeToPaper(&p6, &c1);
   addProgrammeToPaper(&p6, &c2);
   addProgrammeToPaper(&p6, &c3);
   addProgrammeToPaper(&p6, &c4);
-  addProgrammeToPaper(&p6, &c5;
+  addProgrammeToPaper(&p6, &c5);
   
   addProgrammeToPaper(&p7, &c4);
   addProgrammeToPaper(&p7, &c3); 
@@ -70,14 +74,18 @@ void setUp(void){
   
 /** p : paper , c : programme
   *
-  *       p1       p2         p3        p4       p5       p6        p7        p8        p9       p10
-  *  --------------------------------------------------------------------------------------------------
-  *       c1       c4         c1        c3      c2        c1        c7        c2        c2       c4
-  *       c2       c5         c5        c4      c4        c2        c3        c5        c3       c5
-  *       c3                                    c6        c3        c1        c1        c5       c2
-  *                                                       c4                                     c1
-  *                                                       c5
+  *             p1       p2         p3        p4       p5       p6        p7        p8        p9       p10
+  *  ----------------------------------------------------------------------------------------------------
+  *             c1       c4         c1        c3      c2        c1        c4        c2        c2       c4
+  *             c2       c5         c5        c4      c4        c2        c3        c5        c3       c5
+  *             c3                                    c3        c3        c1        c1        c5       c2
+  *                                                             c4                                     c1
+  *                                                             c5
+  *Stundet:    270      145        170       165      245      417       265       250        240     325    
   *
+  *Total examiner = 2492
+  *
+  *TotalSeat in school = 500
 */
 }
 
@@ -89,5 +97,5 @@ void tearDown(void)
 
 void test_module_generator_needs_to_be_implemented(void)
 {
-	TEST_IGNORE_MESSAGE("Implement me!");
+	Paper pArr[] = {p1,p2,p3,p4,p5,p6,p7,p8,p9,p10};
 }
