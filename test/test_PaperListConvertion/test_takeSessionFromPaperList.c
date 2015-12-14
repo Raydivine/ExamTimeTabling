@@ -125,15 +125,15 @@ void test_takeSessionFromPaperList_given_num_is_75_which_only_allow_1_session_sh
   *
   * pList = p3,p4
   *
-  *    s.papers = p2,p1
+  *    s.papers = p1,p2
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_100_should_build_session_with_p1_p2(void){
     
   Session s = takeSessionFromPaperList(&pList, 100);
-  TEST_ASSERT_EQUAL_PTR( &p2, HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
   TEST_ASSERT_NULL(HEAD2);
   
   TEST_ASSERT_EQUAL_PTR( &p3, LIST->data);
@@ -152,15 +152,15 @@ void test_takeSessionFromPaperList_given_num_is_100_should_build_session_with_p1
   *
   * pList = p3,p4
   *
-  *    s.papers = p2,p1
+  *    s.papers = p1,p2
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_130_maximum_can_put_in_2_should_build_session_with_p1_p2(void){
   
   Session s = takeSessionFromPaperList(&pList, 130);
-  TEST_ASSERT_EQUAL_PTR( &p2, HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
   TEST_ASSERT_NULL(HEAD2);
   
   TEST_ASSERT_EQUAL_PTR( &p3, LIST->data);
@@ -179,16 +179,16 @@ void test_takeSessionFromPaperList_given_num_is_130_maximum_can_put_in_2_should_
   *
   * pList = p4
   *
-  *    s.papers = p3,p2,p1
+  *    s.papers = p1,p2,p3
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_150_should_build_session_with_p1_p2_p3(void){
     
   Session s = takeSessionFromPaperList(&pList, 150);
-  TEST_ASSERT_EQUAL_PTR( &p3, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
   TEST_ASSERT_NULL(HEAD3);
   
   TEST_ASSERT_EQUAL_PTR( &p4, LIST->data);
@@ -207,16 +207,16 @@ void test_takeSessionFromPaperList_given_num_is_150_should_build_session_with_p1
   *
   * pList = p4
   *
-  *    s.papers = p3,p2,p1
+  *    s.papers = p1,p2,p3
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_175_only_can_put_in_3_should_build_session_with_p1_p2_p3(void){
     
   Session s = takeSessionFromPaperList(&pList, 175);
-  TEST_ASSERT_EQUAL_PTR( &p3, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
   TEST_ASSERT_NULL(HEAD3);
   
   TEST_ASSERT_EQUAL_PTR( &p4, LIST->data);
@@ -234,17 +234,17 @@ void test_takeSessionFromPaperList_given_num_is_175_only_can_put_in_3_should_bui
   *
   * pList = null
   *
-  *    s.papers = p4,p3,p2,p1
+  *    s.papers = p1,p2,p3,p4
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_200_should_build_session_with_p1_p2_p3_p4(void){
   
   Session s = takeSessionFromPaperList(&pList, 200);
-  TEST_ASSERT_EQUAL_PTR( &p4, HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p3, HEAD1->data);
-  TEST_ASSERT_EQUAL_PTR( &p2, HEAD2->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD3->data);
   TEST_ASSERT_NULL(HEAD4);
   
   TEST_ASSERT_NULL(LIST);
@@ -261,17 +261,17 @@ void test_takeSessionFromPaperList_given_num_is_200_should_build_session_with_p1
   *
   * pList = null
   *
-  *    s.papers = p4,p3,p2,p1
+  *    s.papers = p1,p2,p3,p4
   *               
   * 
 */
 void test_takeSessionFromPaperList_given_num_is_250__which_use_all_the_pList_should_left_pList_null(void){
   
   Session s = takeSessionFromPaperList(&pList, 250);
-  TEST_ASSERT_EQUAL_PTR( &p4, HEAD->data);
-  TEST_ASSERT_EQUAL_PTR( &p3, HEAD1->data);
-  TEST_ASSERT_EQUAL_PTR( &p2, HEAD2->data);
-  TEST_ASSERT_EQUAL_PTR( &p1, HEAD3->data);
+  TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
+  TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
+  TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
+  TEST_ASSERT_EQUAL_PTR( &p4, HEAD3->data);
   TEST_ASSERT_NULL(HEAD4);
   
   TEST_ASSERT_NULL(LIST);

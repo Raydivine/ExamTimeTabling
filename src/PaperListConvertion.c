@@ -57,7 +57,7 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
     assert((p->takersNum) <= max);
     
     if( (s.population + p->takersNum) <= max){
-      addPaperToSession(&s, p);
+      addPaperToSessionTail(&s, p);
       pList = pList->next;
     }else break;
   }
