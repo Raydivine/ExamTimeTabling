@@ -67,14 +67,11 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
 }
 
 void papersListIntoTable(Table *table, LinkedList *pList, int max){
-
   Session s = takeSessionFromPaperList(&pList, max);
-  addSessionToTable( table, &s);
-  
+  addDataToTail(&(table->sessions), &s);
+
   if( pList != NULL)
     papersListIntoTable( table, pList, max);
-  else 
-    return;
 }
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )

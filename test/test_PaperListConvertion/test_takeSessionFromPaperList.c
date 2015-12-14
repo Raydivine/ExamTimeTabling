@@ -290,7 +290,7 @@ void test_takeSessionFromPaperList_given_num_is_250__which_use_all_the_pList_sho
   *
   *  Because the assertion is used, un "X" this test will cause system error
 */
-void xtest_takeSessionFromPaperList_given_num_is_10_which_less_than_papers_takerNum(void){
+void xtest_takeSessionFromPaperList_given_num_is_25_which_less_than_papers_takerNum(void){
   
-  Session s = takeSessionFromPaperList(&pList, 10);
+  Session s = takeSessionFromPaperList(&pList, 25);
 }
