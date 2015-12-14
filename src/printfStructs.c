@@ -7,6 +7,11 @@ void printfTable(Table table){
   printfSessionList(table.sessions);
   printf("\n");
 }
+void printfTablePointer(Table *table){
+   printfSessionList(table->sessions);
+  printf("\n");
+}
+
 
 void printfTableWithPaperOnly(Table *table){
   LinkedList *sList = table->sessions;

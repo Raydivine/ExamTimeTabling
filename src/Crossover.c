@@ -26,7 +26,7 @@ LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target){
   while(loopB->data != target)
     loopB = loopB->next;
   
-  LinkedList *pList = buildChildList( target, loopA->next, loopB->next);    //loopA and loopB already pointed to target, so pass "next"
+  LinkedList *pList = buildChildList( target, loopA->next, loopB->next);    //loopA and loopB already pointed to target, so pass "->next"
   return pList;
 }
 

@@ -5,6 +5,7 @@
 
 void printfTableWithPaperOnly(Table *table);
 void printfTable(Table table);
+void printfTablePointer(Table *table);
 void printfSessionList(LinkedList *sList);
 void printfPaperList(LinkedList *pList);
 void printfPaperListOnly(LinkedList *pList);

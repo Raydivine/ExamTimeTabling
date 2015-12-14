@@ -198,7 +198,7 @@ void test_crossoverPaperLists_given_target_is_p4_should_stop_at_tableB_p3(void){
   *                                X   break
   *           
   * 
-  * output list  =   p1  p8  (p7  p6  p5  p4  p3 p2)  
+  * output list  =   p8  p1  (p7  p6  p5  p4  p3 p2)  
   *                            added mising element from tableA                               
   *
 */

@@ -188,8 +188,7 @@ void tearDown(void){
 *
 *   The tests below are same as the test of crossoverPaperLists()
 *   because crossoverPaperLists is its sub fucntion, and also core function
-*   This function is just convert the paperList to table only, during the convertion
-*   will make the order become reverse due to addDataToHead()
+*   This function is just convert the paperList to table only
 *
 *   Notice : That is an unsolve in this function,
 *            The result table can be print in function 
@@ -210,11 +209,11 @@ void tearDown(void){
   * output list  =   p1  p2  p3  p4  p6  p7  (p8 p5)  
   *                                           added mising element from tableA      
   *  
-  * ----------Due to convertion using addDataToHead(), the child has reversed ----------------
+  * ----------the outputList( crossoverList) converted to child (crossoveredTable)----------------
   *  child
   *
   *               s1           |          s2         |         s3          |        s4
-  *           p5,       p8    |     p7,      p6     |    p4,       p3     |     p2,      p1
+  *           p1,       p2    |     p3,      p4     |    p6,       p7     |     p8,      p5
   *      
   * 
 */
@@ -227,13 +226,202 @@ void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){
   TEST_ASSERT_NOT_NULL(S3);
   TEST_ASSERT_NOT_NULL(S4);
   TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p1, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p6, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p7, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p8, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p5, S4_2->data); 
   
-  TEST_ASSERT_EQUAL_PTR(&p5, S1_1->data);
-  TEST_ASSERT_EQUAL_PTR(&p8, S1_2->data);
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
+}
+
+/**                       target = p1 
+  * 
+  *
+  * Table A      p1   p2    p3    p4    p5   p6    p7    p8
+  *              X                                       <-
+  *                                
+  * Table B      p7   p3    p5    p1    p8    p2    p4    p6
+  *                                X   break
+  *           
+  * 
+  * output list  =   p8  p1  (p7  p6  p5  p4  p3 p2)  
+  *                            added mising element from tableA    
+  *
+  * ----------the outputList( crossoverList) converted to child (crossoveredTable)----------------
+  *  child
+  *
+  *               s1           |          s2         |         s3          |        s4
+  *           p8,       p1    |     p7,      p6     |    p5,       p4     |     p3,      p2
+  *      
+  * 
+*/
+void test_crossoverTwoTable_given_target_is_p1_should_crossover(void){ 
+  
+  child = crossoverTwoTable( tableA, tableB, &p1, population);
+
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p8, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, S1_2->data);
   TEST_ASSERT_EQUAL_PTR(&p7, S2_1->data);
   TEST_ASSERT_EQUAL_PTR(&p6, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p5, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p2, S4_2->data); 
+  
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
+}
+
+/**                       target = p6 
+  * 
+  *
+  * Table A      p1   p2    p3    p4    p5   p6    p7    p8
+  *                        break  <----------X                                       
+  *                                
+  * Table B      p7   p3    p5    p1    p8    p2    p4    p6
+  *              ------>                                   X
+  *           
+  * 
+  * output list  =   p4  p5  p6  p7  p3  (p2  p1   p8)  
+  *                                       added mising element from tableA   
+  *
+  * ----------the outputList( crossoverList) converted to child (crossoveredTable)----------------
+  *  child
+  *
+  *               s1           |          s2         |         s3          |        s4
+  *           p4,       p5    |     p6,      p7     |    p3,       p2     |     p1,      p8
+  *      
+  * 
+*/
+void test_crossoverTwoTable_given_target_is_p6_should_crossover(void){ 
+  
+  child = crossoverTwoTable( tableA, tableB, &p6, population);
+
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p4, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p5, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p6, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p7, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p8, S4_2->data); 
+  
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
+}
+
+/**                       target = p5 
+  * 
+  *
+  * Table A      p1   p2    p3    p4    p5   p6    p7    p8
+  *                   <-----------------X                                       
+  *                                
+  * Table B      p7   p3    p5    p1    p8    p2    p4    p6
+  *                         X----------->    break                                
+  *           
+  * 
+  * output list  =   p2  p3  p4  p5  p1  p8  (p7   p6)  
+  *                                           added mising element from tableA     
+  *
+  * ----------the outputList( crossoverList) converted to child (crossoveredTable)----------------
+  *  child
+  *
+  *               s1           |          s2         |         s3          |        s4
+  *           p2,       p3    |     p4,      p5     |    p1,       p8     |     p7,      p6
+  *      
+  * 
+*/
+void test_crossoverTwoTable_given_target_is_p5_should_crossover(void){ 
+  
+  child = crossoverTwoTable( tableA, tableB, &p5, population);
+
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p2, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p5, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p8, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p7, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p6, S4_2->data); 
+  
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
+}
+
+/**                       target = p2
+  * 
+  *
+  * Table A      p1   p2    p3    p4    p5   p6    p7    p8
+  *              -----X                            <-------                     
+  *                                
+  * Table B      p7   p3    p5    p1    p8    p2    p4    p6
+  *             break                          X----------->                              
+  *           
+  * 
+  * output list  =   p7  p8  p1  p2  p4  p6  (p5   p3)  
+  *                                           added mising element from tableA   
+   *
+  * ----------the outputList( crossoverList) converted to child (crossoveredTable)----------------
+  *  child
+  *
+  *               s1           |          s2         |         s3          |        s4
+  *           p7,       p8    |     p1,      p2     |    p4,       p6     |     p5,      p3
+  *      
+  * 
+*/
+void test_crossoverTwoTable_given_target_is_p2_should_crossover(void){ 
+  
+  child = crossoverTwoTable( tableA, tableB, &p2, population);
+
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p7, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p8, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p2, S2_2->data);
   TEST_ASSERT_EQUAL_PTR(&p4, S3_1->data);
-  TEST_ASSERT_EQUAL_PTR(&p3, S3_2->data);
-  TEST_ASSERT_EQUAL_PTR(&p2, S4_1->data); 
-  TEST_ASSERT_EQUAL_PTR(&p1, S4_2->data); 
+  TEST_ASSERT_EQUAL_PTR(&p6, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p5, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p3, S4_2->data); 
+  
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
 }
