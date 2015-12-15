@@ -66,9 +66,18 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
   *pLists = pList;
   
  // removeDatasFromList( pLists, s.papers);
-  
   return s;
 }
+
+void papersListIntoTable(Table *table, LinkedList *pList, int max){
+  Session s = takeSessionFromPaperList(&pList, max);
+  addDataToTail(&(table->sessions), &s);
+  
+  if( pList != NULL)
+    papersListIntoTable( table, pList, max);
+}
+
+
 
 void paperListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
   Session s = createSession();
@@ -98,15 +107,6 @@ void paperListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
   // if( pList != NULL)
     // papersListIntoTable(table, pList, max);
 // }
-
-
-void papersListIntoTable(Table *table, LinkedList *pList, int max){
-  Session s = takeSessionFromPaperList(&pList, max);
-  addDataToTail(&(table->sessions), &s);
-  
-  if( pList != NULL)
-    papersListIntoTable( table, pList, max);
-}
 
 
 // tester tool : convert the list to loop   ( this funntion is not used in main program )
