@@ -133,6 +133,7 @@ void test_papersListIntoTable_given_populatoin_is_50_should_create_4_session(voi
   //-------------------------------------------------------------------------------------------
 
   papersListIntoTable( &table, pList, 50);
+  //printfTable( table);
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
   TEST_ASSERT_NOT_NULL(S3);
