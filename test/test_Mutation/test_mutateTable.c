@@ -98,7 +98,14 @@ void tearDown(void){
 *      list2-------------------------------------------------
 *                     list3----------------------------------    
 *                                   list4-------------------- 
-*                                              list5---------
+*                                              list5---------*
+*
+*
+*       S1            S2            S3          S4          S5
+*       -------------------------------------------------------
+*                    s1s2          s1s3       s1s4        s1s5
+*                                  s2s4                             
+*                                          
 *         
 *      list 1 till list 5 will be input to  mutateTable(LinkedList **sessionList),
 *      so all the sesion will mutate to others

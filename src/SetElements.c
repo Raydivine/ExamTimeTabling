@@ -2,6 +2,7 @@
 #include "ExamStruct.h"
 #include "CalFitnessScore.h"
 #include <stdio.h>
+#include <malloc.h>
 
 void setProgramme(Programme *target ,char *programmeName, int numStudent){
   target->name = programmeName;
@@ -12,12 +13,6 @@ void setPaper(Paper *target ,char *paperCode){
   target->code = paperCode;
   target->takersNum = 0;
   target->programmes = NULL;
-}
-
-void setVenue(Venue *target, char *name, int venueCode, int seatNum){
-  target->blockName = name;
-  target->code = venueCode;
-  target->seats = seatNum;
 }
 
 void addProgrammeToPaper(Paper *target, Programme *programme){

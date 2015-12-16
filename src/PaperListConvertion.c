@@ -1,3 +1,4 @@
+
 #include "PaperListConvertion.h"
 #include "ExamStruct.h"
 #include "LinkedList.h"
@@ -63,9 +64,8 @@ Session takeSessionFromPaperList(LinkedList **pLists, int max){
       pList = pList->next;
     }else break;
   }
-  *pLists = pList;
-  
- // removeDatasFromList( pLists, s.papers);
+  *pLists = pList;              // removeDatasFromList( pLists, s.papers);       
+ 
   return s;
 }
 
