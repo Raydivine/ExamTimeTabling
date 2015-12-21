@@ -9,6 +9,9 @@ void addPaperToSession(Session *target, Paper *paper);
 void addPapersToSession(Session *target, LinkedList *papers);
 void addPaperToSessionTail(Session *target, Paper *paper);
 void addSessionToTable(Table *target, Session *session);
+void testTable(Table *tab, Session *s);
+
+
 Session createSession();
 Table createTable();
 

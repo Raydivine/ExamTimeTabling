@@ -13,9 +13,9 @@ Table crossoverTwoTable(Table tableA, Table tableB, Paper *target, int populatio
   //Table childTable = paperListToTable(childList, population);
   
   Table childTable = createTable();
-  papersListIntoTable( &childTable, childList, population);
-  
-  
+  papersListIntoTable1( &childTable, childList, population);
+
+ // printfTable(childTable);
   
   //childTable.fitnessScore = calFitnessScore( childTable.sessions);
 

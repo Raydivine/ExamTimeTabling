@@ -69,5 +69,19 @@ void setPaperTakersNum(Paper *target ,char *paperCode, int num){
 }
 
 
-
+void testTable(Table *tab, Session *s){
+  Paper p1;
+  Session s1;
+  setPaperTakersNum(&p1, "p1", 50);
+   
+  s1 = createSession();
+  addPaperToSession(&s1, &p1);
+  
+  
+  
+  int i;
+  for( i=0; i<5; i ++){
+    addDataToTail(&(tab->sessions), &s1);
+  }
+}
 

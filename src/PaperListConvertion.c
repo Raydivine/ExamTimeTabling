@@ -77,7 +77,9 @@ void papersListIntoTable(Table *table, LinkedList *pList, int max){
     papersListIntoTable( table, pList, max);
 }
 
+void papersListIntoTable1(Table *table, LinkedList *pList, int max){
 
+}
 
 void paperListIntoSessionList(LinkedList **sList, LinkedList **pList, int max){
   Session s = createSession();
