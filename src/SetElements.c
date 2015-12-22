@@ -80,8 +80,8 @@ void testTable(Table *tab, Session *s){
   
   
   int i;
-  for( i=0; i<5; i ++){
-    addDataToTail(&(tab->sessions), &s1);
-  }
+ // for( i=0; i<5; i ++){
+    addDataToTail(&(tab->sessions), s1);
+ // }
 }
 
