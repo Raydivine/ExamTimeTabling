@@ -98,14 +98,23 @@ void tearDown(void){
 *      list2-------------------------------------------------
 *                     list3----------------------------------    
 *                                   list4-------------------- 
-*                                              list5---------*
+*                                              list5---------
 *
 *
 *       S1            S2            S3          S4          S5
 *       -------------------------------------------------------
-*                    s1s2          s1s3       s1s4        s1s5
-*                                  s2s4                             
-*                                          
+*       (s1)          s1s2          s1s3       s1s4        s1s5    (s1 do  mutation with rest of element)
+*                     (s2)          s2s4       s2s4        s2s5    
+*                                     (s3)     s3s4        s3s5                       
+*                                              (s4)        s4s5     
+*         
+*      The global mutation design allow all the session mutate with others   
+*       Because there is 5 session, so each session done 4 mutation 
+*        s1 mutate start from s2 to s5 
+*        s2 mutate start from s3 to s5  ( skip s1, because s1 already done mutation with s2)
+*        s3 mutate start from s4 to s5  ( skip s1,s2 , because s1,s2 already mutate with s3)
+*        s4 mutate with s5 only         ( s1-s3 already mutate with s4 )
+*        s5 dont do mutation            ( because all session already mutate with it)
 *         
 *      list 1 till list 5 will be input to  mutateTable(LinkedList **sessionList),
 *      so all the sesion will mutate to others
