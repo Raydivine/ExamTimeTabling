@@ -28,6 +28,7 @@ void mutateSessionList(LinkedList **sessionList){
     mutateTwoSession( head, tail);
     tailList = tailList->next;
   }
+
 }
 
 void mutateTwoSession(Session *session1, Session *session2){

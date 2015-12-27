@@ -7,7 +7,9 @@
 #include "LinkedListRemove.h"
 #include "mock_Random.h"
 #include "printfStructs.h"
+#include "CalFitnessScore.h"
 #include "PaperListConvertion.h"
+
 
 #define SIZE sizeof(papersArr)/sizeof(*papersArr)
 

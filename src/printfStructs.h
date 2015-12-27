@@ -3,7 +3,8 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-void printfPopulation(Table population[], int size);
+void printfPopulationFitnessScore(Table *population[], int size);
+void printfPopulation(Table *population[], int size);
 void printfTable(Table *table);
 void printfSessionList(LinkedList *sList);
 void printfPaperList(LinkedList *pList);

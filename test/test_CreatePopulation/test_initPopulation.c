@@ -6,16 +6,17 @@
 #include "LinkedListAdd.h"
 #include "LinkedListRemove.h"
 #include "PaperListConvertion.h"
+#include "CalFitnessScore.h"
 #include "Random.h"
+#include "printfStructs.h"
 
 #define TOTAL_PAPERS sizeof(papersArr)/sizeof(*papersArr)
+#define TOTAL_SAMPLES sizeof(population)/sizeof(*population)
 #define CLEAR_PAPPER_1_TO_5  clearLinkList(&(p1.programmes)); clearLinkList(&(p2.programmes)); clearLinkList(&(p3.programmes)); clearLinkList(&(p4.programmes)); clearLinkList(&(p5.programmes));
 #define CLEAR_PAPPER_6_TO_10  clearLinkList(&(p6.programmes)); clearLinkList(&(p7.programmes)); clearLinkList(&(p8.programmes)); clearLinkList(&(p9.programmes)); clearLinkList(&(p10.programmes)); 
 
 Paper p1,p2,p3,p4,p5,p6,p7,p8,p9,p10;
 Programme c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-
-const int maxPeopleInSession = 500;
 
 void setUp(void){
   
@@ -86,7 +87,7 @@ void setUp(void){
   *             c3                                    c3        c3        c1        c1        c5       c2
   *                                                             c4                                     c1
   *                                                             c5
-  *Stundet:    270      145        170       165      245      417       265       250        240     325    
+  *Student:    270      145        170       165      245      417       265       250        240     325    
   *
   *Total examiner = 2492
   *
@@ -94,14 +95,54 @@ void setUp(void){
 */
 }
 
-void tearDown(void)
-{
+void tearDown(void){
   CLEAR_PAPPER_1_TO_5;
   CLEAR_PAPPER_6_TO_10;
 }
 
-void test_getPopulation_needs_to_be_implemented(void){
+/**
+*  void initPopulation(Table population[], Paper papers[], int sizePopulation ,int sizePapers ,int sizeSession)
+*
+*   The function will init samples to population[], the number of samples is sizePopulation
+*   papers[] is the elmeents to build a table, 
+*   sizeSession is the maximun seat is session
+*
+*
+*   Notice : The sizePapers must larger than the students in paperm
+*            in this case 
+*/
+void xtest_initPopulation_given_5_population_and_sizeSession_is_500(void){
+  int sizeSession = 500; // must larger than 417, which is students number in p6
+	Table *population[5];
   
-	Paper *papersArr[] = { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
-  Table *population = getPopulation(papersArr, TOTAL_PAPERS, maxPeopleInSession, 10);
+  printf("-------------- The * indicate the session has conflict--------------\n\n");
+  
+  Paper *papersArr[10] =  { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
+  initPopulation( population, papersArr, TOTAL_SAMPLES, TOTAL_PAPERS, sizeSession);
+  //printfPopulationFitnessScore( population, 5);
+  printfPopulation( population, TOTAL_SAMPLES);
+  
+  clearPopulation( population, TOTAL_SAMPLES);
+}
+
+void xtest_initPopulation_given_5_population_and_sizeSession_is_420(void){
+  int sizeSession = 420;  
+	Table *population[5];
+  
+  Paper *papersArr[10] =  { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
+  initPopulation( population, papersArr, TOTAL_SAMPLES, TOTAL_PAPERS, sizeSession);
+  printfPopulation( population, TOTAL_SAMPLES);
+  
+  clearPopulation( population, TOTAL_SAMPLES);
+}
+
+void Xtest_initPopulation_given_10_population_and_sizeSession_is_450(void){
+  int sizeSession = 450;  
+	Table *population[10];
+  
+  Paper *papersArr[10] =  { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
+  initPopulation( population, papersArr, TOTAL_SAMPLES, TOTAL_PAPERS, sizeSession);
+  printfPopulation( population, TOTAL_SAMPLES);
+  
+  clearPopulation( population, TOTAL_SAMPLES);
 }

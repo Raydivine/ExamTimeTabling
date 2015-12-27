@@ -3,12 +3,18 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
-void printfPopulation(Table population[], int size ){
+void printfPopulationFitnessScore(Table *population[], int size){
   int i;
   
-  for( i=0 ; i < size ; i++){
-    printf("%d : %d\n", i , population[i].fitnessScore);
-  }
+  for( i=0 ; i < size ; i++)
+    printf("FitnessScore: %d\n", population[i]->fitnessScore);
+}
+
+void printfPopulation(Table *population[], int size){
+  int i;
+  
+  for( i=0 ; i < size ; i++)
+    printfTable( population[i]);
   
 }
 

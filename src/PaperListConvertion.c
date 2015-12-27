@@ -63,8 +63,8 @@ Session *takeSessionFromPaperList(LinkedList **pLists, int max){
       pList = pList->next;
     }else break;
   }
-  *pLists = pList;              // removeDatasFromList( pLists, s.papers);       
- 
+  *pLists = pList;   
+
   return s;
 }
 
