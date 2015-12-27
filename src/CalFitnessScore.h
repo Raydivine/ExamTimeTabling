@@ -3,7 +3,6 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-
 int calFitnessScore(LinkedList *sList);
 int calConflict(LinkedList *pList);
 int calConflictFromPaperToPaparList(Paper *paper, LinkedList *paperList);

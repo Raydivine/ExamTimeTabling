@@ -12,7 +12,6 @@ Table *crossoverTwoTable(Table tableA, Table tableB, Paper *target, int size){
   
   LinkedList *childList = crossoverPaperLists( tableA, tableB, target);
   Table *childTable = buildTable(childList,  size);
-  childTable->fitnessScore = calFitnessScore( childTable->sessions);
 
   return childTable;
 }

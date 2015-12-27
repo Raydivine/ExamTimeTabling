@@ -75,6 +75,8 @@ Table *buildTable(LinkedList *pList, int max){
     Session *s = takeSessionFromPaperList(&pList, max);
     addDataToTail(&(t->sessions), s);
   }
+  t->fitnessScore = calFitnessScore( t->sessions);
+  
   return t;
 }
 

@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <malloc.h>
 
-
 void addPaperToSessionTail(Session *target, Paper *paper){
   addDataToTail(&(target->papers), paper);
   target->size = target->size + paper->takersNum;

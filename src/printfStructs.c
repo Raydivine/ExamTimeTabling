@@ -3,6 +3,16 @@
 #include "LinkedList.h"
 #include <stdio.h>
 
+void printfPopulation(Table population[], int size ){
+  int i;
+  
+  for( i=0 ; i < size ; i++){
+    printf("%d : %d\n", i , population[i].fitnessScore);
+  }
+  
+}
+
+
 void printfTable(Table *table){
   printfSessionList(table->sessions);
   printf("\n");

@@ -5,8 +5,9 @@
 #include "printfStructs.h"
 #include <stdio.h>
 
-
-Table *getPopulation(Paper *papersArr[], int totalPapers, int maxPeopleInSession, int populationNum){
+void initPopulation( Table *population[], int totalPapers, int maxPeopleInSession, int populationNum){
+  
+    /*
   Table *tabArr ,*arr[populationNum];
   LinkedList *pList;
   int i;
@@ -15,13 +16,27 @@ Table *getPopulation(Paper *papersArr[], int totalPapers, int maxPeopleInSession
     shuffleArray( papersArr, totalPapers);
     pList = convertArrayToLinkedList( papersArr, totalPapers);
     arr[i]= buildTable( pList,  maxPeopleInSession);
-    
-   // papersListIntoTable( &arr[i], pList, maxPeopleInSession);
+    papersListIntoTable( &arr[i], pList, maxPeopleInSession);
   }
-  
+ 
+  return arr;*/
+}
 
+void sortInFitnessScore( Table arr[], int size){
+  Table t;
+  int i, d;
   
-  return arr;
+  for (i=1 ; i<= size-1; i++){
+    d = i;
+ 
+    while ( d > 0 && arr[d].fitnessScore < arr[d-1].fitnessScore){
+      t = arr[d];
+      arr[d] = arr[d-1];
+      arr[d-1] = t;
+
+      d--;
+    }
+  }
 }
 
 

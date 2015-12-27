@@ -3,7 +3,9 @@
 #include "ExamStruct.h"
 #include "LinkedList.h"
 
-Table *getPopulation(Paper *papersArr[], int totalPapers, int maxPeopleInSession, int populationNum);
+void initPopulation( Table *population[], int totalPapers, int maxPeopleInSession, int populationNum);
+void sortInFitnessScore( Table arr[], int size);
+
 LinkedList *convertArrayToLinkedList(Paper *papersArr[], int size);
 void shuffleArray( Paper *papersArr[], int size);
 
