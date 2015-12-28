@@ -1,7 +1,6 @@
 #ifndef ExamStruct_H
 #define ExamStruct_H
 #include "LinkedList.h"
-#include "Node.h"
 
 typedef struct Lecturer Lecturer;
 typedef struct Programme Programme;
