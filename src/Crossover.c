@@ -8,7 +8,7 @@
 #include "CalFitnessScore.h"
 #include <stdio.h>
 
-Table *crossoverTwoTable(Table tableA, Table tableB, Paper *target, int size){
+Table *crossoverTwoTable(Table *tableA, Table *tableB, Paper *target, int size){
   
   LinkedList *childList = crossoverPaperLists( tableA, tableB, target);
   Table *childTable = buildTable(childList,  size);
@@ -16,9 +16,9 @@ Table *crossoverTwoTable(Table tableA, Table tableB, Paper *target, int size){
   return childTable;
 }
 
-LinkedList *crossoverPaperLists( Table tableA, Table tableB, Paper *target){
-  LinkedList *loopA = sessionListToPapersLoop( tableA.sessions);
-  LinkedList *loopB = sessionListToPapersLoop( tableB.sessions);
+LinkedList *crossoverPaperLists( Table *tableA, Table *tableB, Paper *target){
+  LinkedList *loopA = sessionListToPapersLoop( tableA->sessions);
+  LinkedList *loopB = sessionListToPapersLoop( tableB->sessions);
   reverseLoop(&loopB);
 
   while(loopA->data != target)

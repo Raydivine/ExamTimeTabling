@@ -220,7 +220,7 @@ void tearDown(void){
 */
 void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){ 
   
-  child = crossoverTwoTable( tableA, tableB, &p4, population);
+  child = crossoverTwoTable( &tableA, &tableB, &p4, population);
   //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
@@ -267,7 +267,7 @@ void test_crossoverTwoTable_given_target_is_p4_should_crossover(void){
 */
 void test_crossoverTwoTable_given_target_is_p1_should_crossover(void){ 
   
-  child = crossoverTwoTable( tableA, tableB, &p1, population);
+  child = crossoverTwoTable( &tableA, &tableB, &p1, population);
   //printfTable(child);
   
   TEST_ASSERT_NOT_NULL(S1);
@@ -314,7 +314,7 @@ void test_crossoverTwoTable_given_target_is_p1_should_crossover(void){
 */
 void test_crossoverTwoTable_given_target_is_p6_should_crossover(void){ 
   
-  child = crossoverTwoTable( tableA, tableB, &p6, population);
+  child = crossoverTwoTable( &tableA, &tableB, &p6, population);
   //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
@@ -361,7 +361,7 @@ void test_crossoverTwoTable_given_target_is_p6_should_crossover(void){
 */
 void test_crossoverTwoTable_given_target_is_p5_should_crossover(void){ 
   
-  child = crossoverTwoTable( tableA, tableB, &p5, population);
+  child = crossoverTwoTable( &tableA, &tableB, &p5, population);
   //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);
@@ -408,7 +408,7 @@ void test_crossoverTwoTable_given_target_is_p5_should_crossover(void){
 */
 void test_crossoverTwoTable_given_target_is_p2_should_crossover(void){ 
   
-  child = crossoverTwoTable( tableA, tableB, &p2, population);
+  child = crossoverTwoTable( &tableA, &tableB, &p2, population);
   //printfTable(child);
 
   TEST_ASSERT_NOT_NULL(S1);

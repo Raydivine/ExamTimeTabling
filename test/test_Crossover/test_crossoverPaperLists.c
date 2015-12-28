@@ -172,7 +172,7 @@ void tearDown(void){
 */
 void test_crossoverPaperLists_given_target_is_p4_should_stop_at_tableB_p3(void){ 
   
-  LinkedList *pList = crossoverPaperLists( tableA, tableB, &p4);
+  LinkedList *pList = crossoverPaperLists( &tableA, &tableB, &p4);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p3, HEAD2->data);
@@ -205,7 +205,7 @@ void test_crossoverPaperLists_given_target_is_p4_should_stop_at_tableB_p3(void){
 */
 void test_crossoverPaperLists_given_target_is_p1_should_stop_at_tableB_p8(void){ 
   
-  LinkedList *pList = crossoverPaperLists( tableA, tableB, &p1);
+  LinkedList *pList = crossoverPaperLists( &tableA, &tableB, &p1);
   TEST_ASSERT_EQUAL_PTR( &p8, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p7, HEAD2->data);
@@ -234,7 +234,7 @@ void test_crossoverPaperLists_given_target_is_p1_should_stop_at_tableB_p8(void){
 */
 void test_crossoverPaperLists_given_target_is_p6_should_stop_at_tableA_p3(void){ 
   
-  LinkedList *pList = crossoverPaperLists( tableA, tableB, &p6);
+  LinkedList *pList = crossoverPaperLists( &tableA, &tableB, &p6);
   TEST_ASSERT_EQUAL_PTR( &p4, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p5, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p6, HEAD2->data);
@@ -263,7 +263,7 @@ void test_crossoverPaperLists_given_target_is_p6_should_stop_at_tableA_p3(void){
 */
 void test_crossoverPaperLists_given_target_is_p5_should_stop_at_tableB_p2(void){ 
   
-  LinkedList *pList = crossoverPaperLists( tableA, tableB, &p5);
+  LinkedList *pList = crossoverPaperLists( &tableA, &tableB, &p5);
   TEST_ASSERT_EQUAL_PTR( &p2, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p3, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p4, HEAD2->data);
@@ -292,7 +292,7 @@ void test_crossoverPaperLists_given_target_is_p5_should_stop_at_tableB_p2(void){
 */
 void test_crossoverPaperLists_given_target_is_p2_should_stop_at_tableB_p7(void){ 
   
-  LinkedList *pList = crossoverPaperLists( tableA, tableB, &p2);
+  LinkedList *pList = crossoverPaperLists( &tableA, &tableB, &p2);
   TEST_ASSERT_EQUAL_PTR( &p7, HEAD->data);
   TEST_ASSERT_EQUAL_PTR( &p8, HEAD1->data);
   TEST_ASSERT_EQUAL_PTR( &p1, HEAD2->data);
