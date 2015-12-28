@@ -5,6 +5,7 @@
 #include "Mutation.h"
 #include "Crossover.h"
 #include "Random.h"
+#include <stdio.h>
 
 const int numberOfSample = 10;
 const int try = 30;
@@ -28,14 +29,16 @@ void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
 
 
 
-void crossoverHandler(Table *population[], Paper *target, int numberOfSample, int sizeSession){
-  int A = random(numberOfSample), B;
+void crossoverHandler(Table *population[], Paper *target, int sizePopulation, int sizeSession){
+  int a,b;
   
-  while(B == A)
-    B = random(numberOfSample);
+  do{
+     a = random(sizePopulation);
+     b = random(sizePopulation);
+  }while(a == b);
+
+  Table *child = crossoverTwoTable( population[a], population[b], target, sizeSession);
   
-  Table *tabA = population[A];
-  Table *tabB = population[B];
-  
-  //Table *child = crossoverTwoTable( tabA, tabB, target, sizeSession);
+  if( child->fitnessScore < population[sizePopulation]->fitnessScore )
+    population[sizePopulation] = child;
 }

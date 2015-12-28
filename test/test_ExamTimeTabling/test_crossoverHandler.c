@@ -75,7 +75,7 @@ Session s1,s2,s3,s4,s5,s6,s7,s8;
 Table *tableA, *tableB;
 
 Table *population[5];
-const int sizeSession = 500;
+const int sizeSession = 100;
 
 void setUp(void){
 
@@ -190,7 +190,7 @@ void tearDown(void){
 }
 
 
-/**   void crossoverHandler(Table *population[], Paper *target, int numberOfSample, int sizeSession)
+/**   void crossoverHandler(Table *population[], Paper *target, int sizePopulation, int sizeSession)
 *
 *     This funciton used to handle croosover process 
 *      population[] is the samples of table
@@ -203,7 +203,7 @@ void tearDown(void){
 *       then the child will replace the seat
 */
 
-/**                       target = p5 
+/**                       target = p5 , sizeSession = 100;
   * 
   *
   * Table A      p1   p2    p3    p4    p5   p6    p7    p8
@@ -230,8 +230,8 @@ void test_crossoverHandler_last_seat_fitnessScore_is_100_which_larger_than_child
   lastSeat.fitnessScore = 100; 
   population[4] = &lastSeat;  // manually set the last seat has high fitnessScore, so it sure replaced by croosoverChild
   
-  random_IgnoreAndReturn(0);
-  random_IgnoreAndReturn(1);
+  random_IgnoreAndReturn(0);  // Notice : 0 == 2, 1 == 3, 4 == null
+  random_IgnoreAndReturn(1);  // if mock 2 same number, then will forever stuck in while loop
   crossoverHandler( population, &p5, 4, sizeSession);
   
   TEST_ASSERT_NOT_NULL(S1);
@@ -253,4 +253,48 @@ void test_crossoverHandler_last_seat_fitnessScore_is_100_which_larger_than_child
   TEST_ASSERT_NULL(S2_3);
   TEST_ASSERT_NULL(S3_3);
   TEST_ASSERT_NULL(S4_3);
+}
+
+void test_crossoverHandler_given_mock_2_1_should_get_same_result_of_test1(void){
+  Table lastSeat;
+  lastSeat.sessions = NULL;
+  lastSeat.fitnessScore = 100; 
+  population[4] = &lastSeat;  // manually set the last seat has high fitnessScore, so it sure replaced by croosoverChild
+  
+  random_IgnoreAndReturn(2);  // Notice : 0 == 2, 1 == 3, 4 == null
+  random_IgnoreAndReturn(1);  // if mock 2 same number, then will forever stuck in while loop
+  crossoverHandler( population, &p5, 4, sizeSession);
+  
+  TEST_ASSERT_NOT_NULL(S1);
+  TEST_ASSERT_NOT_NULL(S2);
+  TEST_ASSERT_NOT_NULL(S3);
+  TEST_ASSERT_NOT_NULL(S4);
+  TEST_ASSERT_NULL(S5);
+ 
+  TEST_ASSERT_EQUAL_PTR(&p2, S1_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p3, S1_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p4, S2_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p5, S2_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p1, S3_1->data);
+  TEST_ASSERT_EQUAL_PTR(&p8, S3_2->data);
+  TEST_ASSERT_EQUAL_PTR(&p7, S4_1->data); 
+  TEST_ASSERT_EQUAL_PTR(&p6, S4_2->data); 
+  
+  TEST_ASSERT_NULL(S1_3);
+  TEST_ASSERT_NULL(S2_3);
+  TEST_ASSERT_NULL(S3_3);
+  TEST_ASSERT_NULL(S4_3);
+}
+
+void test_crossoverHandler_last_seat_fitnessScore_is_0_which_smaller_than_child_should_not_replace(void){
+  Table lastSeat;
+  lastSeat.sessions = NULL;
+  lastSeat.fitnessScore = 0; 
+  population[4] = &lastSeat;  // manually set the last seat has small fitnessScore, so it wpont replaced by croosoverChild
+  
+  random_IgnoreAndReturn(1);  // Notice : 0 == 2, 1 == 3, 4 == null
+  random_IgnoreAndReturn(3);
+  crossoverHandler( population, &p5, 4, sizeSession);
+  
+  TEST_ASSERT_NULL(S1);
 }
