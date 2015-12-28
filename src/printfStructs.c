@@ -60,9 +60,6 @@ void printfProgrammeList(LinkedList *proList){
 }
 
 
-
-
-
 void printfTablePointer(Table *table){
   printfSessionList(table->sessions);
   printf("\n");
