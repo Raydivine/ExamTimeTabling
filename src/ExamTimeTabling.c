@@ -19,16 +19,16 @@ void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
 
   while( times != try){ 
     bestScore = population[0]->fitnessScore;
-  
+    printf("%d\n",bestScore);
         
-    mutateTable( population[random(numberOfSample)] );
-    Paper *p = papers[random(sizePapers)];
-    //crossoverHandler( population, p , numberOfSample, sizeSession);
-    sortInFitnessScore( population, numberOfSample);
+    // mutateTable( population[random(numberOfSample)] );
+    // Paper *p = papers[random(sizePapers)];
+   // crossoverHandler( population, p , numberOfSample, sizeSession);
+   // sortInFitnessScore( population, numberOfSample);
     
     // if( population[0]->fitnessScore < bestScore)
       // times = 0;
-     // times++;
+    times++;
   }
 }
 
@@ -42,6 +42,6 @@ void crossoverHandler(Table *population[], Paper *target, int sizePopulation, in
 
   Table *child = crossoverTwoTable( population[a], population[b], target, sizeSession);
   
-  if( child->fitnessScore < population[sizePopulation]->fitnessScore )
-    population[sizePopulation] = child;
+  // if( child->fitnessScore < population[sizePopulation]->fitnessScore )
+    // population[sizePopulation] = child;
 }
