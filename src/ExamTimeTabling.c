@@ -9,7 +9,7 @@
 #include <malloc.h>
 
 const int numberOfSample = 10;
-const int try = 10;
+const int try = 30;
 
 void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
   int times = 0, bestScore; 
@@ -23,7 +23,7 @@ void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
         
     mutateTable( population[random(numberOfSample)] );
     Paper *p = papers[random(sizePapers)];
-    crossoverHandler( population, p , numberOfSample, sizeSession);
+    crossoverHandler( population, p , numberOfSample, sizeSession); 
     sortInFitnessScore( population, numberOfSample);
     
     if( population[0]->fitnessScore < bestScore)
