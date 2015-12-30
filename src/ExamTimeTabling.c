@@ -30,6 +30,8 @@ void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
       times = 0;
     else times++;
   }
+  printf("\n\n");
+  printfTable(population[0]);
 }
 
 void crossoverHandler(Table *population[], Paper *target, int sizePopulation, int sizeSession){
