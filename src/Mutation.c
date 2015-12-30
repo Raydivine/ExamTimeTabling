@@ -26,6 +26,7 @@ void mutateSessionList(LinkedList **sessionList){
   while(tailList!= NULL){
     tail = (Session*)tailList->data;
     mutateTwoSession( head, tail);
+    mutateTwoSession( tail, head);
     tailList = tailList->next;
   }
 

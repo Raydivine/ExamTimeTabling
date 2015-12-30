@@ -117,8 +117,10 @@ void tearDown(void){
 
 void test_examTimeTabling_given_p1_to_p10_and_sizeSession_is_500(void){
   int sizeSession = 420;  
+  int generation = 30;
+  int populationNum = 10;
 
   Paper *papersArr[10] =  { &p1,&p2,&p3,&p4,&p5,&p6,&p7,&p8,&p9,&p10};
-  examTimeTabling( papersArr, TOTAL_PAPERS, sizeSession);
+  examTimeTabling( papersArr, TOTAL_PAPERS, sizeSession, generation, populationNum);
   
 }

@@ -11,20 +11,20 @@
 const int numberOfSample = 10;
 const int try = 30;
 
-void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession){
+void examTimeTabling(Paper *papers[], int sizePapers, int sizeSession, int generation, int populationNum){
   int times = 0, bestScore; 
-  Table *population[numberOfSample];
+  Table *population[populationNum];
   
-  initPopulation( population, papers, numberOfSample, sizePapers, sizeSession);
+  initPopulation( population, papers, populationNum, sizePapers, sizeSession);
 
-  while( times != try){ 
+  while( times != generation){ 
     bestScore = population[0]->fitnessScore;
     printf("%d\n",bestScore);
         
-    mutateTable( population[random(numberOfSample)] );
+    mutateTable( population[random(populationNum)] );
     Paper *p = papers[random(sizePapers)];
-    crossoverHandler( population, p , numberOfSample, sizeSession); 
-    sortInFitnessScore( population, numberOfSample);
+    crossoverHandler( population, p , populationNum, sizeSession); 
+    sortInFitnessScore( population, populationNum);
     
     if( population[0]->fitnessScore < bestScore)
       times = 0;
