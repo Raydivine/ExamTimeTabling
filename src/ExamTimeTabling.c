@@ -42,7 +42,8 @@ void crossoverHandler(Table *population[], Paper *target, int sizePopulation, in
 
   Table *child = crossoverTwoTable( population[a], population[b], target, sizeSession);
 
-
-  if( child->fitnessScore < population[sizePopulation-1]->fitnessScore )
-    population[sizePopulation] = child;
+  if( child->fitnessScore < population[sizePopulation-1]->fitnessScore ){
+    clearLinkList( &(population[sizePopulation-1]->sessions) );
+    population[sizePopulation-1] = child;
+  }
 }

@@ -21,13 +21,13 @@
 #define CLEAR_SESSION_1_TO_4 clearLinkList(&(s1.papers)); clearLinkList(&(s2.papers)); clearLinkList(&(s3.papers)); clearLinkList(&(s4.papers));
 #define CLEAR_SESSION_5_TO_8 clearLinkList(&(s5.papers)); clearLinkList(&(s6.papers)); clearLinkList(&(s7.papers)); clearLinkList(&(s8.papers));
 
-#define S1 population[4]->sessions
-#define S2 population[4]->sessions->next
-#define S3 population[4]->sessions->next->next
-#define S4 population[4]->sessions->next->next->next
-#define S5 population[4]->sessions->next->next->next->next
-#define S6 population[4]->sessions->next->next->next->next->next
-#define S7 population[4]->sessions->next->next->next->next->next->next
+#define S1 population[TOTAL_SAMPLES-1]->sessions
+#define S2 population[TOTAL_SAMPLES-1]->sessions->next
+#define S3 population[TOTAL_SAMPLES-1]->sessions->next->next
+#define S4 population[TOTAL_SAMPLES-1]->sessions->next->next->next
+#define S5 population[TOTAL_SAMPLES-1]->sessions->next->next->next->next
+#define S6 population[TOTAL_SAMPLES-1]->sessions->next->next->next->next->next
+#define S7 population[TOTAL_SAMPLES-1]->sessions->next->next->next->next->next->next
 
 // The below define are the paper sequence in session
 //  example:  S1_1  = session1's first paper
@@ -232,7 +232,7 @@ void test_crossoverHandler_last_seat_fitnessScore_is_100_which_larger_than_child
   
   random_IgnoreAndReturn(0);  // Notice : 0 == 2, 1 == 3, 4 == null
   random_IgnoreAndReturn(1);  // if mock 2 same number, then will forever stuck in while loop
-  crossoverHandler( population, &p5, 4, sizeSession);
+  crossoverHandler( population, &p5, TOTAL_SAMPLES, sizeSession);
   
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
@@ -263,7 +263,7 @@ void test_crossoverHandler_given_mock_2_1_should_get_same_result_of_test1(void){
   
   random_IgnoreAndReturn(2);  // Notice : 0 == 2, 1 == 3, 4 == null
   random_IgnoreAndReturn(1);  // if mock 2 same number, then will forever stuck in while loop
-  crossoverHandler( population, &p5, 4, sizeSession);
+  crossoverHandler( population, &p5, TOTAL_SAMPLES, sizeSession);
   
   TEST_ASSERT_NOT_NULL(S1);
   TEST_ASSERT_NOT_NULL(S2);
