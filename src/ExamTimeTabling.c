@@ -46,4 +46,5 @@ void crossoverHandler(Table *population[], Paper *target, int sizePopulation, in
     clearLinkList( &(population[sizePopulation-1]->sessions) );
     population[sizePopulation-1] = child;
   }
+  else clearLinkList( &(child->sessions) );
 }
